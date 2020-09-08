@@ -1,0 +1,33 @@
+.nav {
+  background-color: $subColor;
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  &__item {
+    font-size: 13px;
+    padding: 0px 10px;
+    border-right: 1px solid $baseColor;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+  &__link {
+    color: $baseColor;
+    text-decoration: none !important;
+    transition: .2s ease-out;
+
+    &:hover {
+      font-size: 1.4em;
+      color: white;
+    }
+  }
+}
