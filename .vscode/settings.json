@@ -1,0 +1,11 @@
+{
+  // liveSassCompilerのトランスパイルする cssファイル の出力先指定
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/src/css"
+      // "savePath": null
+    }
+  ]
+}
