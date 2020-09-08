@@ -10577,6 +10577,14 @@ input[type='text']:focus {
   z-index: -100;
 }
 
+.footer__copyright {
+  text-align: center;
+  background-color: rgba(16, 21, 35, 0.6);
+  color: white;
+  margin: 0;
+  padding: 15px 0;
+}
+
 .recommend {
   padding: 30px 0px 20px 0;
   background-color: #EAEAEA;

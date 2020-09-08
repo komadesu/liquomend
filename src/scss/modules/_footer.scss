@@ -1,0 +1,11 @@
+@import '../settings/variables';
+
+.footer {
+  &__copyright {
+    text-align: center;
+    background-color: $footerColor;
+    color: white;
+    margin: 0;
+    padding: 15px 0;
+  }
+}
