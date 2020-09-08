@@ -1,6 +1,7 @@
 input[type='text'] {
   background-color: white !important;
   border: none !important;
+  outline: none !important;
   padding: 4px 8px;
   letter-spacing: 2px;
 }
@@ -43,6 +44,7 @@ input[type='text']:focus {
     letter-spacing: 2px;
   }
   &__btn {
+    outline: none !important;
     position: absolute;
     right: 5px;
     top: 50%;
@@ -60,6 +62,13 @@ input[type='text']:focus {
     padding: 8px 12px;
     border: 1px solid white;
     color: white;
+    cursor: pointer;
+    transition: background-color .1s, color .3s;
+
+    &:hover {
+      background-color: white;
+      color: $mainColor;
+    }
   }
 
   &__img {
