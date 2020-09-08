@@ -10,38 +10,35 @@
 // @import './modules/search';
 // @import './modules/footer';
 
-// .more-btn {
-//   text-align: right;
-//   font-size: 10px;
-//   color: $subColor;
-// }
+.recommend {
+  padding: 30px 0px 20px 0;
+  background-color: $baseColor;
 
-// .recommend {
-//   padding: 30px 0px;
-//   background-color: $baseColor;
+  &__title::after {
+    background-color: $subColor;
+  }
+}
 
-//   &__title {
-//     &::after {
-//       background-color: $subColor;
-//     }
-//   }
+.classic {
+  padding: 30px 0px;
+  background-color: white;
 
-//   & .card {
-//     background-color: $baseColor;
-//   }
-// }
+  &__title::after {
+    background-color: $subColor;
+  }
+}
 
-// .classic {
-//   padding: 30px 0px;
-//   background-color: white;
+.more-btn {
+  text-align: right;
+  font-size: 14px;
 
-//   &__title {
-//     &::after {
-//       background-color: $subColor;
-//     }
-//   }
+  & > a {
+    color: $subColor;
+    text-decoration: none !important;
+    transition: 0.2s ease-out;
 
-//   & .card {
-//     background-color: white;
-//   }
-// }
+    &:hover {
+      color: $mainColor;
+    }
+  }
+}
