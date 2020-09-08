@@ -57,7 +57,7 @@ PostgreSQL
 投稿ページ => PostCustomizeDrink.php
 
 マイページ => MyPage.php
-~~投稿確認画面 => Mypost~~
+~~投稿確認画面 => MyPost~~
 ~~お気に入り確認画面 => Favorite~~
 ~~各種設定画面 => Settings~~
 マイページのコンポーネントとして、切り出し、この部分は SPA として実装する。
