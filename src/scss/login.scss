@@ -1,0 +1,59 @@
+@import './vendors/bootstrap.min';
+@import './settings/variables';
+@import './settings/utils';
+@import './settings/resetFormStyles';
+@import './modules/header';
+@import './modules/mobile-menu';
+@import './modules/hero';
+@import './modules/nav';
+@import './modules/form';
+@import './modules/footer';
+
+#global-container {
+  background-color: $baseColor;
+}
+
+.nav {
+  margin-bottom: 40px;
+}
+
+.login {
+  margin-bottom: 40px;
+  background-color: white;
+  padding: 20px;
+
+  &__unvalid {
+    text-align: right;
+    color: $loginUnvalidTextColor;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  &__btns {
+    text-align: center;
+  }
+
+  &__or__register {
+    margin: 0;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $loginOrRegisterTextColor;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 25%;
+      height: 1px;
+      background-color: $loginOrRegisterLineColor;
+    }
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 25%;
+      height: 1px;
+      background-color: $loginOrRegisterLineColor;
+    }
+  }
+}

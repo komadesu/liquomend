@@ -9,10 +9,16 @@
 @import './modules/form';
 @import './modules/footer';
 
+#global-container {
+  background-color: $baseColor;
+}
+
 .nav {
   margin-bottom: 40px;
 }
 
 .register {
   margin-bottom: 40px;
+  background-color: white;
+  padding: 20px;
 }
