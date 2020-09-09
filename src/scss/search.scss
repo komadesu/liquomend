@@ -1,0 +1,17 @@
+@import './vendors/bootstrap.min';
+@import './settings/variables';
+@import './settings/utils';
+@import './settings/resetFormStyles';
+@import './modules/header';
+@import './modules/mobile-menu';
+@import './modules/hero';
+@import './modules/cocktail';
+@import './modules/search';
+@import './modules/footer';
+
+
+.drinks {
+  padding: 30px 0px 20px 0;
+  // background-color: $baseColor;
+  background-color: white;
+}
