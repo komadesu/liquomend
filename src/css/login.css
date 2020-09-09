@@ -10647,9 +10647,51 @@ input[type='password']:focus {
   margin-bottom: 40px;
 }
 
-.register {
+.login {
   margin-bottom: 40px;
   background-color: white;
   padding: 20px;
 }
-/*# sourceMappingURL=register.css.map */
+
+.login__unvalid {
+  text-align: right;
+  color: #64A7CB;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.login__btns {
+  text-align: center;
+}
+
+.login__or__register {
+  margin: 0;
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #707070;
+}
+
+.login__or__register::before {
+  content: '';
+  display: inline-block;
+  width: 25%;
+  height: 1px;
+  background-color: #A2A2A2;
+}
+
+.login__or__register::after {
+  content: '';
+  display: inline-block;
+  width: 25%;
+  height: 1px;
+  background-color: #A2A2A2;
+}
+/*# sourceMappingURL=login.css.map */
