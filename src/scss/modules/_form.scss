@@ -1,0 +1,21 @@
+// デフォルトのフォームのスタイルを消す処理は、scss/settings/_resetFormStyles.scss に任せた。
+// その他はページ特有でかくか、もしくは、このようにモジュールで切り分けるか。
+// このスタイルがユーザ登録やログインなどの基本的なものになると思い、_form.scss として切り分ける。
+// フォームのスタイルは、基本的にデフォルトのスタイルを input[type="text"] のような詳細度で設定しているため、
+// !important 等を用いるが、よく理解して意識して使うこと。
+// このスタイルモジュールは、regitster, check, thanks ページで用いる。
+
+.form {
+  &__title {
+    text-align: center;
+    font-size: 22px;
+    color: $subColor;
+  }
+  &__label {
+    color: $subTitleColor;
+  }
+  &__btn {
+    background-color: $formBtnColor !important;
+    color: white !important;
+  }
+}
