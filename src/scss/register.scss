@@ -1,0 +1,18 @@
+@import './vendors/bootstrap.min';
+@import './settings/variables';
+@import './settings/utils';
+@import './settings/resetFormStyles';
+@import './modules/header';
+@import './modules/mobile-menu';
+@import './modules/hero';
+@import './modules/nav';
+@import './modules/form';
+@import './modules/footer';
+
+.nav {
+  margin-bottom: 40px;
+}
+
+.register {
+  margin-bottom: 40px;
+}
