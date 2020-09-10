@@ -24,6 +24,7 @@
     }
   }
   &__search-word {
+    width: 100%;
     position: absolute;
     top: 45%;
     left: 50%;
@@ -31,7 +32,7 @@
     z-index: 100;
 
     &__string {
-      font-size: 20px;
+      font-size: 30px;
       margin: 0;
     }
     &__underbar {
@@ -48,4 +49,11 @@
 .drinks {
   padding: 30px 0px 20px 0;
   background-color: white;
+}
+
+#contents-container {
+  padding-bottom: 0;
+}
+.footer {
+  position: static;
 }

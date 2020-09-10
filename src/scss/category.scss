@@ -5,9 +5,6 @@
 @import './modules/header';
 @import './modules/mobile-menu';
 @import './modules/hero';
-@import './modules/select-base';
-@import './modules/pulldown';
-@import './modules/cocktail';
 @import './modules/footer';
 
 .hero {
@@ -50,7 +47,45 @@
   }
 }
 
-.drinks {
+.category {
   padding: 30px 0px 20px 0;
   background-color: white;
+
+  &__description {
+    position: absolute;
+    margin: 0;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: $categoryDescriptionColor;
+    z-index: 200;
+    font-size: 13px;
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__base {
+    margin-bottom: 40px;
+  }
+  &__link {
+    border-bottom: 1px solid $categoryLinkBorderColor;
+    color: $categoryLinkTextColor;
+    width: 140px;
+    display: inline-block;
+    padding: 10px 0;
+    text-align: center;
+    transition: transform .5s, color .3s;
+
+    &:hover {
+      text-decoration: none;
+      color: $mainColor;
+      transform: scale(1.5);
+    }
+  }
 }
