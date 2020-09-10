@@ -45,21 +45,21 @@ PostgreSQL
 ただ、今後も git を使えない人が当たり前にいるメンバーで開発をしなければならないため、このやり方で実装してみることにする。
 
 ### 作るページ・file名
-ホームページ => Home.php
-新規登録画面 => Register.php
-登録確認画面 => Check.php
-登録完了画面 => Thanks.php
-ログイン画面 => Login.php
-Aboutページ => About.php
+done: ホームページ => Home.php
+done: 新規登録画面 => Register.php
+not yet: 登録確認画面 => Check.php
+not yet: 登録完了画面 => Thanks.php
+done: ログイン画面 => Login.php
+done: Aboutページ => About.php
 
-カテゴリー選択画面 => Category.php
-定番メニュー画面 => UsualMenu.php
-ユーザカスタマイズメニュー画面 => CustomizeMenu.php
-投稿ページ => PostCustomizeDrink.php
-検索結果出力画面 with 検索機能 => Search.php
-詳細画面 => Detail.php
+not yet: カテゴリー選択画面 => Category.php
+done: 定番メニュー画面 => UsualMenu.php
+done: ユーザカスタマイズメニュー画面 => CustomizeMenu.php
+not yet: 投稿ページ => PostCustomizeDrink.php
+done: 検索結果出力画面 with 検索機能 => Search.php
+done: 詳細画面 => Detail.php
 
-マイページ => MyPage.php
+not yet: マイページ => MyPage.php
 ~~投稿確認画面 => MyPost~~
 ~~お気に入り確認画面 => Favorite~~
 ~~各種設定画面 => Settings~~
