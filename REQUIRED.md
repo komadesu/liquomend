@@ -50,11 +50,14 @@ PostgreSQL
 登録確認画面 => Check.php
 登録完了画面 => Thanks.php
 ログイン画面 => Login.php
+Aboutページ => About.php
 
 カテゴリー選択画面 => Category.php
 定番メニュー画面 => UsualMenu.php
 ユーザカスタマイズメニュー画面 => CustomizeMenu.php
 投稿ページ => PostCustomizeDrink.php
+検索結果出力画面 with 検索機能 => Search.php
+詳細画面 => Detail.php
 
 マイページ => MyPage.php
 ~~投稿確認画面 => MyPost~~
