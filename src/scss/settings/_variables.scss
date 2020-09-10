@@ -3,8 +3,11 @@ $baseColor: #EAEAEA;
 $subColor: #5A5A5A;
 $subColor2: #A2A2A2;
 $subColor3: #707070;
+$subColor4: hsla(224, 37%, 10%, 0.6);
+
+
 $bgMaskColor: hsla(222, 25%, 18%, 0.8);
-$footerColor: hsla(224, 37%, 10%, 0.6);
+$footerColor: $subColor4;
 
 
 $cocktailTextColor: #ccc;
@@ -35,3 +38,6 @@ $contactTitleColor: $subColor;
 $contactBorderColor: $subColor;
 $contactEmailColor: $subColor;
 $contactIconColor: $subColor;
+
+
+$selectBaseColor: $subColor4;
