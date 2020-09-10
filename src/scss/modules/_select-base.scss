@@ -1,0 +1,14 @@
+@import '../settings/variables';
+
+.select-base {
+  background-color: $selectBaseColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.extract-outer,
+.sort-outer {
+  margin: 0 5px;
+}

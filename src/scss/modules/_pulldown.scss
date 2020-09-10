@@ -1,0 +1,91 @@
+@import '../settings/variables';
+
+
+/** pulldown **/
+.pulldown-wrapper {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+.pulldown-wrapper select {
+  display: none;
+}
+.pulldown {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+.pulldown-trigger {
+  display: inline-block;
+  // width: 80px;
+  width: 100px;
+  height: 40px;
+  font-weight: 300;
+  color: #fff;
+  line-height: 40px;
+  background-color: transparent;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.pulldown-trigger:after {
+  display: inline-block;
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+  transform: rotate(45deg);
+  transition: all 0.4s ease-in-out;
+  transform-origin: 65% 65%;
+  margin-left: 8px;
+}
+.pulldown.opened .pulldown-trigger:after {
+  transform: rotate(-135deg);
+}
+.extract-options {
+  position: absolute;
+  display: block;
+  top: 100%;
+  left: 0;
+  right: 0;
+  min-width: 100%;
+  margin: 15px 0;
+  background: #fff;
+  transition: all 0.4s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-15px);
+  z-index: 200;
+  font-size: 13px;
+}
+.pulldown.opened .extract-options {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transform: translateY(0);
+}
+.extract-option {
+  position: relative;
+  display: block;
+  min-width: 100%;
+  padding: 0 16px;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.07);
+  font-weight: 600;
+  color: $subColor;
+  line-height: 47px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.extract-option:first-of-type {
+  border-radius: 2px 2px 0 0;
+}
+.extract-option:last-of-type {
+  border-bottom: 0;
+  border-radius: 0 0 2px 2px;
+}
+.extract-option:hover,
+.extract-option.selection {
+  background: $baseColor;
+  color: $mainColor;
+}

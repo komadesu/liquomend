@@ -1,0 +1,53 @@
+@import './vendors/bootstrap.min';
+@import './settings/variables';
+@import './settings/utils';
+@import './settings/resetFormStyles';
+@import './modules/header';
+@import './modules/mobile-menu';
+@import './modules/hero';
+@import './modules/select-base';
+@import './modules/pulldown';
+@import './modules/cocktail';
+@import './modules/footer';
+
+.hero {
+  &__logo {
+    position: absolute;
+    z-index: 300;
+    top: 10px;
+    right: 30px;
+
+    & img {
+      max-width: 100%;
+      width: 70px;
+      object-position: center;
+      object-fit: cover;
+    }
+  }
+  &__search-word {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+
+    &__string {
+      font-size: 20px;
+      margin: 0;
+      text-align: center;
+    }
+    &__underbar {
+      & img {
+        max-width: 100%;
+        width: 160px;
+        object-position: center;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.drinks {
+  padding: 30px 0px 20px 0;
+  background-color: white;
+}
