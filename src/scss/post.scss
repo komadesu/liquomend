@@ -5,7 +5,6 @@
 @import './modules/header';
 @import './modules/mobile-menu';
 @import './modules/hero';
-@import './modules/nav';
 @import './modules/search';
 @import './modules/footer';
 
@@ -25,8 +24,15 @@
       object-fit: cover;
     }
   }
+}
 
-  &-post {
+input[type='text'] {
+  background-color: transparent !important;
+  border-bottom: 1px solid $recipeNameInputBorderColor !important;
+  text-decoration: none !important;
+}
+.recipe {
+  &-img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -42,7 +48,7 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      border: 1px solid $heroPostBgImgBorderColor;
+      border: 1px solid $recipeImgBgImgBorderColor;
       border-radius: 10px;
 
       & img {
@@ -76,7 +82,7 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background-color: $heroPostCircleColor;
+      background-color: $recipeImgCircleColor;
 
       & i {
         position: absolute;
@@ -89,6 +95,32 @@
 
     &__input {
       display: none;
+    }
+  }
+
+  &-name {
+    background-color: $recipeNameBgColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+
+    &__title {
+      font-size: 18px;
+      margin: 0;
+      color: white;
+      width: 90%;
+    }
+
+    &__input {
+      text-align: center;
+      // 上部で宣言
+      // background-color: transparent !important;
+      // border-bottom: 1px solid $recipeNameInputBorderColor !important;
+      // text-decoration: none !important;
+      &::placeholder {
+        color: $recipeNameInputPlaceholderColor;
+      }
     }
   }
 }
