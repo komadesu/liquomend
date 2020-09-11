@@ -36,6 +36,7 @@ input[type='text']:focus {
 
   &__bar {
     position: relative;
+    margin-bottom: 30px;
   }
   &__input {
     // other styles is written in input[type='text'] above that override _resultFormStyles
