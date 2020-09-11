@@ -34,8 +34,11 @@
     &__string {
       font-size: 30px;
       margin: 0;
+      text-align: center;
     }
     &__underbar {
+      text-align: center;
+
       & img {
         max-width: 100%;
         width: 160px;
