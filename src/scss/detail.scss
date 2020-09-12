@@ -1,0 +1,201 @@
+@import './vendors/bootstrap.min';
+@import './settings/variables';
+@import './settings/utils';
+@import './settings/resetFormStyles';
+@import './modules/header';
+@import './modules/mobile-menu';
+@import './modules/cocktail';
+@import './modules/search';
+@import './modules/footer';
+
+.detail {
+  &__logo {
+    position: absolute;
+    z-index: 300;
+    top: 10px;
+    right: 30px;
+
+    & img {
+      max-width: 100%;
+      width: 70px;
+      object-position: center;
+      object-fit: cover;
+    }
+  }
+
+  &__name {
+    padding-top: 70px;
+    margin-bottom: 24px;
+
+    & .string {
+      font-size: 30px;
+      margin: 0;
+      text-align: center;
+    }
+    & .underbar {
+      text-align: center;
+
+      & img {
+        max-width: 100%;
+        width: 160px;
+        object-position: center;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__image {
+    margin-bottom: 60px;
+
+    & img {
+      max-width: 100%;
+      object-position: center;
+      object-fit: cover;
+    }
+  }
+
+  &__method {
+    padding: 60px 0;
+    background-color: $baseColor;
+
+    &-inner {
+      padding: 30px 28px;
+      background-color: white;
+      border: 1px solid $subColor;
+
+      & .title {
+        font-size: 24px;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+
+      & .ingredients-and-quantity {
+        & .item {
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid $subColor;
+          margin-bottom: 8px;
+          padding: 0 8px;
+        }
+      }
+    }
+  }
+
+  &__memo {
+    background-color: $subColor;
+    padding: 40px 0;
+
+    & .title {
+      font-size: 24px;
+      margin-bottom: 24px;
+      text-align: center;
+      color: white;
+
+      &::after {
+        background-color: white;
+      }
+    }
+
+    & .content {
+      background-color: white;
+      min-height: 110px;
+      border-radius: 7px;
+      padding: 8px;
+    }
+  }
+
+  &__share {
+    background-color: white;
+    padding: 30px 0;
+    text-align: center;
+
+    & .share-btn {
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid $subColor;
+      color: $subColor;
+      transition: background-color 0.2s, color 0.1s;
+
+      &:hover {
+        text-decoration: none;
+        background-color: $subColor;
+        color: white;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &__related-base-recipe {
+    background-color: $baseColor;
+    padding: 40px 0 30px;
+
+    & .title {
+      font-size: 18px;
+      margin-bottom: 16px;
+      text-align: center;
+      color: $subColor;
+
+      &::after {
+        background-color: $subColor;
+      }
+    }
+
+    & .sub-title {
+      color: $subColor;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    & .more-btn {
+      text-align: right;
+      font-size: 14px;
+
+      & > a {
+        color: $subColor;
+        text-decoration: none !important;
+        transition: 0.2s ease-out;
+
+        &:hover {
+          color: $mainColor;
+        }
+      }
+    }
+  }
+
+  &__post {
+    background-color: white;
+    padding: 50px 0;
+    text-align: center;
+
+    & .title::after {
+      background-color: $subColor;
+    }
+
+    & .write-btn {
+      // display: inline-block;
+      display: block;
+      padding: 8px 12px;
+      border: 1px solid $subColor;
+      color: $subColor;
+      transition: background-color 0.2s, color 0.1s;
+
+      &:hover {
+        text-decoration: none;
+        background-color: $subColor;
+        color: white;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+#contents-container {
+  padding-bottom: 0;
+}
+.footer {
+  position: static;
+}
