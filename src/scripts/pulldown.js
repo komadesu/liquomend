@@ -38,7 +38,7 @@ $('.pulldown').each(function () {
   $(this).after(template);
 });
 
-$('.pulldown-trigger').on('click', function () {
+$('.pulldown-trigger').on('click', function (event) {
   $('html').one('click', function () {
     $('.pulldown').removeClass('opened');
   });
