@@ -6,7 +6,6 @@
 @import './modules/mobile-menu';
 @import './modules/hero';
 @import './modules/recipe-select';
-@import './modules/search';
 @import './modules/footer';
 
 .hero {
@@ -181,6 +180,96 @@
       & p {
         margin-bottom: 0;
         color: subColor3 !important;
+      }
+    }
+
+    & .add {
+      text-align: right;
+      font-size: 14px;
+
+      & .add-btn {
+        color: $subColor;
+        transition: 0.2s ease-out;
+        cursor: pointer;
+        padding: 4px 8px;
+
+        &:hover {
+          color: $mainColor;
+        }
+      }
+    }
+  }
+
+  &-memo {
+    position: relative;
+
+    &-inner {
+      padding: 40px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      z-index: 100;
+    }
+
+    &__title {
+      color: white !important;
+
+      &::after {
+        background-color: white;
+      }
+    }
+    &__description {
+      position: relative;
+      margin-bottom: 30px;
+
+      & .textarea {
+        border-radius: 10px;
+        padding: 8px;
+        outline: none;
+      }
+    }
+    &__post {
+      letter-spacing: 2px;
+
+      & .post-btn {
+        display: inline-block;
+        padding: 6px 36px;
+        border: 1px solid white;
+        border-radius: 2px;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.1s, color 0.3s;
+
+        &:hover {
+          background-color: white;
+          color: $mainColor;
+        }
+      }
+    }
+
+    &__img {
+      & img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        object-position: center;
+        object-fit: cover;
+        z-index: -200;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $bgMaskColor;
+        z-index: -100;
       }
     }
   }
