@@ -4,7 +4,8 @@ $baseColor: #EAEAEA;
 $subColor: #5A5A5A;
 $subColor2: #A2A2A2;
 $subColor3: #707070;
-$subColor4: hsla(224, 37%, 10%, 0.6);
+$subColor4: rgba(16, 21, 35, 0.6);
+$subColor5: hsla(222, 25%, 18%, 0.8);
 
 
 $bgMaskColor: hsla(222, 25%, 18%, 0.8);
@@ -21,7 +22,7 @@ $subTitleColor: $subColor2;
 $submitColor: #C0C0C0;
 
 $formBorderColor: $subColor3;
-$formBtnColor: rgba(16, 21, 35, 0.6);
+$formBtnColor: $subColor4;
 
 
 $loginUnvalidTextColor: #64A7CB;
@@ -47,3 +48,13 @@ $categoryDescriptionColor: $mainColor2;
 
 $categoryLinkTextColor: $subColor3;
 $categoryLinkBorderColor: $subColor3;
+
+$recipeImgBgImgBorderColor: $subColor3;
+$recipeImgCircleColor: $subColor4;
+$recipeNameBgColor: $subColor4;
+$recipeNameInputPlaceholderColor: rgba(255, 255, 255, 0.302);
+$recipeNameInputBorderColor: rgba(255, 255, 255, 0.302);
+$recipeInfoBgColor: $baseColor;
+$recipeInfoSelectColor: $subColor3;
+$recipeInfoPulldownColor: $subColor3;
+$recipeInfoPulldownTriggerBorderColor: $subColor3;

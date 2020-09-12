@@ -1,15 +1,3 @@
-input[type='text'] {
-  background-color: white !important;
-  border: none !important;
-  outline: none !important;
-  padding: 4px 8px;
-  letter-spacing: 2px;
-}
-
-input[type='text']:focus {
-  border: none !important;
-}
-
 .search {
   position: relative;
 
@@ -36,6 +24,7 @@ input[type='text']:focus {
 
   &__bar {
     position: relative;
+    margin-bottom: 30px;
   }
   &__input {
     // other styles is written in input[type='text'] above that override _resultFormStyles
@@ -61,7 +50,7 @@ input[type='text']:focus {
     border: 1px solid white;
     color: white;
     cursor: pointer;
-    transition: background-color .1s, color .3s;
+    transition: background-color 0.1s, color 0.3s;
 
     &:hover {
       background-color: white;
@@ -91,6 +80,18 @@ input[type='text']:focus {
       height: 100%;
       background-color: $searchBgColor;
       z-index: -100;
+    }
+  }
+
+  & input[type='text'] {
+    background-color: white !important;
+    border: none !important;
+    outline: none !important;
+    padding: 4px 8px;
+    letter-spacing: 2px;
+
+    &:focus {
+      border: none !important;
     }
   }
 }

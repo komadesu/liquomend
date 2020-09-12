@@ -52,7 +52,7 @@ not yet: 登録完了画面 => Thanks.php
 done: ログイン画面 => Login.php
 done: Aboutページ => About.php
 
-not yet: カテゴリー選択画面 => Category.php
+done: カテゴリー選択画面 => Category.php
 done: 定番メニュー画面 => UsualMenu.php
 done: ユーザカスタマイズメニュー画面 => CustomizeMenu.php
 not yet: 投稿ページ => PostCustomizeDrink.php
