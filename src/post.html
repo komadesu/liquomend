@@ -4,12 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Liquomend | Post</title>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
-      integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/post.css" />
   </head>
   <body>
@@ -18,10 +13,7 @@
         <div class="mobile-menu__cover"></div>
 
         <header class="header m-3">
-          <button
-            onclick="document.querySelector('#global-container').classList.toggle('menu-open')"
-            class="mobile-menu__btn"
-          >
+          <button onclick="document.querySelector('#global-container').classList.toggle('menu-open')" class="mobile-menu__btn">
             <span></span>
             <span></span>
             <span></span>
@@ -40,14 +32,132 @@
               <div class="recipe-img__circle">
                 <i class="fas fa-camera"></i>
               </div>
-              <input type="file" name="image" class="recipe-img__input" required />
+              <input type="file" name="recipe_image" class="recipe-img__input" required />
             </label>
           </div>
 
-          <div class="recipe-name" style="margin-bottom: 200px;">
+          <div class="recipe-name">
             <h3 class="recipe-name__title">
               <input type="text" placeholder="レシピ名" class="recipe-name__input" />
             </h3>
+          </div>
+
+          <div class="recipe-info">
+            <div class="container">
+              <div class="row">
+                <div class="col-10 offset-1">
+                  <div class="form-group">
+                    <label class="control-label">ベース</label>
+                    <div class="select-wrap select-base">
+                      <select name="" id="">
+                        <option value="">ベース</option>
+                        <option class="recipe-info__base" value="liquor">リキュール</option>
+                        <option class="recipe-info__base" value="gin">ジン</option>
+                        <option class="recipe-info__base" value="vodka">ウォッカ</option>
+                        <option class="recipe-info__base" value="rum">ラム</option>
+                        <option class="recipe-info__base" value="tequila">テキーラ</option>
+                        <option class="recipe-info__base" value="whisky">ウイスキー</option>
+                        <option class="recipe-info__base" value="beer">ビール</option>
+                        <option class="recipe-info__base" value="shochu">焼酎</option>
+                        <option class="recipe-info__base" value="wine">ワイン</option>
+                        <option class="recipe-info__base" value="brandy">ブランデー</option>
+                        <option class="recipe-info__base" value="sake">日本酒</option>
+                        <option class="recipe-info__base" value="other">その他</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row recipe-info__display-toggle">
+                <div class="col-10 offset-1">
+                  <div class="form-group">
+                    <label class="control-label">度数</label>
+                    <div class="select-wrap select-alcohol">
+                      <select name="" id="">
+                        <option value="">リキュール</option>
+                        <option class="recipe-info__liquor" value="cassis">カシス</option>
+                        <option class="recipe-info__liquor" value="peach">ピーチ</option>
+                        <option class="recipe-info__liquor" value="malibu">マリブ</option>
+                        <option class="recipe-info__liquor" value="kahlua">カルーア</option>
+                        <option class="recipe-info__liquor" value="rum">ラム</option>
+                        <option class="recipe-info__liquor" value="campari">カンパリ</option>
+                        <option class="recipe-info__liquor" value="tiffin">ティフィン</option>
+                        <option class="recipe-info__liquor" value="cointreau">コアントロー</option>
+                        <option class="recipe-info__liquor" value="other">その他</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-10 offset-1">
+                  <div class="form-group">
+                    <label class="control-label">度数</label>
+                    <div class="select-wrap select-alcohol">
+                      <select name="" id="">
+                        <option value="">度数</option>
+                        <option value="10" class="recipe-info__alcohole">10</option>
+                        <option value="20" class="recipe-info__alcohole">20</option>
+                        <option value="30" class="recipe-info__alcohole">30</option>
+                        <option value="40" class="recipe-info__alcohole">40</option>
+                        <option value="50" class="recipe-info__alcohole">50</option>
+                        <option value="60" class="recipe-info__alcohole">60</option>
+                        <option value="70" class="recipe-info__alcohole">70</option>
+                        <option value="80" class="recipe-info__alcohole">80</option>
+                        <option value="90" class="recipe-info__alcohole">90</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="recipe-method container">
+            <h4 class="recipe-method__title main-title">材料・分量</h4>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <div class="input">
+                    <label for="ingredient" class="recipe-method__label">材料１</label>
+                    <input type="text" id="ingredient" class="recipe-method__input" />
+                  </div>
+                  <div class="input">
+                    <label for="quantity" class="recipe-method__label">分量１</label>
+                    <input type="text" id="quantity" class="recipe-method__input" />
+                  </div>
+                  <div class="recipe-method__delete">
+                    <p>削除</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input">
+                    <label for="ingredient" class="recipe-method__label">材料１</label>
+                    <input type="text" id="ingredient" class="recipe-method__input" />
+                  </div>
+                  <div class="input">
+                    <label for="quantity" class="recipe-method__label">分量１</label>
+                    <input type="text" id="quantity" class="recipe-method__input" />
+                  </div>
+                  <div class="recipe-method__delete">
+                    <p>削除</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input">
+                    <label for="ingredient" class="recipe-method__label">材料１</label>
+                    <input type="text" id="ingredient" class="recipe-method__input" />
+                  </div>
+                  <div class="input">
+                    <label for="quantity" class="recipe-method__label">分量１</label>
+                    <input type="text" id="quantity" class="recipe-method__input" />
+                  </div>
+                  <div class="recipe-method__delete">
+                    <p>削除</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="search">
@@ -115,5 +225,6 @@
         <div class="mobile-menu__sns">各種logoが入ります</div>
       </nav>
     </div>
+    <!-- <script src="./scripts/main.js"></script> -->
   </body>
 </html>

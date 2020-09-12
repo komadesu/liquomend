@@ -1,6 +1,4 @@
 button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   padding: 0;
   border: none;
@@ -26,11 +24,38 @@ input[type='submit'] {
   width: 100%;
 }
 
-input[type='submit']:focus
-input[type='text']:focus,
+input[type='submit']:focus input[type='text']:focus,
 input[type='email']:focus,
 input[type='password']:focus {
   border: 1px solid rgba(0, 0, 0, 0.32);
   box-shadow: none;
   outline: none;
+}
+
+select {
+  outline: none;
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+  background: none transparent;
+  vertical-align: middle;
+  font-size: inherit;
+  color: inherit;
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+select option {
+  background-color: #fff;
+  color: #333;
+}
+select::-ms-expand {
+  display: none;
+}
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #828c9a;
 }

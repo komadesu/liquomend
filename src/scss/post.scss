@@ -5,6 +5,7 @@
 @import './modules/header';
 @import './modules/mobile-menu';
 @import './modules/hero';
+@import './modules/recipe-select';
 @import './modules/search';
 @import './modules/footer';
 
@@ -26,11 +27,6 @@
   }
 }
 
-input[type='text'] {
-  background-color: transparent !important;
-  border-bottom: 1px solid $recipeNameInputBorderColor !important;
-  text-decoration: none !important;
-}
 .recipe {
   &-img {
     position: absolute;
@@ -112,14 +108,79 @@ input[type='text'] {
       width: 90%;
     }
 
-    &__input {
+    & input[type='text'] {
       text-align: center;
-      // 上部で宣言
-      // background-color: transparent !important;
-      // border-bottom: 1px solid $recipeNameInputBorderColor !important;
-      // text-decoration: none !important;
+      background-color: transparent !important;
+      border-bottom: 1px solid $recipeNameInputBorderColor !important;
+      text-decoration: none !important;
       &::placeholder {
         color: $recipeNameInputPlaceholderColor;
+      }
+    }
+  }
+
+  &-info {
+    background-color: $recipeInfoBgColor;
+    padding: 30px 0;
+
+    & .row:last-child .form-group {
+      margin-bottom: 0;
+    }
+    &__display-toggle {
+      display: none;
+    }
+
+    & select {
+      background-color: white;
+    }
+
+    & label,
+    input[type='radio'] {
+      display: none;
+    }
+  }
+
+  &-method {
+    padding: 50px 15px;
+
+    &__title::after {
+      background-color: $subColor;
+    }
+    & .form-group {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 14px;
+
+      & .input {
+        width: 40%;
+        display: flex;
+        align-items: center;
+
+        & label {
+          display: inline-block;
+          flex-shrink: 0;
+          margin-bottom: 0;
+          color: $subColor3;
+        }
+        & input[type='text'] {
+          border: 1px solid $subColor3 !important;
+          display: inline;
+          margin-right: 10px;
+          padding: 2px 4px;
+        }
+      }
+    }
+    &__delete {
+      flex-grow: 0;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      & p {
+        margin-bottom: 0;
+        color: subColor3 !important;
       }
     }
   }
