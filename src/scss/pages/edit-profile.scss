@@ -1,0 +1,64 @@
+@import '../vendors/bootstrap.min';
+@import '../settings/variables';
+@import '../settings/utils';
+@import '../settings/resetFormStyles';
+@import '../modules/header';
+@import '../modules/mobile-menu';
+@import '../modules/hero';
+@import '../modules/form';
+@import '../modules/footer';
+
+#contents-container {
+  background-color: $baseColor;
+}
+
+.hero {
+  margin-bottom: 40px;
+
+  &__logo {
+    position: absolute;
+    z-index: 300;
+    top: 10px;
+    right: 30px;
+
+    & img {
+      max-width: 100%;
+      width: 70px;
+      object-position: center;
+      object-fit: cover;
+    }
+  }
+}
+
+.edit-profile {
+  &__hero {
+    width: 100%;
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+
+    & .usericon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+
+      & img {
+        border-radius: 50%;
+        max-width: 100%;
+        object-position: center;
+        object-fit: cover;
+      }
+    }
+    & .username {
+      text-align: center;
+    }
+  }
+
+  &__form {
+    margin-bottom: 40px;
+    background-color: white;
+    padding: 20px;
+  }
+}
