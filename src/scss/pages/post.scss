@@ -1,12 +1,12 @@
-@import './vendors/bootstrap.min';
-@import './settings/variables';
-@import './settings/utils';
-@import './settings/resetFormStyles';
-@import './modules/header';
-@import './modules/mobile-menu';
-@import './modules/hero';
-@import './modules/recipe-select';
-@import './modules/footer';
+@import '../vendors/bootstrap.min';
+@import '../settings/variables';
+@import '../settings/utils';
+@import '../settings/resetFormStyles';
+@import '../modules/header';
+@import '../modules/mobile-menu';
+@import '../modules/hero';
+@import '../modules/recipe-select';
+@import '../modules/footer';
 
 .hero {
   background-color: white;

@@ -1,11 +1,11 @@
-@import './vendors/bootstrap.min';
-@import './settings/variables';
-@import './settings/utils';
-@import './settings/resetFormStyles';
-@import './modules/header';
-@import './modules/mobile-menu';
-@import './modules/hero';
-@import './modules/footer';
+@import '../vendors/bootstrap.min';
+@import '../settings/variables';
+@import '../settings/utils';
+@import '../settings/resetFormStyles';
+@import '../modules/header';
+@import '../modules/mobile-menu';
+@import '../modules/hero';
+@import '../modules/footer';
 
 .services {
   padding: 60px 50px;

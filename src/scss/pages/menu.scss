@@ -1,13 +1,14 @@
-@import './vendors/bootstrap.min';
-@import './settings/variables';
-@import './settings/utils';
-@import './settings/resetFormStyles';
-@import './modules/header';
-@import './modules/mobile-menu';
-@import './modules/hero';
-@import './modules/cocktail';
-@import './modules/search';
-@import './modules/footer';
+@import '../vendors/bootstrap.min';
+@import '../settings/variables';
+@import '../settings/utils';
+@import '../settings/resetFormStyles';
+@import '../modules/header';
+@import '../modules/mobile-menu';
+@import '../modules/hero';
+@import '../modules/select-base';
+@import '../modules/pulldown';
+@import '../modules/cocktail';
+@import '../modules/footer';
 
 .hero {
   &__logo {
@@ -52,11 +53,4 @@
 .drinks {
   padding: 30px 0px 20px 0;
   background-color: white;
-}
-
-#contents-container {
-  padding-bottom: 0;
-}
-.footer {
-  position: static;
 }
