@@ -101,3 +101,49 @@
     background-color: palevioletred;
   }
 }
+
+.active {
+  display: block;
+}
+.inactive {
+  display: none;
+}
+
+.settings {
+  padding: 40px 0;
+  &__list {
+    list-style: none;
+    padding: 0;
+
+    & .item {
+      margin-bottom: 20px;
+    }
+    & .link {
+      background-color: white;
+      border: 1px solid $subColor;
+      border-radius: 8px;
+      padding: 10px 16px;
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: $subColor;
+      position: relative;
+
+      &::after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-bottom: 2px solid $subColor;
+        border-right: 2px solid $subColor;
+        position: absolute;
+        right: 16px;
+        top: 47%;
+        transform: rotate(-45deg) translateY(-50%);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

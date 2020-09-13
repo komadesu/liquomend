@@ -33,13 +33,35 @@
         </div>
         <nav class="nav">
           <ul class="nav__list">
-            <li class="nav__item"><a href="#" class="nav__link">マイレシピ</a></li>
-            <li class="nav__item"><a href="#" class="nav__link">お気に入り</a></li>
-            <li class="nav__item"><a href="#" class="nav__link">設定</a></li>
+            <li class="nav__item"><a href="#" class="nav__link js-nav__link js-nav-recipe">マイレシピ</a></li>
+            <li class="nav__item"><a href="#" class="nav__link js-nav__link js-nav-favo">お気に入り</a></li>
+            <li class="nav__item"><a href="#" class="nav__link js-nav__link js-nav-settings">設定</a></li>
           </ul>
         </nav>
 
-        <div class="drinks">
+        <div class="drinks js-target js-target-recipe inactive">
+          <div class="cocktail container">
+            <ul class="cocktail__list">
+              <li class="cocktail__item">
+                <a href="cocktail__link">
+                  <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
+                  <div class="cocktail__description">
+                    <h5 class="cocktail__title text-truncate">カシスオレンジ</h5>
+                    <p class="cocktail__text text-truncate">カシスリキュール</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="recipe-btn">
+            <a href="./post.html" class="link">
+              <img src="./img/pen.png" alt="pen image" />
+              <span>レシピを<br />書く</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="drinks js-target js-target-favo inactive">
           <div class="cocktail container">
             <ul class="cocktail__list">
               <li class="cocktail__item">
@@ -97,6 +119,20 @@
           </div>
         </div>
 
+        <div class="settings js-target js-target-settings active">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <ul class="settings__list">
+                  <li class="item"><a href="./settings.html" class="link">プロフィール編集</a></li>
+                  <li class="item"><a href="./settings.html" class="link">プロフィール編集</a></li>
+                  <li class="item"><a href="./settings.html" class="link">プロフィール編集</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <footer class="footer">
           <p class="footer__copyright"><small>&copy;gms.gdl.jp</small></p>
         </footer>
@@ -140,5 +176,7 @@
         <div class="mobile-menu__sns">各種logoが入ります</div>
       </nav>
     </div>
+
+    <script src="./scripts/mypage-nav.js"></script>
   </body>
 </html>
