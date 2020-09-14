@@ -146,9 +146,6 @@
     & .row:last-child .form-group {
       margin-bottom: 0;
     }
-    &__display-toggle {
-      display: none;
-    }
 
     & select {
       background-color: white;
@@ -301,4 +298,11 @@
 }
 .footer {
   position: static;
+}
+
+.inactive {
+  display: none;
+}
+.active {
+  display: block;
 }
