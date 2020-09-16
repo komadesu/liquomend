@@ -3,18 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Liquomend | Sign Up</title>
-    <link rel="stylesheet" href="./css/register.css" />
+    <title>Liquomend | Thanks</title>
+    <link rel="stylesheet" href="./css/thanks.css" />
   </head>
   <body>
     <div id="global-container">
       <div id="contents-container">
         <div class="mobile-menu__cover"></div>
         <header class="header m-3">
-          <button
-            onclick="document.querySelector('#global-container').classList.toggle('menu-open')"
-            class="mobile-menu__btn"
-          >
+          <button onclick="document.querySelector('#global-container').classList.toggle('menu-open')" class="mobile-menu__btn">
             <span></span>
             <span></span>
             <span></span>
@@ -37,49 +34,14 @@
         </nav>
 
         <div class="container">
-          <div class="register">
-            <h3 class="form__title">Sign Up</h3>
-            <form action="register.php" method="POST" class="form">
-              <label for="username" class="form__label">User Name</label>
-              <input
-                id="username"
-                type="text"
-                name="username"
-                class="form__username mb-2"
-              />
-              <br />
+          <div class="confirm">
+            <h3 class="form__title">登録完了画面</h3>
 
-              <label for="email" class="form__label">Email</label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                class="form__email mb-2"
-              />
-              <br />
+            <label class="form__label">Thanks!</label>
+            <p class="control mb-4">登録が完了しました</p>
 
-              <label for="password" class="form__label">パスワード</label>
-              <input
-                id="password"
-                type="password"
-                name="password"
-                class="form__password mb-2"
-              />
-              <br />
-
-              <label for="password_confirm" class="form__label"
-                >パスワード(確認用)</label
-              >
-              <input
-                id="password_confirm"
-                type="password"
-                name="password_confirm"
-                class="form__password mb-4"
-              />
-              <br />
-
-              <input type="submit" value="登録確認画面へ" class="form__btn" />
-            </form>
+            <a href="home.html" style="display: block; text-align: right;">ホームへ移動</a>
+            <!-- 登録完了後、この画面を見せた後に、少し間をおいて、ホームにリダイレクトさせる。おそらくこのボタン必要ないけどとりあえずおいておく。 -->
           </div>
         </div>
 
