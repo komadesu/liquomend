@@ -1,9 +1,15 @@
 <?php
 
 require '../../../secret.php';
+require './utils.php';
 
 
 session_start();
+
+
+$uname = $_POST['username'];
+$email = $_POST['email'];
+
 
 if (isset($_SESSION['errors'])) {
   $errors = $_SESSION['errors'];
@@ -65,11 +71,11 @@ if (isset($_SESSION['errors'])) {
           <h3 class="form__title">Sign Up</h3>
           <form action="confirm.php" method="POST" class="form">
             <label for="username" class="form__label">User Name</label>
-            <input id="username" type="text" name="username" class="form__username mb-2" />
+            <input id="username" type="text" name="username" value="<?php echo h($uname); ?>" class="form__username mb-2" />
             <br />
 
             <label for="email" class="form__label">Email</label>
-            <input id="email" type="email" name="email" class="form__email mb-2" />
+            <input id="email" type="email" name="email" value="<?php echo h($email); ?>" class="form__email mb-2" />
             <br />
 
             <label for="password" class="form__label">パスワード</label>
