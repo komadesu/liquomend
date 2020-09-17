@@ -7,5 +7,11 @@
       "savePath": "/src/css"
       // "savePath": null
     }
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#00c3ff",
+    "titleBar.activeForeground": "#000000",
+    "activityBar.background": "#00c3ff",
+    "activityBar.foreground": "#000000"
+  }
 }
