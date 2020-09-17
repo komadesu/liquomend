@@ -1,11 +1,8 @@
 <?php
 
-function h($s)
-{
-  return htmlspecialchars($s, ENT_QUOTES, "UTF-8");
-}
 
 require '../../../secret.php';
+require './utils.php';
 
 
 session_start();

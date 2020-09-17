@@ -1,3 +1,89 @@
+<?php
+
+
+require '../../../secret.php';
+require './utils.php';
+
+
+session_start();
+
+
+$uname = $_POST['username'];
+$email = $_POST['email'];
+$npw = $_POST['password'];
+$cpw = $_POST['password_confirm'];
+
+
+$errors = $_SESSION['errors'];
+
+//文字が入力されていない場合
+$_SESSION['errors']['empty'] = false;
+//IDがかぶってしまっている場合
+$_SESSION['errors']['id'] = false;
+//pwの確認が取れなかった場合
+$_SESSION['errors']['confirm'] = false;
+//登録成功した場合
+$_SESSION['good'] = 'false';
+
+//パスワード等が入力されたかどうか
+$unamenum = strlen($uname);
+$npwnum = strlen($npw);
+$cpwnum = strlen($cpw);
+
+if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
+  $_SESSION['errors']['empty'] = true;
+  header('location: ./register.php');
+} else {
+
+  $dbconn = pg_connect("host=localhost dbname=tenten1717 user=tenten1717 password=rWctKwxr")
+    or die('Could not connect: ' . pg_last_error());
+
+  $sql = "select * from liquomend_udata where email ='" . $email . "';";
+  $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+
+  $rows = pg_num_rows($result);
+  if ($rows == 0) {
+
+    if ($npw == $cpw) {
+      $hpw = password_hash($npw, PASSWORD_DEFAULT);
+      $sql = "insert into liquomend_udata (uname,password,email,image) values ('" . $uname . "','" . $hpw . "','" . $email . "','fake');";
+      $result = pg_query($sql) or die('query failed: ' . pg_last_error());
+      $good = 1;
+      $_SESSION['good'] = $good;
+
+      echo '<p>ユーザ登録を完了しました</p>';
+      $mailfr = "1gk8296t@gms.gdl.jp";
+      $mailsb = "[Liquomend]ユーザ登録完了";
+      $mailms = "ユーザ登録を完了しました。\n\n";
+      "   ユーザ名:" . $uname . "\n";
+      "http://gms.gdl.jp/~tenten1717/\n\n";
+      if (mb_send_mail($email, $mailsb, $mailms, "From: " . $mailfr)) {
+        echo "<p>メールが送信されました。</p>";
+      } else {
+        echo "<p>メールの送信に失敗しました。</p>";
+      }
+
+      $_SESSION['ems'] = $email;
+      $_SESSION['hpw'] = $hpw;
+      $_SESSION['uname'] = $uname;
+
+      header('location: ./home.php');
+    } else {
+      $error3 = 1;
+      $_SESSION['error3'] = $error3;
+
+      header('location: ./register.php');
+    }
+  } else {
+    $error2 = 1;
+    $_SESSION['error2'] = $error2;
+    header('location: ./register.php');
+  }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
