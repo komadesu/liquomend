@@ -114,6 +114,8 @@ if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
             <form action="thanks.php" method="POST" class="form__btn">
               <input type="hidden" name="username" value="<?php echo h($uname); ?>" />
               <input type="hidden" name="email" value="<?php echo h($email); ?>" />
+              <input type="hidden" name="password" value="<?php echo h($npw); ?>">
+              <input type="hidden" name="password_confirm" value="<?php echo h($cpw); ?>">
               <input type="submit" value="登録する" />
             </form>
           </div>
