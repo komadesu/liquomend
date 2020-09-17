@@ -4,7 +4,6 @@
 require '../../../secret.php';
 require './utils.php';
 
-
 session_start();
 
 
@@ -38,8 +37,7 @@ if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
   $dbconn = pg_connect("host=localhost dbname=koma user=$SQL_USER password=$SQL_PASS")
     or die('Could not connect: ' . pg_last_error());
 
-  // $sql = "select * from liquomend.user where email ='" . $email . "';";
-  $sql = "select * from liquomend.user where email =$email;";
+  $sql = "select * from liquomend.user where email = $email;";
   $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
   $rows = pg_num_rows($result);

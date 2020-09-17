@@ -35,7 +35,7 @@ if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
   header('location: ./register.php');
 } else {
 
-  $dbconn = pg_connect("host=localhost dbname=tenten1717 user=tenten1717 password=rWctKwxr")
+  $dbconn = pg_connect("host=localhost dbname=koma user=$SQL_USER password=$SQL_PASS")
     or die('Could not connect: ' . pg_last_error());
 
   $sql = "select * from liquomend_udata where email ='" . $email . "';";
