@@ -7,5 +7,22 @@
       "savePath": "/src/css"
       // "savePath": null
     }
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#009ccc",
+    "titleBar.activeForeground": "#e7e7e7",
+    "activityBar.background": "#00c3ff",
+    "activityBar.foreground": "#15202b",
+    "activityBar.activeBackground": "#00c3ff",
+    "activityBar.activeBorder": "#df00ab",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#df00ab",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "statusBar.background": "#009ccc",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#00c3ff",
+    "titleBar.inactiveBackground": "#009ccc99",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#009ccc"
 }
