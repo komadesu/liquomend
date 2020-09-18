@@ -23,7 +23,7 @@ $_SESSION['errors']['id'] = false;
 //pwの確認が取れなかった場合
 $_SESSION['errors']['confirm'] = false;
 //登録成功した場合
-$_SESSION['good'] = 'false';
+$_SESSION['good'] = false;
 
 //パスワード等が入力されたかどうか
 $unamenum = strlen($uname);
@@ -38,47 +38,10 @@ if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
   $dbconn = pg_connect("host=localhost dbname=koma user=$SQL_USER password=$SQL_PASS")
     or die('Could not connect: ' . pg_last_error());
 
-  $sql = "select * from liquomend_udata where email ='" . $email . "';";
+  $sql = "select * from liquomend.user where email = '$email' ;";
   $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
   $rows = pg_num_rows($result);
-  if ($rows == 0) {
-
-    if ($npw == $cpw) {
-      $hpw = password_hash($npw, PASSWORD_DEFAULT);
-      $sql = "insert into liquomend_udata (uname,password,email,image) values ('" . $uname . "','" . $hpw . "','" . $email . "','fake');";
-      $result = pg_query($sql) or die('query failed: ' . pg_last_error());
-      $good = 1;
-      $_SESSION['good'] = $good;
-
-      echo '<p>ユーザ登録を完了しました</p>';
-      $mailfr = "1gk8296t@gms.gdl.jp";
-      $mailsb = "[Liquomend]ユーザ登録完了";
-      $mailms = "ユーザ登録を完了しました。\n\n";
-      "   ユーザ名:" . $uname . "\n";
-      "http://gms.gdl.jp/~tenten1717/\n\n";
-      if (mb_send_mail($email, $mailsb, $mailms, "From: " . $mailfr)) {
-        echo "<p>メールが送信されました。</p>";
-      } else {
-        echo "<p>メールの送信に失敗しました。</p>";
-      }
-
-      $_SESSION['ems'] = $email;
-      $_SESSION['hpw'] = $hpw;
-      $_SESSION['uname'] = $uname;
-
-      header('location: ./home.php');
-    } else {
-      $error3 = 1;
-      $_SESSION['error3'] = $error3;
-
-      header('location: ./register.php');
-    }
-  } else {
-    $error2 = 1;
-    $_SESSION['error2'] = $error2;
-    header('location: ./register.php');
-  }
 }
 
 
@@ -125,11 +88,50 @@ if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
         <div class="confirm">
           <h3 class="form__title">登録完了画面</h3>
 
-          <label class="form__label">Thanks!</label>
-          <p class="control mb-4">登録が完了しました</p>
+          <?php
+          if (!$rows) {
 
-          <a href="home.html" style="display: block; text-align: right;">ホームへ移動</a>
-          <!-- 登録完了後、この画面を見せた後に、少し間をおいて、ホームにリダイレクトさせる。おそらくこのボタン必要ないけどとりあえずおいておく。 -->
+            if ($npw === $cpw) {
+              $hpw = password_hash($npw, PASSWORD_DEFAULT);
+              $sql = "insert into liquomend.user (uname,email,password,uicon) values ('$uname','$email','$hpw', null);";
+              $result = pg_query($sql) or die('query failed: ' . pg_last_error());
+              $_SESSION['good'] = true;
+
+
+              echo '<label class="form__label">Thanks!</label>';
+              echo '<p class="control mb-4">登録が完了しました</p>';
+              echo '<br>';
+              echo '<p>ホーム画面へ移動します...</p>';
+
+              $mailfr = "1gk8296t@gms.gdl.jp";
+              $mailsb = "[Liquomend]ユーザ登録完了";
+              $mailms = "ユーザ登録を完了しました。\n\n";
+              "   ユーザ名:" . $uname . "\n";
+              "http://gms.gdl.jp/~tenten1717/\n\n";
+              if (mb_send_mail($email, $mailsb, $mailms, "From: " . $mailfr)) {
+                echo "<p>メールが送信されました。</p>";
+              } else {
+                echo "<p>メールの送信に失敗しました。</p>";
+              }
+
+              $_SESSION['uname'] = $uname;
+              $_SESSION['email'] = $email;
+              $_SESSION['hpw'] = $hpw;
+
+              sleep(3);
+
+              header('location: ./home.php');
+            } else {
+              $_SESSION['confirm'] = true;
+
+              header('location: ./register.php');
+            }
+          } else {
+            $_SESSION['errors']['id'] = true;
+            header('location: ./register.php');
+          }
+          ?>
+
         </div>
       </div>
 

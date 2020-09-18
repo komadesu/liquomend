@@ -22,7 +22,7 @@ $_SESSION['errors']['id'] = false;
 //pwの確認が取れなかった場合
 $_SESSION['errors']['confirm'] = false;
 //登録成功した場合
-$_SESSION['good'] = 'false';
+$_SESSION['good'] = false;
 
 //パスワード等が入力されたかどうか
 $unamenum = strlen($uname);
