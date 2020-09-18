@@ -76,9 +76,9 @@ if (pg_num_rows($result)) {
       </div>
       <nav class="nav">
         <ul class="nav__list">
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
+          <li class="nav__item"><a href="./customize-menu.php" class="nav__link">Recipe</a></li>
+          <li class="nav__item"><a href="./mypage.php" class="nav__link">MyPage</a></li>
+          <li class="nav__item"><a href="./usual-menu.php" class="nav__link">Usual</a></li>
         </ul>
       </nav>
       <div class="recommend">
@@ -121,14 +121,14 @@ if (pg_num_rows($result)) {
             </li>
           </ul>
           <div class="more-btn">
-            <a href="./usual-menu.html">+ MORE</a>
+            <a href="./usual-menu.php">+ MORE</a>
           </div>
         </div>
       </div>
       <div class="search">
         <div class="search-inner">
           <h3 class="search__title main-title">レシピ検索</h3>
-          <form action="#" method="GET" class="search__form">
+          <form action="./search.php" method="GET" class="search__form">
             <div class="search__bar">
               <input type="text" placeholder="検索" class="search__input" />
               <button type="submit" class="search__btn">
@@ -137,7 +137,9 @@ if (pg_num_rows($result)) {
             </div>
           </form>
           <p class="search__info">またはカテゴリーから探すこともできます。</p>
-          <div class="search__categories">Categories</div>
+          <div class="search__categories">
+            <a href="./category.php" class="link">Categories</a>
+          </div>
         </div>
         <div class="search__img">
           <img src="./img/bg.jpg" alt="search bg image" />
