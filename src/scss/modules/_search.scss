@@ -45,16 +45,18 @@
     margin-bottom: 10px;
   }
   &__categories {
-    display: inline-block;
-    padding: 8px 12px;
-    border: 1px solid white;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.1s, color 0.3s;
+    & .link {
+      color: white;
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid white;
+      cursor: pointer;
+      transition: background-color 0.1s, color 0.3s;
 
-    &:hover {
-      background-color: white;
-      color: $mainColor;
+      &:hover {
+        background-color: white;
+        color: $mainColor;
+      }
     }
   }
 
