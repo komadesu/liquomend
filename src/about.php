@@ -73,7 +73,7 @@
           <span class="contact__icon">icon</span>
         </div>
         <div class="contact__logo">
-          <img src="./img/logo2.png" alt="logo image" />
+          <img src="./img/logo2.png" alt="logo image" onclick="location.href = './home.php'" />
         </div>
       </div>
 

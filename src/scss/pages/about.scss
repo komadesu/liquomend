@@ -142,6 +142,8 @@
     color: $contactIconColor;
   }
   &__logo {
+    cursor: pointer;
+
     & img {
       max-width: 100%;
       width: 50%;
