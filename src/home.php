@@ -1,46 +1,39 @@
 <?php
+session_start();
 
 require '../../../secret.php';
 require './utils.php';
 
-session_start();
-if (isset($_SESSION['uname'])) {
-  $uname = $_SESSION['uname'];
+
+if (isset($_SESSION['user_name'])) {
+  $uname = $_SESSION['user_name'];
 }
-if (isset($_SESSION['email'])) {
-  $email = $_SESSION['email'];
+if (isset($_SESSION['email_string'])) {
+  $email = $_SESSION['email_string'];
 }
-if (isset($_SESSION['hpw'])) {
-  $hpw = $_SESSION['hpw'];
+if (isset($_SESSION['hash_password'])) {
+  $hpw = $_SESSION['hash_password'];
 }
 
-if (!isset($uname) || !isset($email) || !isset($hpw)) {
-  header('location: ./login.php');
-}
-$dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-  or die('Could not connect: ' . pg_last_error());
+echo isset($_SESSION['email_string']);
+echo isset($_SESSION['hash_password']);
+echo var_dump($email);
+echo var_dump($hpw);
 
-$sql = "select * from liquomend.user where email = '$email' ;";
-$result = pg_query($sql) or die('query failed: ' . pg_last_error());
-if (pg_num_rows($result)) {
-  $row = pg_fetch_row($result);
-  $uname = $row[1];
-  $uicon = $row[4];
-}
+if (isset($email) || isset($hpw)) {
+  echo 'called';
 
-// 上記の $row 中身
-// array(5) {
-//   [0]=>
-//   string(1) "5"
-//   [1]=>
-//   string(2) "hi"
-//   [2]=>
-//   string(14) "hi@example.com"
-//   [3]=>
-//   string(60) "$2y$10$UOE1V09K.Y.xfFKdcWTtgO7eI4mXVBEXHiOf8ts6nDGjwAEr006P6"
-//   [4]=>
-//   NULL
-// }
+  $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
+    or die('Could not connect: ' . pg_last_error());
+
+  $sql = "select * from liquomend.user where email = '$email' ;";
+  $result = pg_query($sql) or die('query failed: ' . pg_last_error());
+  if (pg_num_rows($result)) {
+    $row = pg_fetch_row($result);
+    $uname = $row[1];
+    $uicon = $row[4];
+  }
+}
 ?>
 
 
@@ -165,7 +158,11 @@ if (pg_num_rows($result)) {
 
         echo '</div>';
 
-        echo "<div class='mobile-menu__username'>$uname</div>";
+        if (!$uname) {
+          echo "<div class='mobile-menu__username'>ユーザー</div>";
+        } else {
+          echo "<div class='mobile-menu__username'>$uname</div>";
+        }
 
         ?>
 
