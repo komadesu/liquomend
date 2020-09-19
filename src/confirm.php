@@ -1,10 +1,10 @@
 <?php
+session_start();
 
 
 require '../../../secret.php';
 require './utils.php';
 
-session_start();
 
 
 $uname = $_POST['username'];

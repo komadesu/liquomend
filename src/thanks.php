@@ -1,11 +1,11 @@
 <?php
+session_start();
 
 
 require '../../../secret.php';
 require './utils.php';
 
 
-session_start();
 
 
 $uname = $_POST['username'];
@@ -114,15 +114,15 @@ if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
                 echo "<p>メールの送信に失敗しました。</p>";
               }
 
-              $_SESSION['uname'] = $uname;
-              $_SESSION['email'] = $email;
-              $_SESSION['hpw'] = $hpw;
+              $_SESSION['user_name'] = $uname;
+              $_SESSION['email_string'] = $email;
+              $_SESSION['hash_password'] = $hpw;
 
-              sleep(3);
+              // sleep(3);
 
               header('location: ./home.php');
             } else {
-              $_SESSION['confirm'] = true;
+              $_SESSION['errors']['confirm'] = true;
 
               header('location: ./register.php');
             }

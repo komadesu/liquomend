@@ -1,14 +1,69 @@
 <?php
 session_start();
 
+
 require '../../../secret.php';
-require './utils.php';
+
+if (isset($_POST['email'])) {
+  $email = $_POST['email'];
+} elseif ($_SESSION['email_string']) {
+  $email = $_SESSION['email_string'];
+}
+if (isset($_POST['password'])) {
+  $pws = $_POST['password'];
+} elseif ($_SESSION['hash_password']) {
+  $pws = $_SESSION['hash_password'];
+}
 
 
+$errors = $_SESSION['errors'];
+
+//入力されなかった場合
+$_SESSION['errors']['empty'] = false;
+//IDが間違えていた場合
+$_SESSION['errors']['id'] = false;
+//見つからなかった場合
+$_SESSION['errors']['confirm'] = false;
+//登録成功した場合
+$_SESSION['good'] = false;
 
 
-$uname = $_POST['username'];
-$email = $_POST['email'];
+$emnum = strlen($email);
+$pwnum = strlen($pws);
+
+echo 'login called';
+echo var_dump($email);
+echo var_dump($pws);
+
+
+if ($emnum !== 0 && $pwnum !== 0) {
+  $sql = "select * from liquomend.user where email = '$email' ;";
+  $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS") or die('Could not connect: ' . pg_last_error());
+
+  $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+
+  if (pg_num_rows($result)) {
+    $row = pg_fetch_row($result);
+    if (password_verify($pws, $row[3])) {
+      $_SESSION['email_string'] = $email;
+      $_SESSION['hash_password'] = $row[3];
+      echo 'password verified';
+      echo var_dump($email);
+      echo var_dump($row[3]);
+
+      $_SESSION['good'] = true;
+      header('Location: ./home.php');
+    } else {
+      $_SESSION['errors']['id'] = true;
+    }
+  } else {
+    $_SESSION['errors']['confirm'] = true;
+  }
+} else {
+  $_SESSION['errors']['empty'] = true;
+}
+
+
 
 
 if (isset($_SESSION['errors'])) {
@@ -27,7 +82,14 @@ if (isset($_SESSION['errors'])) {
   }
 }
 
+// if (isset($_SESSION['good'])) {
+//   $good = $_SESSION['good'];
+
+//   header("location: ./home.php");
+//   exit;
+// }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -35,8 +97,8 @@ if (isset($_SESSION['errors'])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Liquomend | Sign Up</title>
-  <link rel="stylesheet" href="./css/register.css" />
+  <title>Liquomend | Login</title>
+  <link rel="stylesheet" href="./css/login.css" />
 </head>
 
 <body>
@@ -67,42 +129,42 @@ if (isset($_SESSION['errors'])) {
       </nav>
 
       <div class="container">
-        <div class="register">
-          <h3 class="form__title">Sign Up</h3>
-          <form action="confirm.php" method="POST" class="form">
-            <label for="username" class="form__label">User Name</label>
-            <input id="username" type="text" name="username" value="<?php echo h($uname); ?>" class="form__username mb-2" />
-            <br />
+        <div class="login">
+          <h3 class="form__title">Sign In</h3>
 
+          <form action="./login.php" method="POST" class="form">
             <label for="email" class="form__label">Email</label>
-            <input id="email" type="email" name="email" value="<?php echo h($email); ?>" class="form__email mb-2" />
+            <input id="email" type="email" name="email" class="form__email mb-2" />
             <br />
 
             <label for="password" class="form__label">パスワード</label>
-            <input id="password" type="password" name="password" class="form__password mb-2" />
+            <input id="password" type="password" name="password" class="form__password" />
             <br />
 
-            <label for="password_confirm" class="form__label">パスワード(確認用)</label>
-            <input id="password_confirm" type="password" name="password_confirm" class="form__password mb-4" />
+            <div class="login__unvalid mb-4">
+              <a href='reset-login.php'>パスワードを忘れた場合</a>
+            </div>
             <br />
-
 
             <?php
             if ($empty) {
               echo "入力漏れがあります";
+            } elseif ($id) {
+              echo "メールアドレスもしくはパスワードが間違っています";
+            } elseif ($confirm) {
+              echo "そのようなメールアドレスは登録されていません";
+            } elseif ($good) {
+              echo "ログイン成功！";
+              header('location: ./home.php');
             }
-            if ($id) {
-              echo "すでにそのIDは使用されています";
-            }
-            if ($confirm) {
-              echo "確認用パスワードと異なっています";
-            }
-
             session_destroy();
             ?>
 
-
-            <input type="submit" value="登録確認画面へ" class="form__btn" />
+            <div class="login__btns">
+              <input type="submit" value="ログイン" class="form__btn" />
+              <p class="login__or__register">または</p>
+              <input type="submit" value="新規登録" class="form__btn" />
+            </div>
           </form>
         </div>
       </div>
@@ -132,15 +194,15 @@ if (isset($_SESSION['errors'])) {
           </a>
         </li>
         <li class="mobile-menu__item">
-          <a href="./login.html" class="mobile-menu__link">
-            <span class="nav-main-title">Log In</span>
-            <span class="nav-sub-title">ログイン</span>
-          </a>
-        </li>
-        <li class="mobile-menu__item">
           <a href="＃" class="mobile-menu__link">
             <span class="nav-main-title">ページ</span>
             <span class="nav-sub-title">なんとかページ</span>
+          </a>
+        </li>
+        <li class="mobile-menu__item">
+          <a href="./register.html" class="mobile-menu__link">
+            <span class="nav-main-title">Sign Up</span>
+            <span class="nav-sub-title">新規登録画面へ</span>
           </a>
         </li>
       </ul>
