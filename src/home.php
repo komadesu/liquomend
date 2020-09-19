@@ -69,9 +69,9 @@ if (isset($email) || isset($hpw)) {
       </div>
       <nav class="nav">
         <ul class="nav__list">
-          <li class="nav__item"><a href="./customize-menu.php" class="nav__link">Recipe</a></li>
-          <li class="nav__item"><a href="./mypage.php" class="nav__link">MyPage</a></li>
-          <li class="nav__item"><a href="./usual-menu.php" class="nav__link">Usual</a></li>
+          <li class="nav__item"><a href="./usual-menu.php" class="nav__link">定番</a></li>
+          <li class="nav__item"><a href="./mypage.php" class="nav__link">マイページ</a></li>
+          <li class="nav__item"><a href="./post.php" class="nav__link">投稿</a></li>
         </ul>
       </nav>
       <div class="recommend">

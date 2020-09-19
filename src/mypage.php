@@ -35,6 +35,7 @@
       </div>
       <nav class="nav">
         <ul class="nav__list">
+          <!-- <li class="nav__item"><a href="#" class="nav__link js-nav__link js-nav-user">ユーザー情報</a></li> 後々これつけて、マイページの顔にする -->
           <li class="nav__item"><a href="#" class="nav__link js-nav__link js-nav-recipe">マイレシピ</a></li>
           <li class="nav__item"><a href="#" class="nav__link js-nav__link js-nav-favo">お気に入り</a></li>
           <li class="nav__item"><a href="#" class="nav__link js-nav__link js-nav-settings">設定</a></li>
