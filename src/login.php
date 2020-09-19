@@ -207,7 +207,7 @@ if (isset($_SESSION['errors'])) {
         </li>
       </ul>
       <div class="mobile-menu__logo">
-        <img src="./img/logo2.png" alt="logo2 image" />
+        <img src="./img/logo2.png" alt="logo2 image" onclick="location.href = './about.php'">
       </div>
       <div class="mobile-menu__sns">各種logoが入ります</div>
     </nav>
