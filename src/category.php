@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquomend | Search</title>
+  <link rel="stylesheet" href="./css/category.css" />
+</head>
+
+<body>
+  <div id="global-container">
+    <div id="contents-container">
+      <div class="mobile-menu__cover"></div>
+      <header class="header m-3">
+        <button onclick="document.querySelector('#global-container').classList.toggle('menu-open')" class="mobile-menu__btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+      <div class="hero">
+        <div class="hero__logo">
+          <img src="./img/logo.png" alt="header logo image" />
+        </div>
+        <div class="hero__search-word">
+          <p class="hero__search-word__string">Categories</p>
+          <div class="hero__search-word__underbar">
+            <img src="./img/category-underbar.png" alt="category bar image" />
+          </div>
+        </div>
+        <div class="hero__bg-img">
+          <img src="./img/hero.jpg" alt="hero image" />
+        </div>
+        <p class="category__description">ベースを選んでください。</p>
+      </div>
+
+      <div class="category">
+        <ul class="category__list">
+          <li class="category__base"><a href="./customize-menu.html" class="category__link">リキュール</a></li>
+          <li class="category__base"><a href="./customize-menu.html" class="category__link">ジン</a></li>
+          <li class="category__base"><a href="./customize-menu.html" class="category__link">ウォッカ</a></li>
+          <li class="category__base"><a href="./customize-menu.html" class="category__link">ラム</a></li>
+          <li class="category__base"><a href="./customize-menu.html" class="category__link">テキーラ</a></li>
+          <li class="category__base"><a href="./customize-menu.html" class="category__link">ウイスキー</a></li>
+          <li class="category__base"><a href="./customize-menu.html" class="category__link">ビール</a></li>
+          <li class="category__base"><a href="./customize-menu.html" class="category__link">焼酎</a></li>
+          <li class="category__base"><a href="./customize-menu.html" class="category__link">ワイン</a></li>
+          <li class="category__base"><a href="./customize-menu.html" class="category__link">ブランデー</a></li>
+          <li class="category__base"><a href="./customize-menu.html" class="category__link">日本酒</a></li>
+          <li class="category__base"><a href="./customize-menu.html" class="category__link">その他</a></li>
+        </ul>
+      </div>
+
+      <footer class="footer">
+        <p class="footer__copyright"><small>&copy;gms.gdl.jp</small></p>
+      </footer>
+    </div>
+    <nav class="mobile-menu">
+      <div class="mobile-menu__profile">
+        <div class="mobile-menu__icon">
+          <img src="./img/sampleDrink.jpg" alt="icon sample image" />
+        </div>
+        <div class="mobile-menu__username">User Name</div>
+      </div>
+      <ul class="mobile-menu__main">
+        <li class="mobile-menu__item">
+          <a href="./home.html" class="mobile-menu__link">
+            <span class="nav-main-title">Home</span>
+            <span class="nav-sub-title">ホームページ</span>
+          </a>
+        </li>
+        <li class="mobile-menu__item">
+          <a href="./about.html" class="mobile-menu__link">
+            <span class="nav-main-title">About</span>
+            <span class="nav-sub-title">お問い合わせ</span>
+          </a>
+        </li>
+        <li class="mobile-menu__item">
+          <a href="./login.html" class="mobile-menu__link">
+            <span class="nav-main-title">Log In</span>
+            <span class="nav-sub-title">ログイン</span>
+          </a>
+        </li>
+        <li class="mobile-menu__item">
+          <a href="./register.html" class="mobile-menu__link">
+            <span class="nav-main-title">Sign Up</span>
+            <span class="nav-sub-title">新規登録</span>
+          </a>
+        </li>
+      </ul>
+      <div class="mobile-menu__logo">
+        <img src="./img/logo2.png" alt="logo2 image" />
+      </div>
+      <div class="mobile-menu__sns">各種logoが入ります</div>
+    </nav>
+  </div>
+</body>
+
+</html>
