@@ -69,24 +69,15 @@ if (isset($email) || isset($hpw)) {
       </div>
       <nav class="nav">
         <ul class="nav__list">
-          <li class="nav__item"><a href="./customize-menu.php" class="nav__link">Recipe</a></li>
-          <li class="nav__item"><a href="./mypage.php" class="nav__link">MyPage</a></li>
-          <li class="nav__item"><a href="./usual-menu.php" class="nav__link">Usual</a></li>
+          <li class="nav__item"><a href="./usual-menu.php" class="nav__link">定番</a></li>
+          <li class="nav__item"><a href="./mypage.php" class="nav__link">マイページ</a></li>
+          <li class="nav__item"><a href="./post.php" class="nav__link">投稿</a></li>
         </ul>
       </nav>
       <div class="recommend">
         <h3 class="recommend__title main-title">Recommend Recipe</h3>
         <div class="cocktail container">
           <ul class="cocktail__list">
-            <li class="cocktail__item">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title">カクテル名</h5>
-                  <p class="cocktail__text">ベースリキュール</p>
-                </div>
-              </a>
-            </li>
             <li class="cocktail__item">
               <a href="cocktail__link">
                 <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
@@ -195,7 +186,7 @@ if (isset($email) || isset($hpw)) {
         </li>
       </ul>
       <div class="mobile-menu__logo">
-        <img src="./img/logo2.png" alt="logo2 image">
+        <img src="./img/logo2.png" alt="logo2 image" onclick="location.href = './about.php'">
       </div>
       <div class="mobile-menu__sns">各種logoが入ります</div>
     </nav>
