@@ -26,7 +26,7 @@ if (isset($email) || isset($hpw)) {
   $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
     or die('Could not connect: ' . pg_last_error());
 
-  $sql = "select * from liquomend.user where email = '$email' ;";
+  $sql = "select * from liquomend.users where email = '$email' ;";
   $result = pg_query($sql) or die('query failed: ' . pg_last_error());
   if (pg_num_rows($result)) {
     $row = pg_fetch_row($result);
