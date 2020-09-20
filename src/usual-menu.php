@@ -1,7 +1,10 @@
 <?php
+session_start();
 
 require '../../../secret.php';
 
+$uname = $_SESSION['user_name'];
+$uicon = $_SESSION['user_icon'];
 
 $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
   or die('Could not connect: ' . pg_last_error());
@@ -76,11 +79,11 @@ $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
               $id_d = $record[0];
               $name = $record[2];
               $base = $record[3];
-              $image = $record[8];
+              $image = $record[6];
 
               echo "<li class='cocktail__item ${base}'>";
               echo "<a href='./detail.php?id=${id_d}' class='cocktail__link'>";
-              echo "<img src='./img/${image}' alt='drink image' class='cocktail__img' />";
+              echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
               echo "<div class='cocktail__description'>";
               echo "<h5 class='cocktail__title'>${name}</h5>";
               echo "<p class='cocktail__text'>${base}</p>";
@@ -101,10 +104,30 @@ $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
     </div>
     <nav class="mobile-menu">
       <div class="mobile-menu__profile">
-        <div class="mobile-menu__icon">
-          <img src="./img/sampleDrink.jpg" alt="icon sample image" />
-        </div>
-        <div class="mobile-menu__username">User Name</div>
+
+
+        <?php
+
+        echo '<div class="mobile-menu__icon">';
+
+        if (!$uicon) {
+          echo '<img src="./img/default-icon.svg" alt="icon sample image">';
+        } else {
+          echo '<img src="./img/${uicon}" alt="icon image">';
+        }
+
+        echo '</div>';
+
+        if (!$uname) {
+          echo "<div class='mobile-menu__username'>ユーザー</div>";
+        } else {
+          echo "<div class='mobile-menu__username'>$uname</div>";
+        }
+
+        ?>
+
+
+
       </div>
       <ul class="mobile-menu__main">
         <li class="mobile-menu__item">
