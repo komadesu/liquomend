@@ -36,6 +36,8 @@ if (isset($email) || isset($hpw)) {
   }
 
   $_SESSION['user_id'] = $id_u;
+  $_SESSION['user_name'] = $uname;
+  $_SESSION['user_icon'] = $uicon;
 }
 ?>
 
