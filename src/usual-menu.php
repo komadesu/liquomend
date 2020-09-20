@@ -1,3 +1,19 @@
+<?php
+
+require '../../../secret.php';
+
+
+$dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
+  or die('Could not connect: ' . pg_last_error());
+
+$sql = "select * from liquomend.drinks where type = 'usual' ;";
+$result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -52,87 +68,30 @@
       <div class="drinks">
         <div class="cocktail container">
           <ul class="cocktail__list">
-            <li class="cocktail__item liquor">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title">カシスオレンジ</h5>
-                  <p class="cocktail__text">カシスリキュール</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item liquor">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title">ピーチフィズ</h5>
-                  <p class="cocktail__text">ピーチリキュール</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item gin">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title">ジンライム</h5>
-                  <p class="cocktail__text">ジンベース</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item tequila">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title">クエルボゴールド</h5>
-                  <p class="cocktail__text">テキーラベース</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item vodka">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title">レッドブルウォッカ</h5>
-                  <p class="cocktail__text">ウォッカベース</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item rum">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title">ラムコーク</h5>
-                  <p class="cocktail__text">ラムベース</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item gin">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title">ジンライム</h5>
-                  <p class="cocktail__text">ジンベース</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item liquor">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title">カシスウーロン</h5>
-                  <p class="cocktail__text">カシスリキュール</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item other">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title">ジャスハイ</h5>
-                  <p class="cocktail__text">焼酎ベース</p>
-                </div>
-              </a>
-            </li>
+
+
+            <?php
+            while ($record = pg_fetch_row($result)) :
+
+              $id_d = $record[0];
+              $name = $record[2];
+              $base = $record[3];
+              $image = $record[8];
+
+              echo "<li class='cocktail__item ${base}'>";
+              echo "<a href='./detail.php?id=${id_d}' class='cocktail__link'>";
+              echo "<img src='./img/${image}' alt='drink image' class='cocktail__img' />";
+              echo "<div class='cocktail__description'>";
+              echo "<h5 class='cocktail__title'>${name}</h5>";
+              echo "<p class='cocktail__text'>${base}</p>";
+              echo "</div>";
+              echo "</a>";
+              echo "</li>";
+            endwhile;
+            ?>
+
+
+
           </ul>
         </div>
       </div>
