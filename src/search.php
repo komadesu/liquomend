@@ -1,3 +1,31 @@
+<?php
+session_start();
+
+require '../../../secret.php';
+require './utils.php';
+
+$uname = $_SESSION['user_name'];
+$uicon = $_SESSION['user_icon'];
+
+
+$dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
+  or die('Could not connect: ' . pg_last_error());
+
+
+if ($_REQUEST['search']) {
+  $search_word = h($_REQUEST['str']);
+
+  $sql = "select * from liquomend.drinks where name like '%${search_word}%'  ;";
+  $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+}
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -25,7 +53,7 @@
           <img src="./img/logo.png" alt="header logo image">
         </div>
         <div class="hero__search-word">
-          <p class="hero__search-word__string">ファジーネーブル</p>
+          <p class="hero__search-word__string"><?php echo $search_word; ?></p>
           <div class="hero__search-word__underbar">
             <img src="./img/category-underbar.png" alt="category bar image">
           </div>
@@ -37,40 +65,47 @@
       <div class="drinks">
         <div class="cocktail container">
           <ul class="cocktail__list">
-            <li class="cocktail__item">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title">カクテル名</h5>
-                  <p class="cocktail__text">ベースリキュール</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title">カクテル名</h5>
-                  <p class="cocktail__text">ベースリキュール</p>
-                </div>
-              </a>
-            </li>
+
+
+            <?php
+            while ($record = pg_fetch_row($result)) :
+
+              $id_d = $record[0];
+              $name = $record[2];
+              $base = $record[3];
+              $image = $record[6];
+
+              echo "<li class='cocktail__item ${base}'>";
+              echo "<a href='./detail.php?id=${id_d}' class='cocktail__link'>";
+              echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
+              echo "<div class='cocktail__description'>";
+              echo "<h5 class='cocktail__title'>${name}</h5>";
+              echo "<p class='cocktail__text'>${base}</p>";
+              echo "</div>";
+              echo "</a>";
+              echo "</li>";
+            endwhile;
+            ?>
+
+
           </ul>
         </div>
       </div>
       <div class="search">
         <div class="search-inner">
           <h3 class="search__title main-title">レシピ検索</h3>
-          <form action="./search.html" method="GET" class="search__form">
+          <form action="./search.php" method="GET" class="search__form">
             <div class="search__bar">
-              <input type="text" placeholder="検索" class="search__input" />
-              <button type="submit" class="search__btn">
+              <input type="text" placeholder="検索" name="str" class="search__input" />
+              <button type="submit" name="search" value="search" class="search__btn">
                 <i class="fas fa-search"></i>
               </button>
             </div>
           </form>
           <p class="search__info">またはカテゴリーから探すこともできます。</p>
-          <div class="search__categories">Categories</div>
+          <div class="search__categories">
+            <a href="./category.php" class="link">Categories</a>
+          </div>
         </div>
         <div class="search__img">
           <img src="./img/bg.jpg" alt="search bg image" />
@@ -82,10 +117,30 @@
     </div>
     <nav class="mobile-menu">
       <div class="mobile-menu__profile">
-        <div class="mobile-menu__icon">
-          <img src="./img/sampleDrink.jpg" alt="icon sample image">
-        </div>
-        <div class="mobile-menu__username">User Name</div>
+
+
+        <?php
+
+        echo '<div class="mobile-menu__icon">';
+
+        if (!$uicon) {
+          echo '<img src="./img/default-icon.svg" alt="icon sample image">';
+        } else {
+          echo '<img src="./img/$uicon" alt="icon image">';
+        }
+
+        echo '</div>';
+
+        if (!$uname) {
+          echo "<div class='mobile-menu__username'>ユーザー</div>";
+        } else {
+          echo "<div class='mobile-menu__username'>$uname</div>";
+        }
+
+        ?>
+
+
+
       </div>
       <ul class="mobile-menu__main">
         <li class="mobile-menu__item">
