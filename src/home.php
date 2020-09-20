@@ -30,9 +30,12 @@ if (isset($email) || isset($hpw)) {
   $result = pg_query($sql) or die('query failed: ' . pg_last_error());
   if (pg_num_rows($result)) {
     $row = pg_fetch_row($result);
+    $id_u = $row[0];
     $uname = $row[1];
     $uicon = $row[4];
   }
+
+  $_SESSION['user_id'] = $id_u;
 }
 ?>
 
