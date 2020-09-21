@@ -1,10 +1,30 @@
+<?php
+ini_set('session.save_path', realpath('./../session'));
+session_start();
+
+echo '<pre>';
+echo var_dump(session_save_path());
+echo dirname($_SERVER['DOCUMENT_ROOT']);
+echo '</pre>';
+
+// require '../../../secret.php';
+// require './utils.php';
+
+
+
+$id_u = $_SESSION['user_id'];
+$uname = $_SESSION['user_name'];
+$uicon = $_SESSION['user_icon'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Liquomend | Search</title>
+  <title>Liquomend | Category</title>
   <link rel="stylesheet" href="./css/category.css" />
 </head>
 
@@ -37,18 +57,18 @@
 
       <div class="category">
         <ul class="category__list">
-          <li class="category__base"><a href="./customize-menu.html" class="category__link">リキュール</a></li>
-          <li class="category__base"><a href="./customize-menu.html" class="category__link">ジン</a></li>
-          <li class="category__base"><a href="./customize-menu.html" class="category__link">ウォッカ</a></li>
-          <li class="category__base"><a href="./customize-menu.html" class="category__link">ラム</a></li>
-          <li class="category__base"><a href="./customize-menu.html" class="category__link">テキーラ</a></li>
-          <li class="category__base"><a href="./customize-menu.html" class="category__link">ウイスキー</a></li>
-          <li class="category__base"><a href="./customize-menu.html" class="category__link">ビール</a></li>
-          <li class="category__base"><a href="./customize-menu.html" class="category__link">焼酎</a></li>
-          <li class="category__base"><a href="./customize-menu.html" class="category__link">ワイン</a></li>
-          <li class="category__base"><a href="./customize-menu.html" class="category__link">ブランデー</a></li>
-          <li class="category__base"><a href="./customize-menu.html" class="category__link">日本酒</a></li>
-          <li class="category__base"><a href="./customize-menu.html" class="category__link">その他</a></li>
+          <li class="category__base"><a href="./customize-menu.php?base=liquor" class="category__link">リキュール</a></li>
+          <li class="category__base"><a href="./customize-menu.php?base=jin" class="category__link">ジン</a></li>
+          <li class="category__base"><a href="./customize-menu.php?base=wodka" class="category__link">ウォッカ</a></li>
+          <li class="category__base"><a href="./customize-menu.php?base=rum" class="category__link">ラム</a></li>
+          <li class="category__base"><a href="./customize-menu.php?base=tequila" class="category__link">テキーラ</a></li>
+          <li class="category__base"><a href="./customize-menu.php?base=whisky" class="category__link">ウイスキー</a></li>
+          <li class="category__base"><a href="./customize-menu.php?base=beer" class="category__link">ビール</a></li>
+          <li class="category__base"><a href="./customize-menu.php?base=shochu" class="category__link">焼酎</a></li>
+          <li class="category__base"><a href="./customize-menu.php?base=wine" class="category__link">ワイン</a></li>
+          <li class="category__base"><a href="./customize-menu.php?base=brandy" class="category__link">ブランデー</a></li>
+          <li class="category__base"><a href="./customize-menu.php?base=sake" class="category__link">日本酒</a></li>
+          <li class="category__base"><a href="./customize-menu.php?base=other" class="category__link">その他</a></li>
         </ul>
       </div>
 
@@ -58,10 +78,29 @@
     </div>
     <nav class="mobile-menu">
       <div class="mobile-menu__profile">
-        <div class="mobile-menu__icon">
-          <img src="./img/sampleDrink.jpg" alt="icon sample image" />
-        </div>
-        <div class="mobile-menu__username">User Name</div>
+
+
+        <?php
+
+        echo '<div class="mobile-menu__icon">';
+
+        if (!$uicon) {
+          echo '<img src="./img/default-icon.svg" alt="icon sample image">';
+        } else {
+          echo '<img src="./img/$uicon" alt="icon image">';
+        }
+
+        echo '</div>';
+
+        if (!$uname) {
+          echo "<div class='mobile-menu__username'>ユーザー</div>";
+        } else {
+          echo "<div class='mobile-menu__username'>$uname</div>";
+        }
+
+        ?>
+
+
       </div>
       <ul class="mobile-menu__main">
         <li class="mobile-menu__item">
