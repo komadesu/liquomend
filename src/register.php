@@ -1,5 +1,11 @@
 <?php
+ini_set('session.save_path', realpath('./../session'));
 session_start();
+
+echo '<pre>';
+echo var_dump(session_save_path());
+echo dirname($_SERVER['DOCUMENT_ROOT']);
+echo '</pre>';
 
 require '../../../secret.php';
 require './utils.php';

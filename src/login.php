@@ -1,18 +1,29 @@
 <?php
+ini_set('session.save_path', realpath('./../session'));
 session_start();
 
+echo '<pre>';
+echo var_dump(session_save_path());
+echo dirname($_SERVER['DOCUMENT_ROOT']);
+echo '</pre>';
 
 require '../../../secret.php';
 
+// if (isset($_POST['email'])) {
+//   $email = $_POST['email'];
+// } elseif ($_SESSION['email_string']) {
+//   $email = $_SESSION['email_string'];
+// }
+// if (isset($_POST['password'])) {
+//   $pws = $_POST['password'];
+// } elseif ($_SESSION['hash_password']) {
+//   $pws = $_SESSION['hash_password'];
+// }
 if (isset($_POST['email'])) {
   $email = $_POST['email'];
-} elseif ($_SESSION['email_string']) {
-  $email = $_SESSION['email_string'];
 }
 if (isset($_POST['password'])) {
   $pws = $_POST['password'];
-} elseif ($_SESSION['hash_password']) {
-  $pws = $_SESSION['hash_password'];
 }
 
 
@@ -28,28 +39,41 @@ $_SESSION['errors']['confirm'] = false;
 $_SESSION['good'] = false;
 
 
-$emnum = strlen($email);
-$pwnum = strlen($pws);
-
 echo 'login called';
 echo var_dump($email);
 echo var_dump($pws);
 
 
+$emnum = strlen($email);
+$pwnum = strlen($pws);
+
 if ($emnum !== 0 && $pwnum !== 0) {
-  $sql = "select * from liquomend.users where email = '$email' ;";
+
   $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS") or die('Could not connect: ' . pg_last_error());
 
+
+  $sql = "select * from liquomend.users where email = '$email' ;";
   $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
   if (pg_num_rows($result)) {
-    $row = pg_fetch_row($result);
-    if (password_verify($pws, $row[3])) {
+    $user_info = pg_fetch_row($result);
+
+    $user_id = $user_info[0];
+    $user_name = $user_info[1];
+    $hash_password = $user_info[3];
+
+
+    if (password_verify($pws, $hash_password)) {
+      $_SESSION['user_id'] = $user_id;
+      $_SESSION['user_name'] = $user_name;
       $_SESSION['email_string'] = $email;
-      $_SESSION['hash_password'] = $row[3];
+      $_SESSION['hash_password'] = $hash_password;
+
+      echo '<pre>';
       echo 'password verified';
       echo var_dump($email);
-      echo var_dump($row[3]);
+      echo var_dump($hash_password);
+      echo '</pre>';
 
       $_SESSION['good'] = true;
       header('Location: ./home.php');
@@ -82,12 +106,6 @@ if (isset($_SESSION['errors'])) {
   }
 }
 
-// if (isset($_SESSION['good'])) {
-//   $good = $_SESSION['good'];
-
-//   header("location: ./home.php");
-//   exit;
-// }
 ?>
 
 
@@ -157,7 +175,6 @@ if (isset($_SESSION['errors'])) {
               echo "ログイン成功！";
               header('location: ./home.php');
             }
-            session_destroy();
             ?>
 
             <div class="login__btns">
