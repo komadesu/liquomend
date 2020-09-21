@@ -319,10 +319,29 @@ if (isset($_POST['recipe_post'])) {
     </div>
     <nav class="mobile-menu">
       <div class="mobile-menu__profile">
-        <div class="mobile-menu__icon">
-          <img src="./img/sampleDrink.jpg" alt="icon sample image" />
-        </div>
-        <div class="mobile-menu__username">User Name</div>
+
+
+        <?php
+
+        echo '<div class="mobile-menu__icon">';
+
+        if (!$uicon) {
+          echo '<img src="./img/default-icon.svg" alt="icon sample image">';
+        } else {
+          echo '<img src="./img/$uicon" alt="icon image">';
+        }
+
+        echo '</div>';
+
+        if (!$uname) {
+          echo "<div class='mobile-menu__username'>ユーザー</div>";
+        } else {
+          echo "<div class='mobile-menu__username'>$uname</div>";
+        }
+
+        ?>
+
+
       </div>
       <ul class="mobile-menu__main">
         <li class="mobile-menu__item">
