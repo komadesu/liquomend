@@ -1,6 +1,11 @@
 <?php
+ini_set('session.save_path', realpath('./../session'));
 session_start();
 
+echo '<pre>';
+echo var_dump(session_save_path());
+echo dirname($_SERVER['DOCUMENT_ROOT']);
+echo '</pre>';
 
 require '../../../secret.php';
 require './utils.php';
@@ -93,7 +98,8 @@ if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
 
             if ($npw === $cpw) {
               $hpw = password_hash($npw, PASSWORD_DEFAULT);
-              $sql = "insert into liquomend.users (uname,email,password,uicon) values ('$uname','$email','$hpw', null);";
+
+              $sql = "insert into liquomend.users (uname, email, hash_password, uicon) values ('$uname', '$email', '$hpw', null);";
               $result = pg_query($sql) or die('query failed: ' . pg_last_error());
               $_SESSION['good'] = true;
 

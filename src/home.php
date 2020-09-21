@@ -1,10 +1,19 @@
 <?php
+ini_set('session.save_path', realpath('./../session'));
 session_start();
+
+echo '<pre>';
+echo var_dump(session_save_path());
+echo dirname($_SERVER['DOCUMENT_ROOT']);
+echo '</pre>';
 
 require '../../../secret.php';
 require './utils.php';
 
 
+if (isset($_SESSION['user_id'])) {
+  $id_u = $_SESSION['user_id'];
+}
 if (isset($_SESSION['user_name'])) {
   $uname = $_SESSION['user_name'];
 }
@@ -15,8 +24,7 @@ if (isset($_SESSION['hash_password'])) {
   $hpw = $_SESSION['hash_password'];
 }
 
-echo isset($_SESSION['email_string']);
-echo isset($_SESSION['hash_password']);
+
 echo var_dump($email);
 echo var_dump($hpw);
 
@@ -44,6 +52,8 @@ $recommend_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
 $sql = "select * from liquomend.drinks where type = 'usual' limit 3 ;";
 $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+
+
 
 
 ?>

@@ -1,4 +1,5 @@
 <?php
+ini_set('session.save_path', realpath('./../session'));
 session_start();
 
 require '../../../secret.php';
@@ -21,7 +22,6 @@ if (pg_num_rows($drink_result)) {
   $name = $record[2];
   $image = $record[6];
   $memo = $record[5];
-
 }
 
 
@@ -65,7 +65,7 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
       </div>
 
       <div class="detail__name">
-        <p class="string"><?php echo $name ; ?></p>
+        <p class="string"><?php echo $name; ?></p>
         <div class="underbar">
           <img src="./img/category-underbar.png" alt="category bar image" />
         </div>
@@ -73,7 +73,7 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
       <div class="container">
         <div class="detail__image">
-          <img src="./<?php echo $image ; ?>" alt="detail drink image" />
+          <img src="./<?php echo $image; ?>" alt="detail drink image" />
         </div>
       </div>
 
@@ -86,18 +86,17 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                 <div class="ingredients-and-quantity">
 
 
-                <?php
-                if (pg_num_rows($detail_drink_result)) {
-                  while ($row = pg_fetch_row($detail_drink_result)) {
+                  <?php
+                  if (pg_num_rows($detail_drink_result)) {
+                    while ($row = pg_fetch_row($detail_drink_result)) {
 
-                    $ingredient = $row[0];
-                    $quantity = $row[1];
+                      $ingredient = $row[0];
+                      $quantity = $row[1];
 
-                    echo "<div class='item'><span class='ingredient'>${ingredient}</span><span class='quantity'>${quantity}</span></div>";
-
+                      echo "<div class='item'><span class='ingredient'>${ingredient}</span><span class='quantity'>${quantity}</span></div>";
+                    }
                   }
-                }
-                ?>
+                  ?>
 
 
                 </div>
@@ -112,7 +111,7 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
           <div class="row">
             <div class="col-10 offset-1">
               <h5 class="title main-title">メモ</h5>
-              <p class="content"><?php echo $memo ; ?></p>
+              <p class="content"><?php echo $memo; ?></p>
             </div>
           </div>
         </div>
