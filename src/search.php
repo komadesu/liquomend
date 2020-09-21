@@ -76,7 +76,7 @@ if ($_REQUEST['search']) {
               $image = $record[6];
 
               echo "<li class='cocktail__item ${base}'>";
-              echo "<a href='./detail.php?id=${id_d}' class='cocktail__link'>";
+              echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
               echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
               echo "<div class='cocktail__description'>";
               echo "<h5 class='cocktail__title'>${name}</h5>";

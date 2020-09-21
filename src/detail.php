@@ -2,12 +2,33 @@
 session_start();
 
 require '../../../secret.php';
+require './utils.php';
 
 $uname = $_SESSION['user_name'];
 $uicon = $_SESSION['user_icon'];
 
+$id_d = h($_REQUEST['id_d']);
+
 $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
   or die('Could not connect: ' . pg_last_error());
+
+$sql = "select * from liquomend.drinks where id_d = '$id_d' ;";
+$drink_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+
+if (pg_num_rows($drink_result)) {
+  $record = pg_fetch_row($drink_result);
+
+  $name = $record[2];
+  $image = $record[6];
+  $memo = $record[5];
+
+}
+
+
+$sql = "select liquomend.ingredients.ingredient, liquomend.quantities.quantity from liquomend.drinks inner join liquomend.ingredients on liquomend.drinks.id_d = liquomend.ingredients.id_d inner join liquomend.quantities on liquomend.drinks.id_d = liquomend.quantities.id_d and liquomend.ingredients.id_i = liquomend.quantities.id_i where liquomend.drinks.id_d = $id_d ;";
+$detail_drink_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+
+
 
 $sql = "select * from liquomend.drinks where type = 'customize' limit 3 ;";
 $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
@@ -44,7 +65,7 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
       </div>
 
       <div class="detail__name">
-        <p class="string">Categories</p>
+        <p class="string"><?php echo $name ; ?></p>
         <div class="underbar">
           <img src="./img/category-underbar.png" alt="category bar image" />
         </div>
@@ -52,7 +73,7 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
       <div class="container">
         <div class="detail__image">
-          <img src="./img/sampleDrink.jpg" alt="detail drink image" />
+          <img src="./<?php echo $image ; ?>" alt="detail drink image" />
         </div>
       </div>
 
@@ -63,9 +84,22 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
               <div class="detail__method-inner">
                 <h4 class="title">材料・分量</h4>
                 <div class="ingredients-and-quantity">
-                  <div class="item"><span class="ingredient">材料１</span><span class="quantity">30ml</span></div>
-                  <div class="item"><span class="ingredient">材料１</span><span class="quantity">30ml</span></div>
-                  <div class="item"><span class="ingredient">材料１</span><span class="quantity">30ml</span></div>
+
+
+                <?php
+                if (pg_num_rows($detail_drink_result)) {
+                  while ($row = pg_fetch_row($detail_drink_result)) {
+
+                    $ingredient = $row[0];
+                    $quantity = $row[1];
+
+                    echo "<div class='item'><span class='ingredient'>${ingredient}</span><span class='quantity'>${quantity}</span></div>";
+
+                  }
+                }
+                ?>
+
+
                 </div>
               </div>
             </div>
@@ -78,7 +112,7 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
           <div class="row">
             <div class="col-10 offset-1">
               <h5 class="title main-title">メモ</h5>
-              <p class="content">メモが入ります。</p>
+              <p class="content"><?php echo $memo ; ?></p>
             </div>
           </div>
         </div>
