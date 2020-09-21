@@ -3,15 +3,18 @@ ini_set('session.save_path', realpath('./../session'));
 session_start();
 
 require '../../../secret.php';
+require './utils.php';
 
 $uname = $_SESSION['user_name'];
 $uicon = $_SESSION['user_icon'];
+
+$base = h($_REQUEST['base']);
 
 
 $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
   or die('Could not connect: ' . pg_last_error());
 
-$sql = "select * from liquomend.drinks where type = 'customize' ;";
+$sql = "select * from liquomend.drinks where base = '$base' and type = 'customize' ;";
 $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
 
