@@ -12,10 +12,15 @@ $base = h($_REQUEST['base']);
 
 
 $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-  or die('Could not connect: ' . pg_last_error());
+or die('Could not connect: ' . pg_last_error());
 
-$sql = "select * from liquomend.drinks where base = '$base' and type = 'customize' ;";
-$result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+if ($base === 'liquor') {
+  $sql = "select * from liquomend.drinks where base in ('peach', 'cassis', 'kahlua', 'malibu', 'dita', 'other_liquor') and type = 'customize' ;";
+  $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+} else {
+  $sql = "select * from liquomend.drinks where base = '$base' and type = 'customize' ;";
+  $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+}
 
 
 
@@ -51,7 +56,7 @@ $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
           <img src="./img/logo.png" alt="header logo image" />
         </div>
         <div class="hero__search-word">
-          <p class="hero__search-word__string">カスタマイズ</p>
+          <p class="hero__search-word__string"><?php echo $base; ?></p>
           <div class="hero__search-word__underbar">
             <img src="./img/category-underbar.png" alt="category bar image" />
           </div>
@@ -62,26 +67,35 @@ $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
       </div>
 
       <div class="select-base">
-        <div class="extract-outer">
-          <select name="extract" id="extract" class="pulldown extract" placeholder="Base">
-            <option class="extract__base" value="liquor">リキュール</option>
-            <option class="extract__base" value="gin">ジン</option>
-            <option class="extract__base" value="rum">ラム</option>
-            <option class="extract__base" value="vodka">ウォッカ</option>
-            <option class="extract__base" value="tequila">テキーラ</option>
-            <option class="extract__base" value="other">その他</option>
-            <option class="extract__base" value="all">All</option>
-          </select>
-        </div>
 
-        <div class="sort-outer">
+
+        <?php
+
+        if ($base === 'liquor') :
+          echo "<div class='extract-outer'>";
+          echo "<select name='extract' id='extract' class='pulldown extract' placeholder='Base'>";
+          echo "<option class='extract__base' value='peach'>ピーチ</option>";
+          echo "<option class='extract__base' value='cassis'>カシス</option>";
+          echo "<option class='extract__base' value='kahlua'>カルーア</option>";
+          echo "<option class='extract__base' value='malibu'>マリブ</option>";
+          echo "<option class='extract__base' value='dita'>ディタ</option>";
+          echo "<option class='extract__base' value='other'>その他</option>";
+          echo "<option class='extract__base' value='all'>All</option>";
+          echo "</select>";
+          echo "</div>";
+        else :
+          echo '<p style="color: white; margin-bottom: 0; line-height: 60px;">いろんな飲み方を楽しんでみてね！</p>';
+        endif;
+        ?>
+
+        <!-- <div class="sort-outer">
           <form class="sort-form" action="#" method="POST">
             <select name="sort" id="sort" class="pulldown sort" placeholder="Sort">
               <option class="sort__item" value="new">最新順</option>
               <option class="sort__item" value="good">いいね数</option>
             </select>
           </form>
-        </div>
+        </div> -->
       </div>
 
       <div class="drinks">
