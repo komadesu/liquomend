@@ -12,7 +12,7 @@ $base = h($_REQUEST['base']);
 
 
 $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-or die('Could not connect: ' . pg_last_error());
+  or die('Could not connect: ' . pg_last_error());
 
 if ($base === 'liquor') {
   $sql = "select * from liquomend.drinks where base in ('peach', 'cassis', 'kahlua', 'malibu', 'dita', 'other_liquor') and type = 'customize' ;";
@@ -187,7 +187,11 @@ if ($base === 'liquor') {
       <div class="mobile-menu__logo">
         <img src="./img/logo2.png" alt="logo2 image" onclick="location.href = './about.php'">
       </div>
-      <div class="mobile-menu__sns">各種logoが入ります</div>
+      <div class="mobile-menu__sns">
+        <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
+        <a href="https://www.instagram.com/liquomend" class="ig_icon icon"><img src="./img/instagram.png" alt="Instagram" /></a>
+        <a href="" class="tw_icon icon"><img src="./img/twitter.png" alt="Twitter" /></a>
+      </div>
     </nav>
   </div>
 
