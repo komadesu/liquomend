@@ -180,7 +180,7 @@ if (isset($_SESSION['errors'])) {
             <div class="login__btns">
               <input type="submit" value="ログイン" class="form__btn" />
               <p class="login__or__register">または</p>
-              <input type="submit" value="新規登録" class="form__btn" />
+              <a href="./register.php" class="form__btn">新規登録</a>
             </div>
           </form>
         </div>
