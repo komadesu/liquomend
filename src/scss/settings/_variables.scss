@@ -6,6 +6,7 @@ $subColor2: #A2A2A2;
 $subColor3: #707070;
 $subColor4: rgba(16, 21, 35, 0.6);
 $subColor5: hsla(222, 25%, 18%, 0.8);
+$accentColor: #64A7CB;
 
 
 $bgMaskColor: hsla(222, 25%, 18%, 0.8);
@@ -25,7 +26,7 @@ $formBorderColor: $subColor3;
 $formBtnColor: $subColor4;
 
 
-$loginUnvalidTextColor: #64A7CB;
+$loginUnvalidTextColor: $accentColor;
 $loginOrRegisterTextColor: $subColor3;
 $loginOrRegisterLineColor: $subColor2;
 
