@@ -40,6 +40,7 @@ a[href] {
     max-width: 100%;
     object-fit: cover;
     object-position: center;
+    height: 150px; // おそらくここは画像のアスペクト比がまちまちで、高さは指定すべき。これに関しては、後々メディアクエリーでいい感じに調整する必要ありだと思われる。
   }
   &__description {
     padding: 0.5em 0.2em;
