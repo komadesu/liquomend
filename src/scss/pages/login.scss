@@ -67,18 +67,3 @@
     }
   }
 }
-
-.form {
-  &__title {
-    text-align: center;
-    font-size: 22px;
-    color: $subColor;
-  }
-  &__label {
-    color: $subTitleColor;
-  }
-  &__btn {
-    background-color: $formBtnColor !important;
-    color: white !important;
-  }
-}
