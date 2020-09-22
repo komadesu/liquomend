@@ -69,9 +69,9 @@
         <p class="contact__email">E-mail：moon0903@gms.gdl.jp</p>
 
         <div class="contact__sns">
-          <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
-          <a href="https://www.instagram.com/liquomend" class="ig_icon icon"><img src="./img/instagram.png" alt="Instagram" /></a>
-          <a href="" class="tw_icon icon"><img src="./img/twitter.png" alt="Twitter" /></a>
+          <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook-about.png" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/liquomend" class="ig_icon icon"><img src="./img/instagram-about.png" alt="Instagram" /></a>
+          <a href="" class="tw_icon icon"><img src="./img/twitter-about.png" alt="Twitter" /></a>
         </div>
 
         <div class="contact__logo">
