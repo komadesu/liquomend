@@ -32,6 +32,9 @@ class ControllRecipeMethod {
       newMethodItem.firstElementChild.firstElementChild.textContent = `材料${nextId}`;
       newMethodItem.firstElementChild.nextElementSibling.firstElementChild.textContent = `分量${nextId}`;
 
+      newMethodItem.children[0].children[1].value = '';
+      newMethodItem.children[1].children[1].value = '';
+
       this.recipeMethod.appendChild(newMethodItem);
 
       this._validNewDeleteBtn(newMethodItem);
