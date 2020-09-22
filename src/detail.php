@@ -25,7 +25,7 @@ if (pg_num_rows($drink_result)) {
 }
 
 
-$sql = "select liquomend.ingredients.ingredient, liquomend.quantities.quantity from liquomend.drinks inner join liquomend.ingredients on liquomend.drinks.id_d = liquomend.ingredients.id_d inner join liquomend.quantities on liquomend.drinks.id_d = liquomend.quantities.id_d and liquomend.ingredients.id_i = liquomend.quantities.id_i where liquomend.drinks.id_d = $id_d ;";
+$sql = "select liquomend.ingredients.ingredient, liquomend.quantities.quantity from liquomend.drinks inner join liquomend.ingredients on liquomend.drinks.id_d = liquomend.ingredients.id_d inner join liquomend.quantities on liquomend.drinks.id_d = liquomend.quantities.id_d and liquomend.ingredients.id_i = liquomend.quantities.id_q where liquomend.drinks.id_d = $id_d ;";
 $detail_drink_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
 

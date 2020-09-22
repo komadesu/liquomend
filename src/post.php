@@ -90,35 +90,19 @@ if (isset($_POST['recipe_post'])) {
       echo '</pre>';
     }
 
+    foreach ($quantities as $quantity) {
+      if (!$quantity) {
+        break;
+      }
 
-    // $sql = "select id_i from liquomend.ingredients where liquomend.ingredients.id_d = '$id_d' ;";
-    // $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+      $sql = "insert into liquomend.quantities (id_d, quantity) values ('$id_d', '$quantity');";
+      $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+      echo var_dump($result);
 
-    // if (pg_num_rows($result)) {
-
-    //   while ($record = pg_fetch_row($result)) {
-
-    //     foreach ($quantities as $quantity) {
-    //       if (!$quantity) {
-    //         break;
-    //       }
-
-    //       $sql = "insert into liquomend.quantities (id_d, quantity, id_i) values ('$id_d', '$quantity', '$id_i');";
-    //       $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-    //       echo '<pre>';
-    //       echo var_dump($result);
-    //       echo '</pre>';
-    //     }
-
-    //     echo '<pre>';
-    //     echo var_dump($record);
-    //     echo '</pre>';
-    //     $id_i = $record[0];
-
-
-    //   }
-    // }
+      echo '<pre>';
+      echo var_dump($quantity);
+      echo '</pre>';
+    }
   };
 }
 
