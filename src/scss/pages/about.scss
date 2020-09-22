@@ -136,10 +136,26 @@
     color: $contactEmailColor;
   }
   &__sns {
+    display: flex;
+    justify-content: center;
     margin-bottom: 30px;
-  }
-  &__icon {
-    color: $contactIconColor;
+
+    & .icon {
+      margin: 0 2px;
+      padding: 16px;
+      border-radius: 50%;
+      transition: background-color 0.3s;
+      // color: $contactIconColor; この about ページで使用するアイコン画像の色がこれ
+
+      &:hover {
+        background-color: skyblue;
+      }
+    }
+
+    & img {
+      width: 32px !important;
+      height: 32px !important;
+    }
   }
   &__logo {
     cursor: pointer;
