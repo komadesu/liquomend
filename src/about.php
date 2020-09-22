@@ -67,11 +67,13 @@
       <div class="contact">
         <h4 class="contact__title main-title">Contact</h4>
         <p class="contact__email">E-mail：moon0903@gms.gdl.jp</p>
+
         <div class="contact__sns">
-          <span class="contact__icon">icon</span>
-          <span class="contact__icon">icon</span>
-          <span class="contact__icon">icon</span>
+          <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/liquomend" class="ig_icon icon"><img src="./img/instagram.png" alt="Instagram" /></a>
+          <a href="" class="tw_icon icon"><img src="./img/twitter.png" alt="Twitter" /></a>
         </div>
+
         <div class="contact__logo">
           <img src="./img/logo2.png" alt="logo image" onclick="location.href = './home.php'" />
         </div>
@@ -136,7 +138,11 @@
       <div class="mobile-menu__logo">
         <img src="./img/logo2.png" alt="logo2 image" onclick="location.href = './home.php'">
       </div>
-      <div class="mobile-menu__sns">各種logoが入ります</div>
+      <div class="mobile-menu__sns">
+        <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
+        <a href="https://www.instagram.com/liquomend" class="ig_icon icon"><img src="./img/instagram.png" alt="Instagram" /></a>
+        <a href="" class="tw_icon icon"><img src="./img/twitter.png" alt="Twitter" /></a>
+      </div>
     </nav>
   </div>
 </body>
