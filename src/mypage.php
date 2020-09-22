@@ -10,6 +10,12 @@ $uname = $_SESSION['user_name'];
 $uicon = $_SESSION['user_icon'];
 
 
+if (!$id_u) {
+  header('location: ./login.php');
+  exit;
+}
+
+
 
 
 $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
