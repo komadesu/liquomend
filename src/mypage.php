@@ -51,19 +51,38 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
         </button>
       </header>
       <div class="hero">
+
         <div class="hero__logo">
           <img src="./img/logo.png" alt="header logo image" />
         </div>
+
         <div class="mypage__hero">
-          <div class="usericon">
-            <img src="./img/sampleDrink.jpg" alt="user image" />
-          </div>
-          <p class="username">User Name</p>
+          <?php
+
+          echo "<div class='usericon'>";
+
+          if (!$uicon) {
+            echo "<img src='./img/default-icon.svg' alt='user icon image' />";
+          } else {
+            echo '<img src="./img/$uicon" alt="icon image">';
+          }
+
+          echo "</div>";
+
+          if (!$uname) {
+            echo "<p class='username'>User Name</p>";
+          } else {
+            echo "<p class='username'>$uname</p>";
+          }
+          ?>
         </div>
+
         <div class="hero__bg-img">
           <img src="./img/hero.jpg" alt="hero image" />
         </div>
       </div>
+
+
       <nav class="nav">
         <ul class="nav__list">
           <!-- <li class="nav__item"><a href="#" class="nav__link js-nav__link js-nav-user">ユーザー情報</a></li> 後々これつけて、マイページの顔にする -->
@@ -73,7 +92,7 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
         </ul>
       </nav>
 
-      <div class="drinks js-target js-target-recipe inactive">
+      <div class="drinks js-target js-target-recipe active">
         <div class="cocktail container">
           <ul class="cocktail__list">
 
@@ -116,51 +135,10 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
       <div class="drinks js-target js-target-favo inactive">
         <div class="cocktail container">
           <ul class="cocktail__list">
-            <li class="cocktail__item">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title text-truncate">カシスオレンジ</h5>
-                  <p class="cocktail__text text-truncate">カシスリキュール</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title text-truncate">ピーチフィズ</h5>
-                  <p class="cocktail__text text-truncate">ピーチリキュール</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title text-truncate">ピーチフィズ</h5>
-                  <p class="cocktail__text text-truncate">ピーチリキュール</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title text-truncate">ピーチフィズ</h5>
-                  <p class="cocktail__text text-truncate">ピーチリキュール</p>
-                </div>
-              </a>
-            </li>
-            <li class="cocktail__item">
-              <a href="cocktail__link">
-                <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                <div class="cocktail__description">
-                  <h5 class="cocktail__title text-truncate">ピーチフィズ</h5>
-                  <p class="cocktail__text text-truncate">ピーチリキュール</p>
-                </div>
-              </a>
-            </li>
+
+
+
+
           </ul>
         </div>
         <div class="recipe-btn">
@@ -171,7 +149,7 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
         </div>
       </div>
 
-      <div class="settings js-target js-target-settings active">
+      <div class="settings js-target js-target-settings inactive">
         <div class="container">
           <div class="row">
             <div class="col-12">
