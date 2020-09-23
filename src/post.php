@@ -155,15 +155,21 @@ if (isset($_POST['recipe_post'])) {
         </div>
 
         <div class="recipe-name">
-          <h3 class="recipe-name__title">
-            <input type="text" placeholder="レシピ名" name="recipe_name" class="recipe-name__input" />
-          </h3>
+          <div class="container">
+            <div class="row">
+              <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                <h3 class="recipe-name__title">
+                  <input type="text" placeholder="レシピ名" name="recipe_name" class="recipe-name__input" />
+                </h3>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="recipe-info">
           <div class="container">
             <div class="row">
-              <div class="col-10 offset-1">
+              <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                 <div class="form-group">
                   <label class="control-label">ベース</label>
                   <div class="select-wrap select-base">
@@ -187,7 +193,7 @@ if (isset($_POST['recipe_post'])) {
               </div>
             </div>
             <div class="row js-toggle inactive">
-              <div class="col-10 offset-1">
+              <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                 <div class="form-group">
                   <label class="control-label">度数</label>
                   <div class="select-wrap select-alcohol">
@@ -208,7 +214,7 @@ if (isset($_POST['recipe_post'])) {
               </div>
             </div>
             <div class="row">
-              <div class="col-10 offset-1">
+              <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                 <div class="form-group">
                   <label class="control-label">度数</label>
                   <div class="select-wrap select-alcohol">
@@ -234,7 +240,7 @@ if (isset($_POST['recipe_post'])) {
         <div class="recipe-method container">
           <h4 class="recipe-method__title main-title">材料・分量</h4>
           <div class="row">
-            <div class="col-12 js-recipe-method">
+            <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 js-recipe-method">
               <div class="form-group js-recipe-method-item" id="1">
                 <div class="input">
                   <label for="ingredient" class="recipe-method__label">材料１</label>
@@ -282,13 +288,19 @@ if (isset($_POST['recipe_post'])) {
         </div>
 
         <div class="recipe-memo">
-          <div class="recipe-memo-inner">
-            <h3 class="recipe-memo__title main-title">メモ</h3>
-            <div class="recipe-memo__description">
-              <textarea id="" cols="30" rows="4" placeholder="銘柄、飲みやすさなど" name="recipe_memo" class="textarea"></textarea>
-            </div>
-            <div class="recipe-memo__post">
-              <input type="submit" value="投稿" name="recipe_post" class="post-btn" />
+          <div class="container">
+            <div class="row">
+              <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+                <div class="recipe-memo-inner">
+                  <label for="memo" class="recipe-memo__title main-title">メモ</label>
+                  <div class="recipe-memo__description">
+                    <textarea id="memo" placeholder="銘柄、飲みやすさなど" name="recipe_memo" class="textarea"></textarea>
+                  </div>
+                  <div class="recipe-memo__post">
+                    <input type="submit" value="投稿" name="recipe_post" class="post-btn" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="recipe-memo__img">

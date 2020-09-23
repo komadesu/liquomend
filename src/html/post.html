@@ -29,8 +29,7 @@
               <div class="recipe-img__bg-img">
                 <img src="./img/hero.jpg" alt="recipe bg image" />
               </div>
-              <div class="preview">
-              </div>
+              <div class="preview"></div>
               <div class="recipe-img__circle">
                 <i class="fas fa-camera"></i>
               </div>
@@ -39,19 +38,25 @@
           </div>
 
           <div class="recipe-name">
-            <h3 class="recipe-name__title">
-              <input type="text" placeholder="レシピ名" class="recipe-name__input" />
-            </h3>
+            <div class="container">
+              <div class="row">
+                <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                  <h3 class="recipe-name__title">
+                    <input type="text" placeholder="レシピ名" class="recipe-name__input" />
+                  </h3>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="recipe-info">
             <div class="container">
               <div class="row">
-                <div class="col-10 offset-1">
+                <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                   <div class="form-group">
                     <label class="control-label">ベース</label>
                     <div class="select-wrap select-base">
-                      <select name="base" class="js-base">
+                      <select name="recipe_base" class="js-base">
                         <option value="">ベース</option>
                         <option class="recipe-info__base" value="liquor">リキュール</option>
                         <option class="recipe-info__base" value="gin">ジン</option>
@@ -71,7 +76,7 @@
                 </div>
               </div>
               <div class="row js-toggle inactive">
-                <div class="col-10 offset-1">
+                <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                   <div class="form-group">
                     <label class="control-label">度数</label>
                     <div class="select-wrap select-alcohol">
@@ -92,7 +97,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-10 offset-1">
+                <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                   <div class="form-group">
                     <label class="control-label">度数</label>
                     <div class="select-wrap select-alcohol">
@@ -118,7 +123,7 @@
           <div class="recipe-method container">
             <h4 class="recipe-method__title main-title">材料・分量</h4>
             <div class="row">
-              <div class="col-12 js-recipe-method">
+              <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 js-recipe-method">
                 <div class="form-group js-recipe-method-item" id="1">
                   <div class="input">
                     <label for="ingredient" class="recipe-method__label">材料１</label>
@@ -166,13 +171,19 @@
           </div>
 
           <div class="recipe-memo">
-            <div class="recipe-memo-inner">
-              <h3 class="recipe-memo__title main-title">メモ</h3>
-              <div class="recipe-memo__description">
-                <textarea name="recipe_memo" id="" cols="30" rows="4" placeholder="銘柄、飲みやすさなど" class="textarea"></textarea>
-              </div>
-              <div class="recipe-memo__post">
-                <input type="submit" value="投稿" class="post-btn" />
+            <div class="container">
+              <div class="row">
+                <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+                  <div class="recipe-memo-inner">
+                    <label for="memo" class="recipe-memo__title main-title">メモ</label>
+                    <div class="recipe-memo__description">
+                      <textarea name="recipe_memo" id="memo" placeholder="銘柄、飲みやすさなど" class="textarea"></textarea>
+                    </div>
+                    <div class="recipe-memo__post">
+                      <input type="submit" value="投稿" class="post-btn" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="recipe-memo__img">
