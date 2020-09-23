@@ -12,12 +12,17 @@ $uicon = $_SESSION['user_icon'];
 $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
   or die('Could not connect: ' . pg_last_error());
 
-
 if ($_REQUEST['search']) {
-  $search_word = h($_REQUEST['str']);
+  if ($_REQUEST['str']) {
+    $search_word = h($_REQUEST['str']);
 
-  $sql = "select * from liquomend.drinks where name like '%${search_word}%'  ;";
-  $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+    $sql = "select * from liquomend.drinks where name like '%${search_word}%'  ;";
+    $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+  } else {
+    $message = '検索ワードを入力してください';
+  }
+} else {
+  $message = '不正なアクセスです';
 }
 
 
@@ -54,7 +59,7 @@ if ($_REQUEST['search']) {
           <img src="./img/logo.png" alt="header logo image">
         </div>
         <div class="hero__search-word">
-          <p class="hero__search-word__string"><?php echo $search_word; ?></p>
+          <p class="hero__search-word__string"><?php echo $search_word ? $search_word : '未入力'; ?></p>
           <div class="hero__search-word__underbar">
             <img src="./img/category-underbar.png" alt="category bar image">
           </div>
@@ -70,25 +75,29 @@ if ($_REQUEST['search']) {
 
 
               <?php
-              while ($record = pg_fetch_row($result)) :
+              if ($result) {
+                while ($record = pg_fetch_row($result)) :
 
-                $id_d = $record[0];
-                $name = $record[2];
-                $base = $record[3];
-                $image = $record[6];
+                  $id_d = $record[0];
+                  $name = $record[2];
+                  $base = $record[3];
+                  $image = $record[6];
 
-                echo "<div class='col-4 col-md-2'>";
-                echo "<li class='cocktail__item ${base}'>";
-                echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
-                echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
-                echo "<div class='cocktail__description'>";
-                echo "<h5 class='cocktail__title text-truncate'>${name}</h5>";
-                echo "<p class='cocktail__text text-truncate'>${base}</p>";
-                echo "</div>";
-                echo "</a>";
-                echo "</li>";
-                echo "</div>";
-              endwhile;
+                  echo "<div class='col-4 col-md-2'>";
+                  echo "<li class='cocktail__item ${base}'>";
+                  echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
+                  echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
+                  echo "<div class='cocktail__description'>";
+                  echo "<h5 class='cocktail__title text-truncate'>${name}</h5>";
+                  echo "<p class='cocktail__text text-truncate'>${base}</p>";
+                  echo "</div>";
+                  echo "</a>";
+                  echo "</li>";
+                  echo "</div>";
+                endwhile;
+              } else {
+                echo "<p style='height: 200px; line-height: 200px; margin: 0 auto; color: red; font-size: 1.6em;'>${message}</p>";
+              }
               ?>
 
             </div>
