@@ -72,15 +72,19 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
       </div>
 
       <div class="container">
-        <div class="detail__image">
-          <img src="./<?php echo $image; ?>" alt="detail drink image" />
+        <div class="row">
+          <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <div class="detail__image">
+              <img src="./<?php echo $image; ?>" alt="detail drink image" />
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="detail__method">
         <div class="container">
           <div class="row">
-            <div class="col-10 offset-1">
+            <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
               <div class="detail__method-inner">
                 <h4 class="title">材料・分量</h4>
                 <div class="ingredients-and-quantity">
@@ -109,7 +113,7 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
       <div class="detail__memo">
         <div class="container">
           <div class="row">
-            <div class="col-10 offset-1">
+            <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
               <h5 class="title main-title">メモ</h5>
               <p class="content"><?php echo $memo; ?></p>
             </div>
@@ -127,29 +131,38 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
         <div class="cocktail container">
           <ul class="cocktail__list">
+            <div class="row">
 
 
-            <?php
-            while ($record = pg_fetch_row($recipe_result)) :
+              <?php
+              $firstFlag = true;
+              while ($record = pg_fetch_row($recipe_result)) :
 
-              $id_d = $record[0];
-              $name = $record[2];
-              $base = $record[3];
-              $image = $record[6];
+                $id_d = $record[0];
+                $name = $record[2];
+                $base = $record[3];
+                $image = $record[6];
 
-              echo "<li class='cocktail__item ${base}'>";
-              echo "<a href='./detail.php?id=${id_d}' class='cocktail__link'>";
-              echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
-              echo "<div class='cocktail__description'>";
-              echo "<h5 class='cocktail__title'>${name}</h5>";
-              echo "<p class='cocktail__text'>${base}</p>";
-              echo "</div>";
-              echo "</a>";
-              echo "</li>";
-            endwhile;
-            ?>
+                if ($firstFlag) {
+                  echo "<div class='col-4 col-md-2 offset-md-3'>";
+                  $firstFlag = false;
+                } else {
+                  echo "<div class='col-4 col-md-2'>";
+                }
+                echo "<li class='cocktail__item ${base}'>";
+                echo "<a href='./detail.php?id=${id_d}' class='cocktail__link'>";
+                echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
+                echo "<div class='cocktail__description'>";
+                echo "<h5 class='cocktail__title text-truncate'>${name}</h5>";
+                echo "<p class='cocktail__text text-truncate'>${base}</p>";
+                echo "</div>";
+                echo "</a>";
+                echo "</li>";
+                echo "</div>";
+              endwhile;
+              ?>
 
-
+            </div>
           </ul>
 
           <div class="more-btn">
@@ -161,7 +174,7 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
       <div class="detail__post">
         <div class="container">
           <div class="row">
-            <div class="col-10 offset-1">
+            <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
               <h5 class="title main-title">Post Your Recipe</h5>
               <a href="./post.php" class="write-btn">レシピを書く</a>
             </div>
