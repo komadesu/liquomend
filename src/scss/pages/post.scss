@@ -10,6 +10,7 @@
 
 .hero {
   background-color: white;
+  height: 260px;
 
   &__logo {
     position: absolute;
@@ -29,11 +30,13 @@
 .recipe {
   &-img {
     position: absolute;
-    top: 50%;
+    // top: 50%;
+    top: 53%;
     left: 50%;
     transform: translate(-50%, -40%);
     width: 90%;
-    height: 50%;
+    // height: 50%;
+    height: 60%;
     cursor: pointer;
 
     & .preview {
@@ -125,7 +128,6 @@
       font-size: 18px;
       margin: 0;
       color: white;
-      width: 90%;
     }
 
     & input[type='text'] {
@@ -133,6 +135,8 @@
       background-color: transparent !important;
       border-bottom: 1px solid $recipeNameInputBorderColor !important;
       text-decoration: none !important;
+      border: none;
+      width: 100%;
       &::placeholder {
         color: $recipeNameInputPlaceholderColor;
       }
@@ -181,9 +185,10 @@
         }
         & input[type='text'] {
           border: 1px solid $subColor3 !important;
-          display: inline;
+          display: inline-block;
           margin-right: 10px;
           padding: 2px 4px;
+          width: 100%;
         }
       }
     }
@@ -223,15 +228,16 @@
 
     &-inner {
       padding: 40px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100%;
-      z-index: 100;
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
+      // height: 100%;
+      // z-index: 100;
     }
 
     &__title {
       color: white !important;
+      display: block;
 
       &::after {
         background-color: white;
@@ -245,10 +251,13 @@
         border-radius: 10px;
         padding: 8px;
         outline: none;
+        width: 100%;
+        min-height: 140px;
       }
     }
     &__post {
       letter-spacing: 2px;
+      text-align: center;
 
       & .post-btn {
         display: inline-block;
@@ -305,4 +314,101 @@
 }
 .active {
   display: block;
+}
+
+@media (min-width: 353px) {
+}
+@media (min-width: 375px) {
+  .hero {
+    height: 260px;
+  }
+  .recipe {
+    &-img {
+      width: 75%;
+    }
+  }
+}
+@media (min-width: 414px) {
+}
+@media (min-width: 444px) {
+  .recipe {
+    &-img {
+      width: 65%;
+    }
+  }
+}
+@media (min-width: 474px) {
+}
+@media (min-width: 504px) {
+  .recipe {
+    &-img {
+      width: 55%;
+    }
+  }
+}
+@media (min-width: 534px) {
+}
+@media (min-width: 564px) {
+  .recipe {
+    &-img {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+}
+@media (min-width: 576px) and (orientation: landscape) {
+}
+@media (min-width: 768px) {
+  .hero {
+    height: 340px;
+  }
+  .recipe {
+    &-img {
+      top: 50%;
+    }
+    &-method {
+      & .add {
+        margin-right: 60px;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+}
+@media (min-width: 992px) {
+  .hero {
+    height: 400px;
+  }
+  .recipe {
+    &-img {
+      width: 40%;
+    }
+    &-method {
+      & .add {
+        margin-right: 150px;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) and (orientation: landscape) {
+}
+
+@media (min-width: 1200px) {
+  .hero {
+    height: 450px;
+  }
+  .recipe {
+    &-img {
+      width: 36%;
+    }
+  }
+  &-method {
+    & .add {
+      margin-right: 200px;
+    }
+  }
 }

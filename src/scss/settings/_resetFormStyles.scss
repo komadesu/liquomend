@@ -21,7 +21,7 @@ input[type='submit'] {
   font-family: inherit;
   font-size: 1em;
   padding: 0.4em 0.8em;
-  width: 100%;
+  // width: 100%; これ邪魔だから消す。他のところで影響でたら、そのページ特有のスタイルとして定義する。
 }
 
 input[type='submit']:focus,

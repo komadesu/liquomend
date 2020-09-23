@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Liquomend | Detail</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/detail.css" />
   </head>
   <body>
@@ -29,15 +30,19 @@
         </div>
 
         <div class="container">
-          <div class="detail__image">
-            <img src="./img/sampleDrink.jpg" alt="detail drink image" />
+          <div class="row">
+            <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+              <div class="detail__image">
+                <img src="./img/sample-drink.jpg" alt="detail drink image" />
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="detail__method">
           <div class="container">
             <div class="row">
-              <div class="col-10 offset-1">
+              <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                 <div class="detail__method-inner">
                   <h4 class="title">材料・分量</h4>
                   <div class="ingredients-and-quantity">
@@ -54,7 +59,7 @@
         <div class="detail__memo">
           <div class="container">
             <div class="row">
-              <div class="col-10 offset-1">
+              <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                 <h5 class="title main-title">メモ</h5>
                 <p class="content">メモが入ります。</p>
               </div>
@@ -72,24 +77,54 @@
 
           <div class="cocktail container">
             <ul class="cocktail__list">
-              <li class="cocktail__item">
-                <a href="./detail.html" class="cocktail__link">
-                  <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                  <div class="cocktail__description">
-                    <h5 class="cocktail__title">カクテル名</h5>
-                    <p class="cocktail__text">ベースリキュール</p>
-                  </div>
-                </a>
-              </li>
-              <li class="cocktail__item">
-                <a href="./detail.html" class="cocktail__link">
-                  <img src="./img/sampleDrink.jpg" alt="sample drink image" class="cocktail__img" />
-                  <div class="cocktail__description">
-                    <h5 class="cocktail__title">カクテル名</h5>
-                    <p class="cocktail__text">ベースリキュール</p>
-                  </div>
-                </a>
-              </li>
+              <div class="row">
+                <div class="col-4 col-md-2 offset-md-3">
+                  <li class="cocktail__item">
+                    <a href="./detail.html" class="cocktail__link">
+                      <img
+                        src="./img/sample-drink.jpg"
+                        alt="sample drink image"
+                        class="cocktail__img"
+                      />
+                      <div class="cocktail__description">
+                        <h5 class="cocktail__title text-truncate">スーパーグレートドリンク</h5>
+                        <p class="cocktail__text">ベースリキュール</p>
+                      </div>
+                    </a>
+                  </li>
+                </div>
+                <div class="col-4 col-md-2">
+                  <li class="cocktail__item">
+                    <a href="./detail.html" class="cocktail__link">
+                      <img
+                        src="./img/sample-drink.jpg"
+                        alt="sample drink image"
+                        class="cocktail__img"
+                      />
+                      <div class="cocktail__description">
+                        <h5 class="cocktail__title">カクテル名</h5>
+                        <p class="cocktail__text">ベースリキュール</p>
+                      </div>
+                    </a>
+                  </li>
+                </div>
+                <div class="col-4 col-md-2">
+                  <li class="cocktail__item">
+                    <a href="./detail.html" class="cocktail__link">
+                      <img
+                        src="./img/sample-drink.jpg"
+                        alt="sample drink image"
+                        class="cocktail__img"
+                      />
+                      <div class="cocktail__description">
+                        <h5 class="cocktail__title text-truncate">スーパーグレートドリンク</h5>
+                        <p class="cocktail__text">ベースリキュール</p>
+                      </div>
+                    </a>
+                  </li>
+                </div>
+
+              </div>
             </ul>
 
             <div class="more-btn">
@@ -101,7 +136,7 @@
         <div class="detail__post">
           <div class="container">
             <div class="row">
-              <div class="col-10 offset-1">
+              <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                 <h5 class="title main-title">Post Your Recipe</h5>
                 <a href="./post.html" class="write-btn">レシピを書く</a>
               </div>
@@ -135,7 +170,7 @@
       <nav class="mobile-menu">
         <div class="mobile-menu__profile">
           <div class="mobile-menu__icon">
-            <img src="./img/sampleDrink.jpg" alt="icon sample image" />
+            <img src="./img/sample-drink.jpg" alt="icon sample image" />
           </div>
           <div class="mobile-menu__username">User Name</div>
         </div>

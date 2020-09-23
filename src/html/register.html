@@ -11,10 +11,7 @@
       <div id="contents-container">
         <div class="mobile-menu__cover"></div>
         <header class="header m-3">
-          <button
-            onclick="document.querySelector('#global-container').classList.toggle('menu-open')"
-            class="mobile-menu__btn"
-          >
+          <button onclick="document.querySelector('#global-container').classList.toggle('menu-open')" class="mobile-menu__btn">
             <span></span>
             <span></span>
             <span></span>
@@ -37,49 +34,31 @@
         </nav>
 
         <div class="container">
-          <div class="register">
-            <h3 class="form__title">Sign Up</h3>
-            <form action="register.php" method="POST" class="form">
-              <label for="username" class="form__label">User Name</label>
-              <input
-                id="username"
-                type="text"
-                name="username"
-                class="form__username mb-2"
-              />
-              <br />
+          <div class="row">
+            <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+              <div class="register">
+                <h3 class="form__title">Sign Up</h3>
+                <form action="register.php" method="POST" class="form">
+                  <label for="username" class="form__label">User Name</label>
+                  <input id="username" type="text" name="username" class="form__username mb-2" />
+                  <br />
 
-              <label for="email" class="form__label">Email</label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                class="form__email mb-2"
-              />
-              <br />
+                  <label for="email" class="form__label">Email</label>
+                  <input id="email" type="email" name="email" class="form__email mb-2" />
+                  <br />
 
-              <label for="password" class="form__label">パスワード</label>
-              <input
-                id="password"
-                type="password"
-                name="password"
-                class="form__password mb-2"
-              />
-              <br />
+                  <label for="password" class="form__label">パスワード</label>
+                  <input id="password" type="password" name="password" class="form__password mb-2" />
+                  <br />
 
-              <label for="password_confirm" class="form__label"
-                >パスワード(確認用)</label
-              >
-              <input
-                id="password_confirm"
-                type="password"
-                name="password_confirm"
-                class="form__password mb-4"
-              />
-              <br />
+                  <label for="password_confirm" class="form__label">パスワード(確認用)</label>
+                  <input id="password_confirm" type="password" name="password_confirm" class="form__password mb-4" />
+                  <br />
 
-              <input type="submit" value="登録確認画面へ" class="form__btn" />
-            </form>
+                  <input type="submit" value="登録確認画面へ" class="form__btn" />
+                </form>
+              </div>
+            </div>
           </div>
         </div>
 

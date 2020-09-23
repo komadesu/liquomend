@@ -199,3 +199,38 @@
 .footer {
   position: static;
 }
+
+@media (min-width: 375px) {
+}
+
+@media (min-width: 576px) {
+}
+@media (min-width: 576px) and (orientation: landscape) {
+}
+@media (min-width: 768px) {
+  .detail {
+    &__related-base-recipe {
+      & .more-btn {
+        padding-right: 100px;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+}
+@media (min-width: 992px) {
+    .detail {
+    &__related-base-recipe {
+      & .more-btn {
+        padding-right: 200px;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) and (orientation: landscape) {
+}
+
+@media (min-width: 1200px) {
+}

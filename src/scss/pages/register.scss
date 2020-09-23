@@ -21,4 +21,11 @@
   margin-bottom: 40px;
   background-color: white;
   padding: 20px;
+
+  & input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='submit'] {
+    width: 100%;
+  }
 }

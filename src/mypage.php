@@ -24,6 +24,9 @@ $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL
 $sql = "select * from liquomend.drinks where id_u = '$id_u' ;";
 $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
+$sql = "select * from liquomend.drinks where id_u = '$id_u' ;"; // お気に入り機能実装時に要編集
+$favo_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+
 
 
 ?>
@@ -95,33 +98,36 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
       <div class="drinks js-target js-target-recipe active">
         <div class="cocktail container">
           <ul class="cocktail__list">
+            <div class="row">
 
 
 
-            <?php
-            if (pg_num_rows($recipe_result)) :
-              while ($record = pg_fetch_row($recipe_result)) :
+              <?php
+              if (pg_num_rows($recipe_result)) :
+                while ($record = pg_fetch_row($recipe_result)) :
 
-                $id_d = $record[0];
-                $name = $record[2];
-                $base = $record[3];
-                $image = $record[6];
+                  $id_d = $record[0];
+                  $name = $record[2];
+                  $base = $record[3];
+                  $image = $record[6];
 
-                echo "<li class='cocktail__item ${base}'>";
-                echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
-                echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
-                echo "<div class='cocktail__description'>";
-                echo "<h5 class='cocktail__title'>${name}</h5>";
-                echo "<p class='cocktail__text'>${base}</p>";
-                echo "</div>";
-                echo "</a>";
-                echo "</li>";
-              endwhile;
-            endif;
-            ?>
+                  echo "<div class='col-4 col-md-2'>";
+                  echo "<li class='cocktail__item ${base}'>";
+                  echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
+                  echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
+                  echo "<div class='cocktail__description'>";
+                  echo "<h5 class='cocktail__title text-truncate'>${name}</h5>";
+                  echo "<p class='cocktail__text text-truncate'>${base}</p>";
+                  echo "</div>";
+                  echo "</a>";
+                  echo "</li>";
+                  echo "</div>";
+                endwhile;
+              endif;
+              ?>
 
 
-
+            </div>
           </ul>
         </div>
         <div class="recipe-btn">
@@ -135,10 +141,36 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
       <div class="drinks js-target js-target-favo inactive">
         <div class="cocktail container">
           <ul class="cocktail__list">
+            <div class="row">
 
 
 
+              <?php
+              if (pg_num_rows($favo_result)) :
+                while ($record = pg_fetch_row($favo_result)) :
 
+                  $id_d = $record[0];
+                  $name = $record[2];
+                  $base = $record[3];
+                  $image = $record[6];
+
+                  echo "<div class='col-4 col-md-2'>";
+                  echo "<li class='cocktail__item ${base}'>";
+                  echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
+                  echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
+                  echo "<div class='cocktail__description'>";
+                  echo "<h5 class='cocktail__title text-truncate'>${name}</h5>";
+                  echo "<p class='cocktail__text text-truncate'>${base}</p>";
+                  echo "</div>";
+                  echo "</a>";
+                  echo "</li>";
+                  echo "</div>";
+                endwhile;
+              endif;
+              ?>
+
+
+            </div>
           </ul>
         </div>
         <div class="recipe-btn">

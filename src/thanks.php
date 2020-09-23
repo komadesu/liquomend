@@ -90,123 +90,127 @@ if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
       </nav>
 
       <div class="container">
-        <div class="confirm">
-          <h3 class="form__title">登録完了画面</h3>
+        <div class="row">
+          <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <div class="confirm">
+              <h3 class="form__title">登録完了画面</h3>
 
-          <?php
-          if (!$rows) {
+              <?php
+              if (!$rows) {
 
-            if ($npw === $cpw) {
-              $hpw = password_hash($npw, PASSWORD_DEFAULT);
+                if ($npw === $cpw) {
+                  $hpw = password_hash($npw, PASSWORD_DEFAULT);
 
-              $sql = "insert into liquomend.users (uname, email, hash_password, uicon) values ('$uname', '$email', '$hpw', null);";
-              $result = pg_query($sql) or die('query failed: ' . pg_last_error());
-              $_SESSION['good'] = true;
+                  $sql = "insert into liquomend.users (uname, email, hash_password, uicon) values ('$uname', '$email', '$hpw', null);";
+                  $result = pg_query($sql) or die('query failed: ' . pg_last_error());
+                  $_SESSION['good'] = true;
 
 
-              echo '<label class="form__label">Thanks!</label>';
-              echo '<p class="control mb-4">登録が完了しました</p>';
-              echo '<br>';
-              echo '<p>ホーム画面へ移動します...</p>';
+                  echo '<label class="form__label">Thanks!</label>';
+                  echo '<p class="control mb-4">登録が完了しました</p>';
+                  echo '<br>';
+                  echo '<p>ホーム画面へ移動します...</p>';
 
-              $mailfr = "1gk8296t@gms.gdl.jp";
-              $mailsb = "[Liquomend]ユーザ登録完了";
-              $mailms = "ユーザ登録を完了しました。\n\n";
-              "   ユーザ名:" . $uname . "\n";
-              "http://gms.gdl.jp/~tenten1717/\n\n";
-              if (mb_send_mail($email, $mailsb, $mailms, "From: " . $mailfr)) {
-                echo "<p>メールが送信されました。</p>";
+                  $mailfr = "1gk8296t@gms.gdl.jp";
+                  $mailsb = "[Liquomend]ユーザ登録完了";
+                  $mailms = "ユーザ登録を完了しました。\n\n";
+                  "   ユーザ名:" . $uname . "\n";
+                  "http://gms.gdl.jp/~tenten1717/\n\n";
+                  if (mb_send_mail($email, $mailsb, $mailms, "From: " . $mailfr)) {
+                    echo "<p>メールが送信されました。</p>";
+                  } else {
+                    echo "<p>メールの送信に失敗しました。</p>";
+                  }
+
+                  $_SESSION['user_name'] = $uname;
+                  $_SESSION['email_string'] = $email;
+                  $_SESSION['hash_password'] = $hpw;
+
+                  // sleep(3);
+
+                  header('location: ./home.php');
+                } else {
+                  $_SESSION['errors']['confirm'] = true;
+
+                  header('location: ./register.php');
+                }
               } else {
-                echo "<p>メールの送信に失敗しました。</p>";
+                $_SESSION['errors']['id'] = true;
+                header('location: ./register.php');
               }
+              ?>
 
-              $_SESSION['user_name'] = $uname;
-              $_SESSION['email_string'] = $email;
-              $_SESSION['hash_password'] = $hpw;
-
-              // sleep(3);
-
-              header('location: ./home.php');
-            } else {
-              $_SESSION['errors']['confirm'] = true;
-
-              header('location: ./register.php');
-            }
-          } else {
-            $_SESSION['errors']['id'] = true;
-            header('location: ./register.php');
-          }
-          ?>
-
+            </div>
+          </div>
         </div>
       </div>
 
-      <footer class="footer">
-        <p class="footer__copyright"><small>&copy;gms.gdl.jp</small></p>
-      </footer>
-    </div>
-    <nav class="mobile-menu">
-      <div class="mobile-menu__profile">
+          <footer class="footer">
+            <p class="footer__copyright"><small>&copy;gms.gdl.jp</small></p>
+          </footer>
+        </div>
+        <nav class="mobile-menu">
+          <div class="mobile-menu__profile">
 
 
-        <?php
+            <?php
 
-        echo '<div class="mobile-menu__icon">';
+            echo '<div class="mobile-menu__icon">';
 
-        if (!$uicon) {
-          echo '<img src="./img/default-icon.svg" alt="icon sample image">';
-        } else {
-          echo '<img src="./img/$uicon" alt="icon image">';
-        }
+            if (!$uicon) {
+              echo '<img src="./img/default-icon.svg" alt="icon sample image">';
+            } else {
+              echo '<img src="./img/$uicon" alt="icon image">';
+            }
 
-        echo '</div>';
+            echo '</div>';
 
-        if (!$uname) {
-          echo "<div class='mobile-menu__username'>ユーザー</div>";
-        } else {
-          echo "<div class='mobile-menu__username'>$uname</div>";
-        }
+            if (!$uname) {
+              echo "<div class='mobile-menu__username'>ユーザー</div>";
+            } else {
+              echo "<div class='mobile-menu__username'>$uname</div>";
+            }
 
-        ?>
+            ?>
 
 
+          </div>
+          <ul class="mobile-menu__main">
+            <li class="mobile-menu__item">
+              <a href="./home.html" class="mobile-menu__link">
+                <span class="nav-main-title">Home</span>
+                <span class="nav-sub-title">ホームへ戻る</span>
+              </a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="./about.html" class="mobile-menu__link">
+                <span class="nav-main-title">About</span>
+                <span class="nav-sub-title">お問い合わせ</span>
+              </a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="./login.html" class="mobile-menu__link">
+                <span class="nav-main-title">Log In</span>
+                <span class="nav-sub-title">ログイン</span>
+              </a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="＃" class="mobile-menu__link">
+                <span class="nav-main-title">ページ</span>
+                <span class="nav-sub-title">なんとかページ</span>
+              </a>
+            </li>
+          </ul>
+          <div class="mobile-menu__logo">
+            <img src="./img/logo2.png" alt="logo2 image" onclick="location.href = './about.php'">
+          </div>
+          <div class="mobile-menu__sns">
+            <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
+            <a href="https://www.instagram.com/liquomend" class="ig_icon icon"><img src="./img/instagram.png" alt="Instagram" /></a>
+            <a href="" class="tw_icon icon"><img src="./img/twitter.png" alt="Twitter" /></a>
+          </div>
+        </nav>
       </div>
-      <ul class="mobile-menu__main">
-        <li class="mobile-menu__item">
-          <a href="./home.html" class="mobile-menu__link">
-            <span class="nav-main-title">Home</span>
-            <span class="nav-sub-title">ホームへ戻る</span>
-          </a>
-        </li>
-        <li class="mobile-menu__item">
-          <a href="./about.html" class="mobile-menu__link">
-            <span class="nav-main-title">About</span>
-            <span class="nav-sub-title">お問い合わせ</span>
-          </a>
-        </li>
-        <li class="mobile-menu__item">
-          <a href="./login.html" class="mobile-menu__link">
-            <span class="nav-main-title">Log In</span>
-            <span class="nav-sub-title">ログイン</span>
-          </a>
-        </li>
-        <li class="mobile-menu__item">
-          <a href="＃" class="mobile-menu__link">
-            <span class="nav-main-title">ページ</span>
-            <span class="nav-sub-title">なんとかページ</span>
-          </a>
-        </li>
-      </ul>
-      <div class="mobile-menu__logo">
-        <img src="./img/logo2.png" alt="logo2 image" onclick="location.href = './about.php'">
-      </div>
-      <div class="mobile-menu__sns">
-        <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
-        <a href="https://www.instagram.com/liquomend" class="ig_icon icon"><img src="./img/instagram.png" alt="Instagram" /></a>
-        <a href="" class="tw_icon icon"><img src="./img/twitter.png" alt="Twitter" /></a>
-      </div>
-    </nav>
-  </div>
 </body>
 
 </html>
