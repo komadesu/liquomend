@@ -23,7 +23,7 @@ a[href] {
     background-color: white;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    transition: all .3s;
+    transition: all 0.3s;
     border-radius: 2px;
 
     &:hover {
@@ -40,7 +40,7 @@ a[href] {
     max-width: 100%;
     object-fit: cover;
     object-position: center;
-    // height: 90px;
+    height: 85px;
   }
   &__description {
     padding: 0.5em 0.2em;
@@ -57,7 +57,61 @@ a[href] {
   }
 }
 
+@media (min-width: 353px) {
+  .cocktail {
+    &__img {
+      height: 95px;
+    }
+  }
+}
 @media (min-width: 375px) {
+  .cocktail {
+    &__img {
+      height: 105px;
+    }
+  }
+}
+@media (min-width: 414px) {
+  .cocktail {
+    &__img {
+      height: 115px;
+    }
+  }
+}
+@media (min-width: 444px) {
+  .cocktail {
+    &__img {
+      height: 125px;
+    }
+  }
+}
+@media (min-width: 474px) {
+  .cocktail {
+    &__img {
+      height: 135px;
+    }
+  }
+}
+@media (min-width: 504px) {
+  .cocktail {
+    &__img {
+      height: 145px;
+    }
+  }
+}
+@media (min-width: 534px) {
+  .cocktail {
+    &__img {
+      height: 155px;
+    }
+  }
+}
+@media (min-width: 564px) {
+  .cocktail {
+    &__img {
+      height: 168px;
+    }
+  }
 }
 
 @media (min-width: 576px) {
@@ -65,15 +119,30 @@ a[href] {
 @media (min-width: 576px) and (orientation: landscape) {
 }
 @media (min-width: 768px) {
+  .cocktail {
+    &__img {
+      height: 88px;
+    }
+  }
 }
 
 @media (min-width: 768px) and (orientation: landscape) {
 }
 @media (min-width: 992px) {
+  .cocktail {
+    &__img {
+      height: 130px;
+    }
+  }
 }
 
 @media (min-width: 992px) and (orientation: landscape) {
 }
 
 @media (min-width: 1200px) {
+  .cocktail {
+    &__img {
+      height: 160px;
+    }
+  }
 }
