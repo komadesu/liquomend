@@ -117,8 +117,8 @@ if ($base === 'liquor') {
                 echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
                 echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
                 echo "<div class='cocktail__description'>";
-                echo "<h5 class='cocktail__title'>${name}</h5>";
-                echo "<p class='cocktail__text'>${base}</p>";
+                echo "<h5 class='cocktail__title text-truncate'>${name}</h5>";
+                echo "<p class='cocktail__text text-truncate'>${base}</p>";
                 echo "</div>";
                 echo "</a>";
                 echo "</li>";
