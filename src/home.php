@@ -100,29 +100,38 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
         <h3 class="recommend__title main-title">Recommend Recipe</h3>
         <div class="cocktail container">
           <ul class="cocktail__list">
+            <div class="row">
 
 
-            <?php
-            while ($record = pg_fetch_row($recommend_result)) :
+              <?php
+              $firstFlag = true;
+              while ($record = pg_fetch_row($recommend_result)) :
 
-              $id_d = $record[0];
-              $name = $record[2];
-              $base = $record[3];
-              $image = $record[6];
+                $id_d = $record[0];
+                $name = $record[2];
+                $base = $record[3];
+                $image = $record[6];
 
-              echo "<li class='cocktail__item ${base}'>";
-              echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
-              echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
-              echo "<div class='cocktail__description'>";
-              echo "<h5 class='cocktail__title'>${name}</h5>";
-              echo "<p class='cocktail__text'>${base}</p>";
-              echo "</div>";
-              echo "</a>";
-              echo "</li>";
-            endwhile;
-            ?>
+                if ($firstFlag) {
+                  echo "<div class='col-4 col-md-2 offset-md-3'>";
+                  $firstFlag = false;
+                } else {
+                  echo "<div class='col-4 col-md-2'>";
+                }
+                echo "<li class='cocktail__item ${base}'>";
+                echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
+                echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
+                echo "<div class='cocktail__description'>";
+                echo "<h5 class='cocktail__title text-truncate'>${name}</h5>";
+                echo "<p class='cocktail__text text-truncate'>${base}</p>";
+                echo "</div>";
+                echo "</a>";
+                echo "</li>";
+                echo "</div>";
+              endwhile;
+              ?>
 
-
+            </div>
           </ul>
         </div>
       </div>
@@ -130,29 +139,38 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
         <h3 class="classic__title main-title">定番ドリンク</h3>
         <div class="cocktail container">
           <ul class="cocktail__list">
+            <div class="row">
 
 
-            <?php
-            while ($record = pg_fetch_row($classic_result)) :
+              <?php
+              $firstFlag = true;
+              while ($record = pg_fetch_row($classic_result)) :
 
-              $id_d = $record[0];
-              $name = $record[2];
-              $base = $record[3];
-              $image = $record[6];
+                $id_d = $record[0];
+                $name = $record[2];
+                $base = $record[3];
+                $image = $record[6];
 
-              echo "<li class='cocktail__item ${base}'>";
-              echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
-              echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
-              echo "<div class='cocktail__description'>";
-              echo "<h5 class='cocktail__title'>${name}</h5>";
-              echo "<p class='cocktail__text'>${base}</p>";
-              echo "</div>";
-              echo "</a>";
-              echo "</li>";
-            endwhile;
-            ?>
+                if ($firstFlag) {
+                  echo "<div class='col-4 col-md-2 offset-md-3'>";
+                  $firstFlag = false;
+                } else {
+                  echo "<div class='col-4 col-md-2'>";
+                }
+                echo "<li class='cocktail__item ${base}'>";
+                echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
+                echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
+                echo "<div class='cocktail__description'>";
+                echo "<h5 class='cocktail__title text-truncate'>${name}</h5>";
+                echo "<p class='cocktail__text text-truncate'>${base}</p>";
+                echo "</div>";
+                echo "</a>";
+                echo "</li>";
+                echo "</div>";
+              endwhile;
+              ?>
 
-
+            </div>
           </ul>
           <div class="more-btn">
             <a href="./usual-menu.php">+ MORE</a>

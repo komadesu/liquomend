@@ -4,23 +4,23 @@ a[href] {
 
 .cocktail {
   &__list {
-    display: flex;
-    justify-content: space-between;
+    // display: flex;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
     padding: 0;
     list-style: none;
     margin-bottom: 0;
-    flex-wrap: wrap;
 
-    &::after {
-      content: '';
-      display: block;
-      width: 30%;
-    }
+    // &::after {
+    //   content: '';
+    //   display: block;
+    //   width: 30%;
+    // }
   }
   &__item {
-    flex-basis: auto;
+    // flex-basis: auto;
+    // width: 30%;
     background-color: white;
-    width: 30%;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     transition: all .3s;
@@ -40,7 +40,7 @@ a[href] {
     max-width: 100%;
     object-fit: cover;
     object-position: center;
-    height: 150px; // おそらくここは画像のアスペクト比がまちまちで、高さは指定すべき。これに関しては、後々メディアクエリーでいい感じに調整する必要ありだと思われる。
+    // height: 90px;
   }
   &__description {
     padding: 0.5em 0.2em;
@@ -55,4 +55,25 @@ a[href] {
     color: $cocktailTextColor;
     margin: 0;
   }
+}
+
+@media (min-width: 375px) {
+}
+
+@media (min-width: 576px) {
+}
+@media (min-width: 576px) and (orientation: landscape) {
+}
+@media (min-width: 768px) {
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+}
+@media (min-width: 992px) {
+}
+
+@media (min-width: 992px) and (orientation: landscape) {
+}
+
+@media (min-width: 1200px) {
 }
