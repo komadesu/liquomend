@@ -147,42 +147,46 @@ if (isset($_SESSION['errors'])) {
       </nav>
 
       <div class="container">
-        <div class="login">
-          <h3 class="form__title">Sign In</h3>
+        <div class="row">
+          <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <div class="login">
+              <h3 class="form__title">Sign In</h3>
 
-          <form action="./login.php" method="POST" class="form">
-            <label for="email" class="form__label">Email</label>
-            <input id="email" type="email" name="email" class="form__email mb-2" />
-            <br />
+              <form action="./login.php" method="POST" class="form">
+                <label for="email" class="form__label">Email</label>
+                <input id="email" type="email" name="email" class="form__email mb-2" />
+                <br />
 
-            <label for="password" class="form__label">パスワード</label>
-            <input id="password" type="password" name="password" class="form__password" />
-            <br />
+                <label for="password" class="form__label">パスワード</label>
+                <input id="password" type="password" name="password" class="form__password" />
+                <br />
 
-            <div class="login__unvalid mb-4">
-              <a href='reset-login.php'>パスワードを忘れた場合</a>
+                <div class="login__unvalid mb-4">
+                  <a href='reset-login.php'>パスワードを忘れた場合</a>
+                </div>
+                <br />
+
+                <?php
+                if ($empty) {
+                  echo "入力漏れがあります";
+                } elseif ($id) {
+                  echo "メールアドレスもしくはパスワードが間違っています";
+                } elseif ($confirm) {
+                  echo "そのようなメールアドレスは登録されていません";
+                } elseif ($good) {
+                  echo "ログイン成功！";
+                  header('location: ./home.php');
+                }
+                ?>
+
+                <div class="login__btns">
+                  <input type="submit" value="ログイン" class="form__btn" />
+                  <p class="login__or__register">または</p>
+                  <a href="./register.php" class="form__btn">新規登録</a>
+                </div>
+              </form>
             </div>
-            <br />
-
-            <?php
-            if ($empty) {
-              echo "入力漏れがあります";
-            } elseif ($id) {
-              echo "メールアドレスもしくはパスワードが間違っています";
-            } elseif ($confirm) {
-              echo "そのようなメールアドレスは登録されていません";
-            } elseif ($good) {
-              echo "ログイン成功！";
-              header('location: ./home.php');
-            }
-            ?>
-
-            <div class="login__btns">
-              <input type="submit" value="ログイン" class="form__btn" />
-              <p class="login__or__register">または</p>
-              <a href="./register.php" class="form__btn">新規登録</a>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
 

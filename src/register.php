@@ -73,43 +73,47 @@ if (isset($_SESSION['errors'])) {
       </nav>
 
       <div class="container">
-        <div class="register">
-          <h3 class="form__title">Sign Up</h3>
-          <form action="confirm.php" method="POST" class="form">
-            <label for="username" class="form__label">User Name</label>
-            <input id="username" type="text" name="username" value="<?php echo h($uname); ?>" class="form__username mb-2" />
-            <br />
+        <div class="row">
+          <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <div class="register">
+              <h3 class="form__title">Sign Up</h3>
+              <form action="confirm.php" method="POST" class="form">
+                <label for="username" class="form__label">User Name</label>
+                <input id="username" type="text" name="username" value="<?php echo h($uname); ?>" class="form__username mb-2" />
+                <br />
 
-            <label for="email" class="form__label">Email</label>
-            <input id="email" type="email" name="email" value="<?php echo h($email); ?>" class="form__email mb-2" />
-            <br />
+                <label for="email" class="form__label">Email</label>
+                <input id="email" type="email" name="email" value="<?php echo h($email); ?>" class="form__email mb-2" />
+                <br />
 
-            <label for="password" class="form__label">パスワード</label>
-            <input id="password" type="password" name="password" class="form__password mb-2" />
-            <br />
+                <label for="password" class="form__label">パスワード</label>
+                <input id="password" type="password" name="password" class="form__password mb-2" />
+                <br />
 
-            <label for="password_confirm" class="form__label">パスワード(確認用)</label>
-            <input id="password_confirm" type="password" name="password_confirm" class="form__password mb-4" />
-            <br />
-
-
-            <?php
-            if ($empty) {
-              echo "入力漏れがあります";
-            }
-            if ($id) {
-              echo "すでにそのIDは使用されています";
-            }
-            if ($confirm) {
-              echo "確認用パスワードと異なっています";
-            }
-
-            session_destroy();
-            ?>
+                <label for="password_confirm" class="form__label">パスワード(確認用)</label>
+                <input id="password_confirm" type="password" name="password_confirm" class="form__password mb-4" />
+                <br />
 
 
-            <input type="submit" value="登録確認画面へ" class="form__btn" />
-          </form>
+                <?php
+                if ($empty) {
+                  echo "入力漏れがあります";
+                }
+                if ($id) {
+                  echo "すでにそのIDは使用されています";
+                }
+                if ($confirm) {
+                  echo "確認用パスワードと異なっています";
+                }
+
+                session_destroy();
+                ?>
+
+
+                <input type="submit" value="登録確認画面へ" class="form__btn" />
+              </form>
+            </div>
+          </div>
         </div>
       </div>
 

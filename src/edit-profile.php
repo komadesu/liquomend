@@ -35,31 +35,35 @@
       </div>
 
       <div class="container">
-        <div class="edit-profile__form">
-          <h3 class="form__title">Edit Profile</h3>
-          <form action="edit.php" method="POST" class="form">
-            <label for="email" class="form__label">Email</label>
-            <input id="email" type="email" name="email" class="form__email mb-2" />
-            <br />
+        <div class="row">
+          <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <div class="edit-profile__form">
+              <h3 class="form__title">Edit Profile</h3>
+              <form action="edit.php" method="POST" class="form">
+                <label for="email" class="form__label">Email</label>
+                <input id="email" type="email" name="email" class="form__email mb-2" />
+                <br />
 
-            <label for="new-email" class="form__label">新しいEmail</label>
-            <input id="new-email" type="email" name="new_email" class="form__email mb-2" />
-            <br />
+                <label for="new-email" class="form__label">新しいEmail</label>
+                <input id="new-email" type="email" name="new_email" class="form__email mb-2" />
+                <br />
 
-            <label for="password" class="form__label">パスワード</label>
-            <input id="password" type="password" name="password" class="form__password mb-2" />
-            <br />
+                <label for="password" class="form__label">パスワード</label>
+                <input id="password" type="password" name="password" class="form__password mb-2" />
+                <br />
 
-            <label for="new-password" class="form__label">新しいパスワード</label>
-            <input id="new-password" type="password" name="new_password" class="form__password mb-2" />
-            <br />
+                <label for="new-password" class="form__label">新しいパスワード</label>
+                <input id="new-password" type="password" name="new_password" class="form__password mb-2" />
+                <br />
 
-            <label for="new-password-confirm" class="form__label">新しいパスワード(確認用)</label>
-            <input id="new-password-confirm" type="password" name="password_confirm" class="form__password mb-4" />
-            <br />
+                <label for="new-password-confirm" class="form__label">新しいパスワード(確認用)</label>
+                <input id="new-password-confirm" type="password" name="password_confirm" class="form__password mb-4" />
+                <br />
 
-            <input type="submit" value="更新" class="form__btn" />
-          </form>
+                <input type="submit" value="更新" class="form__btn" />
+              </form>
+            </div>
+          </div>
         </div>
       </div>
 
