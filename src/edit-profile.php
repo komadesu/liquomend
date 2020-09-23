@@ -1,10 +1,90 @@
+<?php
+ini_set('session.save_path', realpath('./../session'));
+session_start();
+
+require '../../../secret.php';
+require './utils.php';
+
+$id_u = $_SESSION['user_id'];
+$uname = $_SESSION['user_name'];
+$uicon = $_SESSION['user_icon'];
+
+
+
+if (!isset($id_u)) {
+  header('location: ./login.php');
+  exit;
+}
+
+$errors = $_SESSION['errors'];
+
+$errors['empty'] = false;
+$errors['confirm'] = false;
+$errors['access'] = false;
+$errors['match'] = false;
+
+$good = false;
+
+if ($_POST['update_profile']) {
+
+  $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
+    or die('Could not connect: ' . pg_last_error());
+
+
+  $email = h($_POST['email']);
+  $pass = h($_POST['password']);
+  $n_pass = h($_POST['new_password']);
+  $c_pass = h($_POST['confirm_password']);
+
+  if ($email && $pass && $n_pass && $c_pass) {
+    $sql = "select email, hash_password from liquomend.users where id_u = $id_u ;";
+    $result = pg_query($sql) or die('Query failed: first ' . pg_last_error());
+
+    if (pg_num_rows($result)) {
+      $record = pg_fetch_row($result);
+      $registered_email = $record[0];
+      $hash_pass = $record[1];
+    }
+
+    if ($email === $registered_email && password_verify($pass, $hash_pass)) {
+      if ($n_pass === $c_pass) {
+        $new_hash_pass = password_hash($n_pass, PASSWORD_DEFAULT);
+
+        $sql = "update liquomend.users set hash_password = '$new_hash_pass' where id_u = $id_u ;";
+        $result = pg_query($sql) or die('Query failed: second ' . pg_last_error());
+
+        $good = true;
+      } else {
+        $errors['match'] = true;
+      }
+    } else {
+      $errors['confirm'] = true;
+    }
+  } else {
+    $errors['empty'] = true;
+  }
+} else {
+  $first = true;
+  if ($first) {
+    $first = false;
+  } else {
+    $errors['access'] = true;
+  }
+}
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Liquomend | My Page</title>
+  <title>Liquomend | Edit Profile</title>
   <link rel="stylesheet" href="./css/edit-profile.css" />
 </head>
 
@@ -23,12 +103,28 @@
         <div class="hero__logo">
           <img src="./img/logo.png" alt="header logo image" />
         </div>
+
         <div class="edit-profile__hero">
-          <div class="usericon">
-            <img src="./img/sampleDrink.jpg" alt="user image" />
-          </div>
-          <p class="username">User Name</p>
+          <?php
+
+          echo "<div class='usericon'>";
+
+          if (!$uicon) {
+            echo "<img src='./img/default-icon.svg' alt='user icon image' />";
+          } else {
+            echo '<img src="./img/$uicon" alt="icon image">';
+          }
+
+          echo "</div>";
+
+          if (!$uname) {
+            echo "<p class='username'>User Name</p>";
+          } else {
+            echo "<p class='username'>$uname</p>";
+          }
+          ?>
         </div>
+
         <div class="hero__bg-img">
           <img src="./img/hero.jpg" alt="hero image" />
         </div>
@@ -37,36 +133,58 @@
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-            <div class="edit-profile__form">
-              <h3 class="form__title">Edit Profile</h3>
-              <form action="edit.php" method="POST" class="form">
-                <label for="email" class="form__label">Email</label>
-                <input id="email" type="email" name="email" class="form__email mb-2" />
-                <br />
 
-                <label for="new-email" class="form__label">新しいEmail</label>
-                <input id="new-email" type="email" name="new_email" class="form__email mb-2" />
-                <br />
+            <?php
+            if ($good) {
 
-                <label for="password" class="form__label">パスワード</label>
-                <input id="password" type="password" name="password" class="form__password mb-2" />
-                <br />
+              echo "<div class='container'>";
+              echo "<div class='confirm'>";
+              echo "<h3 class='form__title'>パスワード変更完了画面</h3>";
 
-                <label for="new-password" class="form__label">新しいパスワード</label>
-                <input id="new-password" type="password" name="new_password" class="form__password mb-2" />
-                <br />
+              echo "<label class='form__label'>Thanks!</label>";
+              echo "<p class='control mb-4'>パスワード変更が完了しました</p>";
 
-                <label for="new-password-confirm" class="form__label">新しいパスワード(確認用)</label>
-                <input id="new-password-confirm" type="password" name="password_confirm" class="form__password mb-4" />
-                <br />
+              echo "<a href='./home.php' style='display: block; text-align: right;'>ホームへ移動</a>";
+              echo "</div>";
+              echo "</div>";
+            } else {
 
-                <input type="submit" value="更新" class="form__btn" />
-              </form>
-            </div>
+
+              echo "<div class='edit-profile__form'>";
+              echo "<h3 class='form__title'>パスワード変更</h3>";
+
+              echo "<p style='color: red; margin: 15px 0;'>";
+              if ($errors['access']) echo '不正なアクセスです';
+              if ($errors['empty']) echo '全て入力してください';
+              if ($errors['confirm']) echo 'メールアドレスもしくはパスワードが間違っています';
+              if ($errors['match']) echo '新しいパスワードと確認パスワードが一致しません';
+              echo "</p>";
+
+              echo "<form action='./edit-profile.php' method='POST' class='form'>";
+              echo "<label for='email' class='form__label'>Email</label>";
+              echo "<input id='email' type='email' name='email' value='$email' class='form__email mb-2' />";
+              echo "<br />";
+
+              echo "<label for='password' class='form__label'>パスワード</label>";
+              echo "<input id='password' type='password' name='password' value='$pass' class='form__password mb-2' />";
+              echo "<br />";
+
+              echo "<label for='new-password' class='form__label'>新しいパスワード</label>";
+              echo "<input id='new-password' type='password' name='new_password' value='$n_pass' class='form__password mb-2' />";
+              echo "<br />";
+
+              echo "<label for='new-password-confirm' class='form__label'>新しいパスワード(確認用)</label>";
+              echo "<input id='new-password-confirm' type='password' name='confirm_password' value='$c_pass' class='form__password mb-4' />";
+              echo "<br />";
+
+              echo "<input type='submit' value='更新' name='update_profile' class='form__btn' />";
+              echo "</form>";
+              echo "</div>";
+            }
+            ?>
           </div>
         </div>
       </div>
-
       <footer class="footer">
         <p class="footer__copyright"><small>&copy;gms.gdl.jp</small></p>
       </footer>

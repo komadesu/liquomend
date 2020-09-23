@@ -186,9 +186,7 @@ $favo_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
           <div class="row">
             <div class="col-12">
               <ul class="settings__list">
-                <li class="item"><a href="./settings.html" class="link">プロフィール編集</a></li>
-                <li class="item"><a href="./settings.html" class="link">プロフィール編集</a></li>
-                <li class="item"><a href="./settings.html" class="link">プロフィール編集</a></li>
+                <li class="item"><a href="./edit-profile.php" class="link">パスワード変更</a></li>
               </ul>
             </div>
           </div>
