@@ -32,6 +32,10 @@
 
     & .form__btn {
       width: 36%;
+
+      & input[type='submit'] {
+        width: 100%;
+      }
     }
   }
 }
