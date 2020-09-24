@@ -2,11 +2,6 @@
 ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-echo '<pre>';
-echo var_dump(session_save_path());
-echo dirname($_SERVER['DOCUMENT_ROOT']);
-echo '</pre>';
-
 require '../../../secret.php';
 require './utils.php';
 
@@ -23,10 +18,6 @@ if (isset($_SESSION['email_string'])) {
 if (isset($_SESSION['hash_password'])) {
   $hpw = $_SESSION['hash_password'];
 }
-
-
-echo var_dump($email);
-echo var_dump($hpw);
 
 $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
   or die('Could not connect: ' . pg_last_error());

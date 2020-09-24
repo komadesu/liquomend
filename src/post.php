@@ -45,10 +45,6 @@ if (isset($_POST['recipe_post'])) {
       $base = $accurate_base;
     }
 
-    echo '<pre>';
-    echo var_dump($id_u, $name, $base, $strength, $memo, $destination);
-    echo '</pre>';
-
 
 
     $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
@@ -83,11 +79,6 @@ if (isset($_POST['recipe_post'])) {
 
       $sql = "insert into liquomend.ingredients (id_d, ingredient) values ('$id_d', '$ingredient');";
       $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-      echo var_dump($result);
-
-      echo '<pre>';
-      echo var_dump($ingredient);
-      echo '</pre>';
     }
 
     foreach ($quantities as $quantity) {
@@ -97,11 +88,6 @@ if (isset($_POST['recipe_post'])) {
 
       $sql = "insert into liquomend.quantities (id_d, quantity) values ('$id_d', '$quantity');";
       $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-      echo var_dump($result);
-
-      echo '<pre>';
-      echo var_dump($quantity);
-      echo '</pre>';
     }
   };
 }
