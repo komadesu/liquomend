@@ -206,11 +206,10 @@ if ($_POST['update_profile']) {
         echo '</div>';
 
         if (!$uname) {
-          echo "<div class='mobile-menu__username'>ユーザー</div>";
+          echo "<div class='mobile-menu__username'><a href='./mypage.php'>ユーザー</a></div>";
         } else {
-          echo "<div class='mobile-menu__username' style='cursor: pointer;' onclick='location.href=\"./mypage.php\"'>$uname</div>";
+          echo "<div class='mobile-menu__username'><a href='./mypage.php'>$uname</a></div>";
         }
-
         ?>
 
 
