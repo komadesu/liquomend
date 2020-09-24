@@ -2,11 +2,6 @@
 ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-echo '<pre>';
-echo var_dump(session_save_path());
-echo dirname($_SERVER['DOCUMENT_ROOT']);
-echo '</pre>';
-
 require '../../../secret.php';
 
 // if (isset($_POST['email'])) {
@@ -39,10 +34,6 @@ $_SESSION['errors']['confirm'] = false;
 $_SESSION['good'] = false;
 
 
-echo 'login called';
-echo var_dump($email);
-echo var_dump($pws);
-
 
 $emnum = strlen($email);
 $pwnum = strlen($pws);
@@ -68,12 +59,6 @@ if ($emnum !== 0 && $pwnum !== 0) {
       $_SESSION['user_name'] = $user_name;
       $_SESSION['email_string'] = $email;
       $_SESSION['hash_password'] = $hash_password;
-
-      echo '<pre>';
-      echo 'password verified';
-      echo var_dump($email);
-      echo var_dump($hash_password);
-      echo '</pre>';
 
       $_SESSION['good'] = true;
       header('Location: ./home.php');
