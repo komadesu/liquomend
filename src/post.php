@@ -39,7 +39,7 @@ if (isset($_POST['recipe_post'])) {
   $memo = h($_POST['recipe_memo']);
 
 
-  if (empty($_FILES['recipe_image'])) {
+  if (!$_FILES['recipe_image']['tmp_name']) {
     $errors['upload'] = true;
   }
   if (empty($name)) {
