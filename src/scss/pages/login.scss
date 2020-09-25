@@ -5,7 +5,6 @@
 @import '../modules/header';
 @import '../modules/mobile-menu';
 @import '../modules/hero';
-@import '../modules/nav';
 @import '../modules/form';
 @import '../modules/footer';
 
@@ -26,6 +25,19 @@
   input[type='password'],
   input[type='submit'] {
     width: 100%;
+  }
+
+  &__notation {
+    background-color: $subColor;
+    margin-bottom: 40px;
+
+    & .notation {
+      height: 60px;
+      font-size: 16px;
+      color: $baseColor;
+      line-height: 60px;
+      text-align: center;
+    }
   }
 
   &__unvalid {

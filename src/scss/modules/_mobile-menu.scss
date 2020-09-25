@@ -6,13 +6,14 @@ $cMenuOpen: $baseColor;
   transition: transform 0.3s, box-shadow 0.1s;
 }
 .mobile-menu {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 260px;
   height: 100%;
   background-color: $subColor;
   transform: translateX(-260px);
   transition: transform 0.3s;
+  -webkit-overflow-scrolling: touch;
 
   &__btn {
     background-color: unset;
@@ -71,9 +72,19 @@ $cMenuOpen: $baseColor;
     }
   }
   &__username {
-    color: white;
     font-size: 1.2em;
     letter-spacing: 1px;
+
+    & a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  &__body {
+    background-color: $subColor;
+    overflow: scroll;
+    padding-bottom: 80px;
   }
   &__main {
     padding: 40px;
@@ -95,12 +106,12 @@ $cMenuOpen: $baseColor;
     text-decoration: none !important;
 
     &:hover {
-      color: $baseColor;
+      color: $accentColor;
     }
   }
   &__logo {
     width: 50%;
-    margin: 0 auto 24px;
+    margin: 0 auto 32px;
     cursor: pointer;
     & img {
       max-width: 100%;
@@ -114,10 +125,10 @@ $cMenuOpen: $baseColor;
       margin: 0 2px;
       padding: 16px;
       border-radius: 50%;
-      transition: background-color .3s;
+      transition: background-color 0.3s;
 
       &:hover {
-        background-color: skyblue;
+        background-color: $accentColor;
       }
     }
 
@@ -132,6 +143,8 @@ $cMenuOpen: $baseColor;
   & #contents-container {
     transform: translate(260px, 0);
     box-shadow: 0 8px 40px -10px rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100vw;
   }
 
   & .mobile-menu {

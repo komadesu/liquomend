@@ -138,48 +138,81 @@ if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
         echo '</div>';
 
         if (!$uname) {
-          echo "<div class='mobile-menu__username'>ユーザー</div>";
+          echo "<div class='mobile-menu__username'><a href='./mypage.php'>ユーザー</a></div>";
         } else {
-          echo "<div class='mobile-menu__username'>$uname</div>";
+          echo "<div class='mobile-menu__username'><a href='./mypage.php'>$uname</a></div>";
         }
 
         ?>
 
 
+
       </div>
-      <ul class="mobile-menu__main">
-        <li class="mobile-menu__item">
-          <a href="./home.html" class="mobile-menu__link">
-            <span class="nav-main-title">Home</span>
-            <span class="nav-sub-title">ホームへ戻る</span>
-          </a>
-        </li>
-        <li class="mobile-menu__item">
-          <a href="./about.html" class="mobile-menu__link">
-            <span class="nav-main-title">About</span>
-            <span class="nav-sub-title">お問い合わせ</span>
-          </a>
-        </li>
-        <li class="mobile-menu__item">
-          <a href="./login.html" class="mobile-menu__link">
-            <span class="nav-main-title">Log In</span>
-            <span class="nav-sub-title">ログイン</span>
-          </a>
-        </li>
-        <li class="mobile-menu__item">
-          <a href="＃" class="mobile-menu__link">
-            <span class="nav-main-title">ページ</span>
-            <span class="nav-sub-title">なんとかページ</span>
-          </a>
-        </li>
-      </ul>
-      <div class="mobile-menu__logo">
-        <img src="./img/logo2.png" alt="logo2 image" onclick="location.href = './about.php'">
-      </div>
-      <div class="mobile-menu__sns">
-        <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
-        <a href="https://www.instagram.com/liquomend" class="ig_icon icon"><img src="./img/instagram.png" alt="Instagram" /></a>
-        <a href="" class="tw_icon icon"><img src="./img/twitter.png" alt="Twitter" /></a>
+      <div class="mobile-menu__body">
+        <ul class="mobile-menu__main">
+          <li class="mobile-menu__item">
+            <a href="./home.php" class="mobile-menu__link">
+              <span class="nav-main-title">Home</span>
+              <span class="nav-sub-title">ホーム</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./mypage.php" class="mobile-menu__link">
+              <span class="nav-main-title">My Page</span>
+              <span class="nav-sub-title">マイページ</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./usual-menu.php" class="mobile-menu__link">
+              <span class="nav-main-title">Usual Recipe</span>
+              <span class="nav-sub-title">定番カクテル</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./mypage.php?component=favorite" class="mobile-menu__link">
+              <span class="nav-main-title">Favorite</span>
+              <span class="nav-sub-title">お気に入り</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./category.php" class="mobile-menu__link">
+              <span class="nav-main-title">Category</span>
+              <span class="nav-sub-title">カテゴリーから探す</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./search.php" class="mobile-menu__link">
+              <span class="nav-main-title">Search</span>
+              <span class="nav-sub-title">検索</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./about.php" class="mobile-menu__link">
+              <span class="nav-main-title">About Us</span>
+              <span class="nav-sub-title">私たちについて</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./mypage.php?component=settings" class="mobile-menu__link">
+              <span class="nav-main-title">Settings</span>
+              <span class="nav-sub-title">設定</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./post.php" class="mobile-menu__link">
+              <span class="nav-main-title">Post</span>
+              <span class="nav-sub-title">レシピ投稿</span>
+            </a>
+          </li>
+        </ul>
+        <div class="mobile-menu__logo">
+          <img src="./img/logo2.png" alt="logo2 image" />
+        </div>
+        <div class="mobile-menu__sns">
+          <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/liquomend" class="ig_icon icon"><img src="./img/instagram.png" alt="Instagram" /></a>
+          <a href="https://twitter.com/@liqumend" class="tw_icon icon"><img src="./img/twitter.png" alt="Twitter" /></a>
+        </div>
       </div>
     </nav>
   </div>

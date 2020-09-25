@@ -38,41 +38,41 @@ $_SESSION['good'] = false;
 $emnum = strlen($email);
 $pwnum = strlen($pws);
 
-if ($emnum !== 0 && $pwnum !== 0) {
+if ($_POST['login_btn']) {
+  if ($emnum !== 0 && $pwnum !== 0) {
 
-  $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS") or die('Could not connect: ' . pg_last_error());
-
-
-  $sql = "select * from liquomend.users where email = '$email' ;";
-  $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-  if (pg_num_rows($result)) {
-    $user_info = pg_fetch_row($result);
-
-    $user_id = $user_info[0];
-    $user_name = $user_info[1];
-    $hash_password = $user_info[3];
+    $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS") or die('Could not connect: ' . pg_last_error());
 
 
-    if (password_verify($pws, $hash_password)) {
-      $_SESSION['user_id'] = $user_id;
-      $_SESSION['user_name'] = $user_name;
-      $_SESSION['email_string'] = $email;
-      $_SESSION['hash_password'] = $hash_password;
+    $sql = "select * from liquomend.users where email = '$email' ;";
+    $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
-      $_SESSION['good'] = true;
-      header('Location: ./home.php');
+    if (pg_num_rows($result)) {
+      $user_info = pg_fetch_row($result);
+
+      $user_id = $user_info[0];
+      $user_name = $user_info[1];
+      $hash_password = $user_info[3];
+
+
+      if (password_verify($pws, $hash_password)) {
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['user_name'] = $user_name;
+        $_SESSION['email_string'] = $email;
+        $_SESSION['hash_password'] = $hash_password;
+
+        $_SESSION['good'] = true;
+        header('Location: ./home.php');
+      } else {
+        $_SESSION['errors']['id'] = true;
+      }
     } else {
-      $_SESSION['errors']['id'] = true;
+      $_SESSION['errors']['confirm'] = true;
     }
   } else {
-    $_SESSION['errors']['confirm'] = true;
+    $_SESSION['errors']['empty'] = true;
   }
-} else {
-  $_SESSION['errors']['empty'] = true;
 }
-
-
 
 
 if (isset($_SESSION['errors'])) {
@@ -123,13 +123,9 @@ if (isset($_SESSION['errors'])) {
           <img src="./img/hero.jpg" alt="hero image" />
         </div>
       </div>
-      <nav class="nav">
-        <ul class="nav__list">
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
-        </ul>
-      </nav>
+      <div class="login__notation">
+        <p class="notation">ログイン画面です</p>
+      </div>
 
       <div class="container">
         <div class="row">
@@ -165,7 +161,7 @@ if (isset($_SESSION['errors'])) {
                 ?>
 
                 <div class="login__btns">
-                  <input type="submit" value="ログイン" class="form__btn" />
+                  <input type="submit" name="login_btn" value="ログイン" class="form__btn" />
                   <p class="login__or__register">または</p>
                   <a href="./register.php" class="form__btn">新規登録</a>
                 </div>
@@ -196,48 +192,81 @@ if (isset($_SESSION['errors'])) {
         echo '</div>';
 
         if (!$uname) {
-          echo "<div class='mobile-menu__username'>ユーザー</div>";
+          echo "<div class='mobile-menu__username'><a href='./mypage.php'>ユーザー</a></div>";
         } else {
-          echo "<div class='mobile-menu__username'>$uname</div>";
+          echo "<div class='mobile-menu__username'><a href='./mypage.php'>$uname</a></div>";
         }
 
         ?>
 
 
+
       </div>
-      <ul class="mobile-menu__main">
-        <li class="mobile-menu__item">
-          <a href="./home.html" class="mobile-menu__link">
-            <span class="nav-main-title">Home</span>
-            <span class="nav-sub-title">ホームへ戻る</span>
-          </a>
-        </li>
-        <li class="mobile-menu__item">
-          <a href="./about.html" class="mobile-menu__link">
-            <span class="nav-main-title">About</span>
-            <span class="nav-sub-title">お問い合わせ</span>
-          </a>
-        </li>
-        <li class="mobile-menu__item">
-          <a href="＃" class="mobile-menu__link">
-            <span class="nav-main-title">ページ</span>
-            <span class="nav-sub-title">なんとかページ</span>
-          </a>
-        </li>
-        <li class="mobile-menu__item">
-          <a href="./register.html" class="mobile-menu__link">
-            <span class="nav-main-title">Sign Up</span>
-            <span class="nav-sub-title">新規登録画面へ</span>
-          </a>
-        </li>
-      </ul>
-      <div class="mobile-menu__logo">
-        <img src="./img/logo2.png" alt="logo2 image" onclick="location.href = './about.php'">
-      </div>
-      <div class="mobile-menu__sns">
-        <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
-        <a href="https://www.instagram.com/liquomend" class="ig_icon icon"><img src="./img/instagram.png" alt="Instagram" /></a>
-        <a href="" class="tw_icon icon"><img src="./img/twitter.png" alt="Twitter" /></a>
+      <div class="mobile-menu__body">
+        <ul class="mobile-menu__main">
+          <li class="mobile-menu__item">
+            <a href="./home.php" class="mobile-menu__link">
+              <span class="nav-main-title">Home</span>
+              <span class="nav-sub-title">ホーム</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./mypage.php" class="mobile-menu__link">
+              <span class="nav-main-title">My Page</span>
+              <span class="nav-sub-title">マイページ</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./usual-menu.php" class="mobile-menu__link">
+              <span class="nav-main-title">Usual Recipe</span>
+              <span class="nav-sub-title">定番カクテル</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./mypage.php?component=favorite" class="mobile-menu__link">
+              <span class="nav-main-title">Favorite</span>
+              <span class="nav-sub-title">お気に入り</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./category.php" class="mobile-menu__link">
+              <span class="nav-main-title">Category</span>
+              <span class="nav-sub-title">カテゴリーから探す</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./search.php" class="mobile-menu__link">
+              <span class="nav-main-title">Search</span>
+              <span class="nav-sub-title">検索</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./about.php" class="mobile-menu__link">
+              <span class="nav-main-title">About Us</span>
+              <span class="nav-sub-title">私たちについて</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./mypage.php?component=settings" class="mobile-menu__link">
+              <span class="nav-main-title">Settings</span>
+              <span class="nav-sub-title">設定</span>
+            </a>
+          </li>
+          <li class="mobile-menu__item">
+            <a href="./post.php" class="mobile-menu__link">
+              <span class="nav-main-title">Post</span>
+              <span class="nav-sub-title">レシピ投稿</span>
+            </a>
+          </li>
+        </ul>
+        <div class="mobile-menu__logo">
+          <img src="./img/logo2.png" alt="logo2 image" />
+        </div>
+        <div class="mobile-menu__sns">
+          <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/liquomend" class="ig_icon icon"><img src="./img/instagram.png" alt="Instagram" /></a>
+          <a href="https://twitter.com/@liqumend" class="tw_icon icon"><img src="./img/twitter.png" alt="Twitter" /></a>
+        </div>
       </div>
     </nav>
   </div>
