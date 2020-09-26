@@ -3,7 +3,7 @@ ini_set('session.save_path', realpath('./../session'));
 session_start();
 
 require '../../../secret.php';
-require './utils.php';
+require './utils/index.php';
 
 $uname = $_SESSION['user_name'];
 $uicon = $_SESSION['user_icon'];

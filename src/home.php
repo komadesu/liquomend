@@ -3,7 +3,7 @@ ini_set('session.save_path', realpath('./../session'));
 session_start();
 
 require '../../../secret.php';
-require './utils.php';
+require './utils/index.php';
 
 
 if (isset($_SESSION['user_id'])) {
