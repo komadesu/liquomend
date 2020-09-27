@@ -12,8 +12,8 @@ if (isset($_SESSION['user_id'])) {
 if (isset($_SESSION['user_name'])) {
   $uname = $_SESSION['user_name'];
 }
-if (isset($_SESSION['email_string'])) {
-  $email = $_SESSION['email_string'];
+if (isset($_SESSION['email'])) {
+  $email = $_SESSION['email'];
 }
 if (isset($_SESSION['hash_password'])) {
   $hpw = $_SESSION['hash_password'];
