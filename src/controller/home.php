@@ -5,10 +5,10 @@ session_start();
 
 require '../model/get_drinks.php';
 
-$recommend_drinks = getDrinks('customize', 3);
-$_SESSION['recommend_drinks'] = $recommend_drinks;
+$three_recommend_drinks = getDrinks('customize', 3);
+$_SESSION['three_recommend_drinks'] = $three_recommend_drinks;
 
-$usual_drinks = getDrinks('usual', 3);
-$_SESSION['usual_drinks'] = $usual_drinks;
+$three_usual_drinks = getDrinks('usual', 3);
+$_SESSION['three_usual_drinks'] = $three_usual_drinks;
 
 header('location: ../home.php');

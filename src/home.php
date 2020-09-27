@@ -16,11 +16,11 @@ if (isset($_SESSION['user_icon'])) {
 }
 
 
-if (isset($_SESSION['recommend_drinks'])) {
-  $recommend_drinks = $_SESSION['recommend_drinks'];
+if (isset($_SESSION['three_recommend_drinks'])) {
+  $three_recommend_drinks = $_SESSION['three_recommend_drinks'];
 }
-if (isset($_SESSION['usual_drinks'])) {
-  $usual_drinks = $_SESSION['usual_drinks'];
+if (isset($_SESSION['three_usual_drinks'])) {
+  $three_usual_drinks = $_SESSION['three_usual_drinks'];
 }
 
 ?>
@@ -72,7 +72,7 @@ if (isset($_SESSION['usual_drinks'])) {
 
               <?php
               $firstFlag = true;
-              foreach ($recommend_drinks as $drink) {
+              foreach ($three_recommend_drinks as $drink) {
 
                 $id_d = $drink[0];
                 $name = $drink[2];
@@ -111,7 +111,7 @@ if (isset($_SESSION['usual_drinks'])) {
 
               <?php
               $firstFlag = true;
-              foreach ($usual_drinks as $drink) {
+              foreach ($three_usual_drinks as $drink) {
 
                 $id_d = $drink[0];
                 $name = $drink[2];
