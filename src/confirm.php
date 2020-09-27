@@ -2,51 +2,9 @@
 ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-require '../../../secret.php';
-require './utils.php';
-
-
-
-$uname = $_POST['username'];
-$email = $_POST['email'];
-$npw = $_POST['password'];
-$cpw = $_POST['password_confirm'];
-
-
-$errors = $_SESSION['errors'];
-
-//文字が入力されていない場合
-$_SESSION['errors']['empty'] = false;
-//IDがかぶってしまっている場合
-$_SESSION['errors']['id'] = false;
-//pwの確認が取れなかった場合
-$_SESSION['errors']['confirm'] = false;
-//登録成功した場合
-$_SESSION['good'] = false;
-
-//パスワード等が入力されたかどうか
-$unamenum = strlen($uname);
-$npwnum = strlen($npw);
-$cpwnum = strlen($cpw);
-
-if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
-  $_SESSION['errors']['empty'] = true;
-  header('location: ./register.php');
-} else {
-
-  $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-    or die('Could not connect: ' . pg_last_error());
-
-  $sql = "select * from liquomend.users where email = '$email' ;";
-  $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-  $rows = pg_num_rows($result);
-  if ($rows == 1) {
-    $_SESSION['errors']['id'] = true;
-    header('location: ./register.php');
-  }
-}
-
+$uname = $_SESSION['user_name'];
+$email = $_SESSION['email'];
+$hpw = $_SESSION['hash_password'];
 ?>
 
 <!DOCTYPE html>
@@ -78,40 +36,35 @@ if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
           <img src="./img/hero.jpg" alt="hero image" />
         </div>
       </div>
-      <nav class="nav">
-        <ul class="nav__list">
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
-        </ul>
-      </nav>
+      <div class="confirm__notation">
+        <p class="notation">入力情報確認画面です</p>
+      </div>
 
       <div class="container">
         <div class="confirm">
           <h3 class="form__title">登録確認画面</h3>
 
           <label for="username" class="form__label">User Name</label>
-          <p class="control mb-2"><?php echo h($uname); ?></p>
+          <p class="control mb-2"><?php echo $uname; ?></p>
 
           <label for="email" class="form__label">Email</label>
-          <p class="control mb-2"><?php echo h($email); ?></p>
+          <p class="control mb-2"><?php echo $email; ?></p>
 
           <label for="password" class="form__label">パスワード</label>
           <p class="control mb-4">セキュリティの都合上表示されません</p>
 
           <div class="btns">
-            <form action="register.php" method="POST" class="form__btn">
-              <input type="hidden" name="username" value="<?php echo h($uname); ?>" />
-              <input type="hidden" name="email" value="<?php echo h($email); ?>" />
+            <form action="./register.php" method="POST" class="form__btn">
+              <input type="hidden" name="username" value="<?php echo $uname; ?>" />
+              <input type="hidden" name="email" value="<?php echo $email; ?>" />
               <input type="submit" value="戻る" />
             </form>
 
-            <form action="thanks.php" method="POST" class="form__btn">
-              <input type="hidden" name="username" value="<?php echo h($uname); ?>" />
-              <input type="hidden" name="email" value="<?php echo h($email); ?>" />
-              <input type="hidden" name="password" value="<?php echo h($npw); ?>">
-              <input type="hidden" name="password_confirm" value="<?php echo h($cpw); ?>">
-              <input type="submit" value="登録する" />
+            <form action="./controller/create_user.php" method="POST" class="form__btn">
+              <input type="hidden" name="username" value="<?php echo $uname; ?>" />
+              <input type="hidden" name="email" value="<?php echo $email; ?>" />
+              <input type="hidden" name="hash_password" value="<?php echo $hpw; ?>">
+              <input type="submit" name="register_btn" value="登録する" />
             </form>
           </div>
         </div>

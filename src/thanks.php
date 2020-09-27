@@ -2,50 +2,9 @@
 ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-
-require '../../../secret.php';
-require './utils.php';
-
-
-
-
-$uname = $_POST['username'];
-$email = $_POST['email'];
-$npw = $_POST['password'];
-$cpw = $_POST['password_confirm'];
-
-
-$errors = $_SESSION['errors'];
-
-//文字が入力されていない場合
-$_SESSION['errors']['empty'] = false;
-//IDがかぶってしまっている場合
-$_SESSION['errors']['id'] = false;
-//pwの確認が取れなかった場合
-$_SESSION['errors']['confirm'] = false;
-//登録成功した場合
-$_SESSION['good'] = false;
-
-//パスワード等が入力されたかどうか
-$unamenum = strlen($uname);
-$npwnum = strlen($npw);
-$cpwnum = strlen($cpw);
-
-if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
-  $_SESSION['errors']['empty'] = true;
-  header('location: ./register.php');
-} else {
-
-  $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-    or die('Could not connect: ' . pg_last_error());
-
-  $sql = "select * from liquomend.users where email = '$email' ;";
-  $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-  $rows = pg_num_rows($result);
+if (isset($_SESSION['user_name'])) {
+  $uname = $_SESSION['user_name'];
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -77,65 +36,37 @@ if ($unamenum == 0 || $npwnum == 0 || $cpwnum == 0) {
           <img src="./img/hero.jpg" alt="hero image" />
         </div>
       </div>
-      <nav class="nav">
-        <ul class="nav__list">
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
-          <li class="nav__item"><a href="#" class="nav__link">About</a></li>
-        </ul>
-      </nav>
+      <div class="thanks__notation">
+        <p class="notation">入力情報確認画面です</p>
+      </div>
 
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-            <div class="confirm">
+            <div class="thanks">
               <h3 class="form__title">登録完了画面</h3>
 
+
+              <label class="form__label">Thanks!</label>
+              <p class="control mb-4"><?php echo $uname . 'さんのユーザー登録が完了しました'; ?></p>
+
+
               <?php
-              if (!$rows) {
 
-                if ($npw === $cpw) {
-                  $hpw = password_hash($npw, PASSWORD_DEFAULT);
-
-                  $sql = "insert into liquomend.users (uname, email, hash_password, uicon) values ('$uname', '$email', '$hpw', null);";
-                  $result = pg_query($sql) or die('query failed: ' . pg_last_error());
-                  $_SESSION['good'] = true;
-
-
-                  echo '<label class="form__label">Thanks!</label>';
-                  echo '<p class="control mb-4">登録が完了しました</p>';
-                  echo '<br>';
-                  echo '<p>ホーム画面へ移動します...</p>';
-
-                  $mailfr = "1gk8296t@gms.gdl.jp";
-                  $mailsb = "[Liquomend]ユーザ登録完了";
-                  $mailms = "ユーザ登録を完了しました。\n\n";
-                  "   ユーザ名:" . $uname . "\n";
-                  "http://gms.gdl.jp/~tenten1717/\n\n";
-                  if (mb_send_mail($email, $mailsb, $mailms, "From: " . $mailfr)) {
-                    echo "<p>メールが送信されました。</p>";
-                  } else {
-                    echo "<p>メールの送信に失敗しました。</p>";
-                  }
-
-                  $_SESSION['user_name'] = $uname;
-                  $_SESSION['email_string'] = $email;
-                  $_SESSION['hash_password'] = $hpw;
-
-                  // sleep(3);
-
-                  header('location: ./home.php');
-                } else {
-                  $_SESSION['errors']['confirm'] = true;
-
-                  header('location: ./register.php');
-                }
+              $mailfr = "1gk8296t@gms.gdl.jp";
+              $mailsb = "[Liquomend]ユーザ登録完了";
+              $mailms = "ユーザ登録を完了しました。\n\n";
+              "   ユーザ名:" . $uname . "\n";
+              "http://gms.gdl.jp/~tenten1717/\n\n";
+              if (mb_send_mail($email, $mailsb, $mailms, "From: " . $mailfr)) {
+                echo "<p>メールが送信されました。</p>";
               } else {
-                $_SESSION['errors']['id'] = true;
-                header('location: ./register.php');
+                echo "<p>メールの送信に失敗しました。</p>";
               }
+
               ?>
 
+              <p style="text-align: right;"><a href="./home.php">ホームへ移動</a></p>
             </div>
           </div>
         </div>

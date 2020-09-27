@@ -5,7 +5,6 @@
 @import '../modules/header';
 @import '../modules/mobile-menu';
 @import '../modules/hero';
-@import '../modules/nav';
 @import '../modules/form';
 @import '../modules/footer';
 
@@ -21,6 +20,19 @@
   margin-bottom: 40px;
   background-color: white;
   padding: 20px;
+
+  &__notation {
+    background-color: $subColor;
+    margin-bottom: 40px;
+
+    & .notation {
+      height: 60px;
+      font-size: 16px;
+      color: $baseColor;
+      line-height: 60px;
+      text-align: center;
+    }
+  }
 
   & .control {
     padding: 0.4em 0.8em;

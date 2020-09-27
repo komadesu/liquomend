@@ -3,16 +3,6 @@ ini_set('session.save_path', realpath('./../session'));
 session_start();
 
 
-require '../../../secret.php';
-require './utils.php';
-
-
-
-
-$uname = $_POST['username'];
-$email = $_POST['email'];
-
-
 if (isset($_SESSION['errors'])) {
   $errors = $_SESSION['errors'];
 
@@ -27,6 +17,19 @@ if (isset($_SESSION['errors'])) {
   if (isset($errors['confirm'])) {
     $confirm = $errors['confirm'];
   }
+
+  if (isset($errors['server'])) {
+    $server = $errors['server'];
+  }
+}
+
+
+
+if (isset($_SESSION['user_name'])) {
+  $uname = $_SESSION['user_name'];
+}
+if (isset($_SESSION['email'])) {
+  $email = $_SESSION['email'];
 }
 
 ?>
@@ -69,13 +72,13 @@ if (isset($_SESSION['errors'])) {
           <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
             <div class="register">
               <h3 class="form__title">Sign Up</h3>
-              <form action="confirm.php" method="POST" class="form">
+              <form action="./controller/confirm_user.php" method="POST" class="form">
                 <label for="username" class="form__label">User Name</label>
-                <input id="username" type="text" name="username" value="<?php echo h($uname); ?>" class="form__username mb-2" />
+                <input id="username" type="text" name="username" value="<?php echo $uname; ?>" class="form__username mb-2" />
                 <br />
 
                 <label for="email" class="form__label">Email</label>
-                <input id="email" type="email" name="email" value="<?php echo h($email); ?>" class="form__email mb-2" />
+                <input id="email" type="email" name="email" value="<?php echo $email; ?>" class="form__email mb-2" />
                 <br />
 
                 <label for="password" class="form__label">パスワード</label>
@@ -89,20 +92,23 @@ if (isset($_SESSION['errors'])) {
 
                 <?php
                 if ($empty) {
-                  echo "入力漏れがあります";
+                  echo '<p style="color: red;">入力漏れがあります</p>';
                 }
                 if ($id) {
-                  echo "すでにそのIDは使用されています";
+                  echo '<p style="color: red;">すでにユーザー登録されています</p>';
                 }
                 if ($confirm) {
-                  echo "確認用パスワードと異なっています";
+                  echo '<p style="color: red;">パスワードと確認用パスワードが一致しません</p>';
+                }
+                if ($server) {
+                  echo '<p style="color: red;">大変申し訳ありませんが、サーバー側の問題で登録できませんでした<br>しばらく待ってからもう一度お試しください</p>';
                 }
 
                 session_destroy();
                 ?>
 
 
-                <input type="submit" name="register_btn" value="登録確認画面へ" class="form__btn" />
+                <input type="submit" name="confirm_btn" value="登録確認画面へ" class="form__btn" />
               </form>
             </div>
           </div>

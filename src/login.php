@@ -2,79 +2,6 @@
 ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-require '../../../secret.php';
-
-// if (isset($_POST['email'])) {
-//   $email = $_POST['email'];
-// } elseif ($_SESSION['email_string']) {
-//   $email = $_SESSION['email_string'];
-// }
-// if (isset($_POST['password'])) {
-//   $pws = $_POST['password'];
-// } elseif ($_SESSION['hash_password']) {
-//   $pws = $_SESSION['hash_password'];
-// }
-if (isset($_POST['email'])) {
-  $email = $_POST['email'];
-}
-if (isset($_POST['password'])) {
-  $pws = $_POST['password'];
-}
-
-
-$errors = $_SESSION['errors'];
-
-//入力されなかった場合
-$_SESSION['errors']['empty'] = false;
-//IDが間違えていた場合
-$_SESSION['errors']['id'] = false;
-//見つからなかった場合
-$_SESSION['errors']['confirm'] = false;
-//登録成功した場合
-$_SESSION['good'] = false;
-
-
-
-$emnum = strlen($email);
-$pwnum = strlen($pws);
-
-if ($_POST['login_btn']) {
-  if ($emnum !== 0 && $pwnum !== 0) {
-
-    $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS") or die('Could not connect: ' . pg_last_error());
-
-
-    $sql = "select * from liquomend.users where email = '$email' ;";
-    $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-    if (pg_num_rows($result)) {
-      $user_info = pg_fetch_row($result);
-
-      $user_id = $user_info[0];
-      $user_name = $user_info[1];
-      $hash_password = $user_info[3];
-
-
-      if (password_verify($pws, $hash_password)) {
-        $_SESSION['user_id'] = $user_id;
-        $_SESSION['user_name'] = $user_name;
-        $_SESSION['email_string'] = $email;
-        $_SESSION['hash_password'] = $hash_password;
-
-        $_SESSION['good'] = true;
-        header('Location: ./home.php');
-      } else {
-        $_SESSION['errors']['id'] = true;
-      }
-    } else {
-      $_SESSION['errors']['confirm'] = true;
-    }
-  } else {
-    $_SESSION['errors']['empty'] = true;
-  }
-}
-
-
 if (isset($_SESSION['errors'])) {
   $errors = $_SESSION['errors'];
 
@@ -91,6 +18,10 @@ if (isset($_SESSION['errors'])) {
   }
 }
 
+
+if (isset($_SESSION['email'])) {
+  $email = $_SESSION['email'];
+}
 ?>
 
 
@@ -133,9 +64,9 @@ if (isset($_SESSION['errors'])) {
             <div class="login">
               <h3 class="form__title">Sign In</h3>
 
-              <form action="./login.php" method="POST" class="form">
+              <form action="./controller/login_user.php" method="POST" class="form">
                 <label for="email" class="form__label">Email</label>
-                <input id="email" type="email" name="email" class="form__email mb-2" />
+                <input id="email" type="email" name="email" value="<?php echo $email ; ?>" class="form__email mb-2" />
                 <br />
 
                 <label for="password" class="form__label">パスワード</label>
@@ -149,15 +80,16 @@ if (isset($_SESSION['errors'])) {
 
                 <?php
                 if ($empty) {
-                  echo "入力漏れがあります";
-                } elseif ($id) {
-                  echo "メールアドレスもしくはパスワードが間違っています";
-                } elseif ($confirm) {
-                  echo "そのようなメールアドレスは登録されていません";
-                } elseif ($good) {
-                  echo "ログイン成功！";
-                  header('location: ./home.php');
+                  echo '<p style="color: red;">入力漏れがあります</p>';
                 }
+                if ($id) {
+                  echo '<p style="color: red;">このメールアドレスは登録されていません</p>';
+                }
+                if ($confirm) {
+                  echo '<p style="color: red;">パスワードが間違っています</p>';
+                }
+
+                session_destroy();
                 ?>
 
                 <div class="login__btns">
