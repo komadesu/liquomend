@@ -2,14 +2,13 @@
 ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-// require '../../../secret.php';
-// require './utils/index.php';
-
-
 
 $id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
 $uicon = $_SESSION['user_icon'];
+
+
+
 ?>
 
 
