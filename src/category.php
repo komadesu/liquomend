@@ -51,18 +51,18 @@ $uicon = $_SESSION['user_icon'];
 
       <div class="category">
         <ul class="category__list">
-          <li class="category__base"><a href="./customize-menu.php?base=liquor" class="category__link">リキュール</a></li>
-          <li class="category__base"><a href="./customize-menu.php?base=jin" class="category__link">ジン</a></li>
-          <li class="category__base"><a href="./customize-menu.php?base=wodka" class="category__link">ウォッカ</a></li>
-          <li class="category__base"><a href="./customize-menu.php?base=rum" class="category__link">ラム</a></li>
-          <li class="category__base"><a href="./customize-menu.php?base=tequila" class="category__link">テキーラ</a></li>
-          <li class="category__base"><a href="./customize-menu.php?base=whisky" class="category__link">ウイスキー</a></li>
-          <li class="category__base"><a href="./customize-menu.php?base=beer" class="category__link">ビール</a></li>
-          <li class="category__base"><a href="./customize-menu.php?base=shochu" class="category__link">焼酎</a></li>
-          <li class="category__base"><a href="./customize-menu.php?base=wine" class="category__link">ワイン</a></li>
-          <li class="category__base"><a href="./customize-menu.php?base=brandy" class="category__link">ブランデー</a></li>
-          <li class="category__base"><a href="./customize-menu.php?base=sake" class="category__link">日本酒</a></li>
-          <li class="category__base"><a href="./customize-menu.php?base=other" class="category__link">その他</a></li>
+          <li class="category__base"><a href="./controller/customize_menu.php?base=liquor" class="category__link">リキュール</a></li>
+          <li class="category__base"><a href="./controller/customize_menu.php?base=jin" class="category__link">ジン</a></li>
+          <li class="category__base"><a href="./controller/customize_menu.php?base=wodka" class="category__link">ウォッカ</a></li>
+          <li class="category__base"><a href="./controller/customize_menu.php?base=rum" class="category__link">ラム</a></li>
+          <li class="category__base"><a href="./controller/customize_menu.php?base=tequila" class="category__link">テキーラ</a></li>
+          <li class="category__base"><a href="./controller/customize_menu.php?base=whisky" class="category__link">ウイスキー</a></li>
+          <li class="category__base"><a href="./controller/customize_menu.php?base=beer" class="category__link">ビール</a></li>
+          <li class="category__base"><a href="./controller/customize_menu.php?base=shochu" class="category__link">焼酎</a></li>
+          <li class="category__base"><a href="./controller/customize_menu.php?base=wine" class="category__link">ワイン</a></li>
+          <li class="category__base"><a href="./controller/customize_menu.php?base=brandy" class="category__link">ブランデー</a></li>
+          <li class="category__base"><a href="./controller/customize_menu.php?base=sake" class="category__link">日本酒</a></li>
+          <li class="category__base"><a href="./controller/customize_menu.php?base=other" class="category__link">その他</a></li>
         </ul>
       </div>
 
