@@ -15,12 +15,15 @@ if (isset($_SESSION['user_icon'])) {
   $uicon = $_SESSION['user_icon'];
 }
 
-
-if (isset($_SESSION['three_recommend_drinks'])) {
-  $three_recommend_drinks = $_SESSION['three_recommend_drinks'];
-}
-if (isset($_SESSION['three_usual_drinks'])) {
-  $three_usual_drinks = $_SESSION['three_usual_drinks'];
+if (isset($_SESSION['three_recommend_drinks']) && isset($_SESSION['three_usual_drinks'])) {
+  if (isset($_SESSION['three_recommend_drinks'])) {
+    $three_recommend_drinks = $_SESSION['three_recommend_drinks'];
+  }
+  if (isset($_SESSION['three_usual_drinks'])) {
+    $three_usual_drinks = $_SESSION['three_usual_drinks'];
+  }
+} else {
+  header('location: ./controller/home.php');
 }
 
 ?>
