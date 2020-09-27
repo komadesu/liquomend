@@ -58,7 +58,7 @@ if (isset($_SESSION['usual_drinks'])) {
       </div>
       <nav class="nav">
         <ul class="nav__list">
-          <li class="nav__item"><a href="./usual-menu.php" class="nav__link">定番</a></li>
+          <li class="nav__item"><a href="./controller/usual_menu.php" class="nav__link">定番</a></li>
           <li class="nav__item"><a href="./mypage.php" class="nav__link">マイページ</a></li>
           <li class="nav__item"><a href="./post.php" class="nav__link">投稿</a></li>
         </ul>
@@ -140,7 +140,7 @@ if (isset($_SESSION['usual_drinks'])) {
             </div>
           </ul>
           <div class="more-btn">
-            <a href="./usual-menu.php">+ MORE</a>
+            <a href="./controller/usual_menu.php">+ MORE</a>
           </div>
         </div>
       </div>
@@ -210,7 +210,7 @@ if (isset($_SESSION['usual_drinks'])) {
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./usual-menu.php" class="mobile-menu__link">
+            <a href="./controller/usual_menu.php" class="mobile-menu__link">
               <span class="nav-main-title">Usual Recipe</span>
               <span class="nav-sub-title">定番カクテル</span>
             </a>

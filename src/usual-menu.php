@@ -2,16 +2,13 @@
 ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-require '../../../secret.php';
-
+$id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
 $uicon = $_SESSION['user_icon'];
 
-$dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-  or die('Could not connect: ' . pg_last_error());
-
-$sql = "select * from liquomend.drinks where type = 'usual' ;";
-$result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+if (isset($_SESSION['usual_drinks'])) {
+  $usual_drinks = $_SESSION['usual_drinks'];
+}
 
 
 
@@ -76,12 +73,12 @@ $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
 
               <?php
-              while ($record = pg_fetch_row($result)) :
+              foreach ($usual_drinks as $drink) {
 
-                $id_d = $record[0];
-                $name = $record[2];
-                $base = $record[3];
-                $image = $record[6];
+                $id_d = $drink[0];
+                $name = $drink[2];
+                $base = $drink[3];
+                $image = $drink[6];
 
                 echo "<div class='col-4 col-md-2'>";
                 echo "<li class='cocktail__item ${base}'>";
@@ -94,7 +91,7 @@ $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                 echo "</a>";
                 echo "</li>";
                 echo "</div>";
-              endwhile;
+              }
               ?>
 
 
