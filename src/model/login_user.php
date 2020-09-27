@@ -40,7 +40,7 @@ function loginUser($email, $pw)
     $_SESSION['user_id'] = $id_u;
     $_SESSION['user_name'] = $uname;
     $_SESSION['email'] = $email;
-    $_SESSION['uicon'] = $uicon;
+    $_SESSION['user_icon'] = $uicon;
     return true;
   } else {
     $_SESSION['email'] = $email;

@@ -2,10 +2,6 @@
 ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-require '../../../secret.php';
-require './utils/index.php';
-
-
 if (isset($_SESSION['user_id'])) {
   $id_u = $_SESSION['user_id'];
 }
@@ -15,37 +11,17 @@ if (isset($_SESSION['user_name'])) {
 if (isset($_SESSION['email'])) {
   $email = $_SESSION['email'];
 }
-if (isset($_SESSION['hash_password'])) {
-  $hpw = $_SESSION['hash_password'];
+if (isset($_SESSION['user_icon'])) {
+  $uicon = $_SESSION['user_icon'];
 }
 
-$dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-  or die('Could not connect: ' . pg_last_error());
 
-if (isset($email) || isset($hpw)) {
-  $sql = "select * from liquomend.users where email = '$email' ;";
-  $result = pg_query($sql) or die('query failed: ' . pg_last_error());
-
-  if (pg_num_rows($result)) {
-    $row = pg_fetch_row($result);
-    $id_u = $row[0];
-    $uname = $row[1];
-    $uicon = $row[4];
-  }
-
-  $_SESSION['user_id'] = $id_u;
-  $_SESSION['user_name'] = $uname;
-  $_SESSION['user_icon'] = $uicon;
+if (isset($_SESSION['recommend_drinks'])) {
+  $recommend_drinks = $_SESSION['recommend_drinks'];
 }
-
-$sql = "select * from liquomend.drinks where type = 'customize' limit 3 ;";
-$recommend_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-$sql = "select * from liquomend.drinks where type = 'usual' limit 3 ;";
-$classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-
-
+if (isset($_SESSION['usual_drinks'])) {
+  $usual_drinks = $_SESSION['usual_drinks'];
+}
 
 ?>
 
@@ -96,12 +72,12 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
               <?php
               $firstFlag = true;
-              while ($record = pg_fetch_row($recommend_result)) :
+              foreach ($recommend_drinks as $drink) {
 
-                $id_d = $record[0];
-                $name = $record[2];
-                $base = $record[3];
-                $image = $record[6];
+                $id_d = $drink[0];
+                $name = $drink[2];
+                $base = $drink[3];
+                $image = $drink[6];
 
                 if ($firstFlag) {
                   echo "<div class='col-4 col-md-2 offset-md-3'>";
@@ -119,7 +95,7 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                 echo "</a>";
                 echo "</li>";
                 echo "</div>";
-              endwhile;
+              }
               ?>
 
             </div>
@@ -135,12 +111,12 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
               <?php
               $firstFlag = true;
-              while ($record = pg_fetch_row($classic_result)) :
+              foreach ($usual_drinks as $drink) {
 
-                $id_d = $record[0];
-                $name = $record[2];
-                $base = $record[3];
-                $image = $record[6];
+                $id_d = $drink[0];
+                $name = $drink[2];
+                $base = $drink[3];
+                $image = $drink[6];
 
                 if ($firstFlag) {
                   echo "<div class='col-4 col-md-2 offset-md-3'>";
@@ -158,7 +134,7 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                 echo "</a>";
                 echo "</li>";
                 echo "</div>";
-              endwhile;
+              }
               ?>
 
             </div>

@@ -66,7 +66,7 @@ if (isset($_SESSION['user_name'])) {
 
               ?>
 
-              <p style="text-align: right;"><a href="./home.php">ホームへ移動</a></p>
+              <p style="text-align: right;"><a href="./controller/home.php">ホームへ移動</a></p>
             </div>
           </div>
         </div>
