@@ -92,16 +92,16 @@ if (isset($_SESSION['email'])) {
 
                 <?php
                 if ($empty) {
-                  echo "入力漏れがあります";
+                  echo '<p style="color: red;">入力漏れがあります</p>';
                 }
                 if ($id) {
-                  echo "すでにユーザー登録されています";
+                  echo '<p style="color: red;">すでにユーザー登録されています</p>';
                 }
                 if ($confirm) {
-                  echo "パスワードと確認用パスワードが一致しません";
+                  echo '<p style="color: red;">パスワードと確認用パスワードが一致しません</p>';
                 }
                 if ($server) {
-                  echo "大変申し訳ありませんが、サーバー側の問題で登録できませんでした<br>しばらく待ってからもう一度お試しください";
+                  echo '<p style="color: red;">大変申し訳ありませんが、サーバー側の問題で登録できませんでした<br>しばらく待ってからもう一度お試しください</p>';
                 }
 
                 session_destroy();
