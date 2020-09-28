@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+ini_set('display_errors', 1);
 
 require '../utils/index.php';
 $id_d = h($_REQUEST['id_d']);
