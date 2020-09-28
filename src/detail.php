@@ -159,7 +159,7 @@ if (isset($_SESSION['three_customize_drinks'])) {
           <div class="row">
             <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
               <h5 class="title main-title">Post Your Recipe</h5>
-              <a href="./post.php" class="write-btn">レシピを書く</a>
+              <a href="./controller/post.php" class="write-btn">レシピを書く</a>
             </div>
           </div>
         </div>
@@ -268,7 +268,7 @@ if (isset($_SESSION['three_customize_drinks'])) {
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./post.php" class="mobile-menu__link">
+            <a href="./controller/post.php" class="mobile-menu__link">
               <span class="nav-main-title">Post</span>
               <span class="nav-sub-title">レシピ投稿</span>
             </a>
