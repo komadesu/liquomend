@@ -1,37 +1,27 @@
 <?php
-ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-require '../../../secret.php';
-require './utils/index.php';
-
+$id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
 $uicon = $_SESSION['user_icon'];
 
-$id_d = h($_REQUEST['id_d']);
 
-$dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-  or die('Could not connect: ' . pg_last_error());
+if (isset($_SESSION['id_d'])) {
+  $id_d = $_SESSION['id_d'];
+}
 
-$sql = "select * from liquomend.drinks where id_d = '$id_d' ;";
-$drink_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+if (isset($_SESSION['drink_detail'])) {
+  $name = $_SESSION['drink_detail'][0];
+  $memo = $_SESSION['drink_detail'][1];
+  $image = $_SESSION['drink_detail'][2];
+  $ingredients_and_quantities = $_SESSION['drink_detail'][3];
+}
 
-if (pg_num_rows($drink_result)) {
-  $record = pg_fetch_row($drink_result);
-
-  $name = $record[2];
-  $image = $record[6];
-  $memo = $record[5];
+if (isset($_SESSION['three_customize_drinks'])) {
+  $three_customize_drinks = $_SESSION['three_customize_drinks'];
 }
 
 
-$sql = "select liquomend.ingredients.ingredient, liquomend.quantities.quantity from liquomend.drinks inner join liquomend.ingredients on liquomend.drinks.id_d = liquomend.ingredients.id_d inner join liquomend.quantities on liquomend.drinks.id_d = liquomend.quantities.id_d and liquomend.ingredients.id_i = liquomend.quantities.id_q where liquomend.drinks.id_d = $id_d ;";
-$detail_drink_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-
-
-$sql = "select * from liquomend.drinks where type = 'customize' limit 3 ;";
-$recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
 
 
@@ -91,14 +81,11 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
 
                   <?php
-                  if (pg_num_rows($detail_drink_result)) {
-                    while ($row = pg_fetch_row($detail_drink_result)) {
+                  foreach ($ingredients_and_quantities as $ingredient_and_quantity) {
+                    $ingredient = $ingredient_and_quantity[0];
+                    $quantity = $ingredient_and_quantity[1];
 
-                      $ingredient = $row[0];
-                      $quantity = $row[1];
-
-                      echo "<div class='item'><span class='ingredient'>${ingredient}</span><span class='quantity'>${quantity}</span></div>";
-                    }
+                    echo "<div class='item'><span class='ingredient'>${ingredient}</span><span class='quantity'>${quantity}</span></div>";
                   }
                   ?>
 
@@ -136,12 +123,11 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
               <?php
               $firstFlag = true;
-              while ($record = pg_fetch_row($recipe_result)) :
-
-                $id_d = $record[0];
-                $name = $record[2];
-                $base = $record[3];
-                $image = $record[6];
+              foreach ($three_customize_drinks as $drink) {
+                $id_d = $drink[0];
+                $name = $drink[2];
+                $base = $drink[3];
+                $image = $drink[6];
 
                 if ($firstFlag) {
                   echo "<div class='col-4 col-md-2 offset-md-3'>";
@@ -159,7 +145,7 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                 echo "</a>";
                 echo "</li>";
                 echo "</div>";
-              endwhile;
+              }
               ?>
 
             </div>
@@ -249,7 +235,7 @@ $recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./usual-menu.php" class="mobile-menu__link">
+            <a href="./controller/usual_menu.php" class="mobile-menu__link">
               <span class="nav-main-title">Usual Recipe</span>
               <span class="nav-sub-title">定番カクテル</span>
             </a>

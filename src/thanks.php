@@ -1,5 +1,4 @@
 <?php
-ini_set('session.save_path', realpath('./../session'));
 session_start();
 
 if (isset($_SESSION['user_name'])) {
@@ -66,7 +65,7 @@ if (isset($_SESSION['user_name'])) {
 
               ?>
 
-              <p style="text-align: right;"><a href="./home.php">ホームへ移動</a></p>
+              <p style="text-align: right;"><a href="./controller/home.php">ホームへ移動</a></p>
             </div>
           </div>
         </div>
@@ -118,7 +117,7 @@ if (isset($_SESSION['user_name'])) {
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./usual-menu.php" class="mobile-menu__link">
+            <a href="./controller/usual_menu.php" class="mobile-menu__link">
               <span class="nav-main-title">Usual Recipe</span>
               <span class="nav-sub-title">定番カクテル</span>
             </a>

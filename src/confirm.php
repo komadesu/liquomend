@@ -1,5 +1,4 @@
 <?php
-ini_set('session.save_path', realpath('./../session'));
 session_start();
 
 $uname = $_SESSION['user_name'];
@@ -116,7 +115,7 @@ $hpw = $_SESSION['hash_password'];
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./usual-menu.php" class="mobile-menu__link">
+            <a href="./controller/usual_menu.php" class="mobile-menu__link">
               <span class="nav-main-title">Usual Recipe</span>
               <span class="nav-sub-title">定番カクテル</span>
             </a>

@@ -1,10 +1,7 @@
 <?php
-ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-require '../../../secret.php';
-require './utils/index.php';
-
+ini_set('display_errors', 1);
 
 if (isset($_SESSION['user_id'])) {
   $id_u = $_SESSION['user_id'];
@@ -15,37 +12,22 @@ if (isset($_SESSION['user_name'])) {
 if (isset($_SESSION['email'])) {
   $email = $_SESSION['email'];
 }
-if (isset($_SESSION['hash_password'])) {
-  $hpw = $_SESSION['hash_password'];
+if (isset($_SESSION['user_icon'])) {
+  $uicon = $_SESSION['user_icon'];
+} else {
+  $uicon = null;
 }
 
-$dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-  or die('Could not connect: ' . pg_last_error());
-
-if (isset($email) || isset($hpw)) {
-  $sql = "select * from liquomend.users where email = '$email' ;";
-  $result = pg_query($sql) or die('query failed: ' . pg_last_error());
-
-  if (pg_num_rows($result)) {
-    $row = pg_fetch_row($result);
-    $id_u = $row[0];
-    $uname = $row[1];
-    $uicon = $row[4];
+if (isset($_SESSION['three_recommend_drinks']) && isset($_SESSION['three_usual_drinks'])) {
+  if (isset($_SESSION['three_recommend_drinks'])) {
+    $three_recommend_drinks = $_SESSION['three_recommend_drinks'];
   }
-
-  $_SESSION['user_id'] = $id_u;
-  $_SESSION['user_name'] = $uname;
-  $_SESSION['user_icon'] = $uicon;
+  if (isset($_SESSION['three_usual_drinks'])) {
+    $three_usual_drinks = $_SESSION['three_usual_drinks'];
+  }
+} else {
+  header('location: ./controller/home.php');
 }
-
-$sql = "select * from liquomend.drinks where type = 'customize' limit 3 ;";
-$recommend_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-$sql = "select * from liquomend.drinks where type = 'usual' limit 3 ;";
-$classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-
-
 
 ?>
 
@@ -82,8 +64,8 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
       </div>
       <nav class="nav">
         <ul class="nav__list">
-          <li class="nav__item"><a href="./usual-menu.php" class="nav__link">定番</a></li>
-          <li class="nav__item"><a href="./mypage.php" class="nav__link">マイページ</a></li>
+          <li class="nav__item"><a href="./controller/usual_menu.php" class="nav__link">定番</a></li>
+          <li class="nav__item"><a href="./controller/mypage.php" class="nav__link">マイページ</a></li>
           <li class="nav__item"><a href="./post.php" class="nav__link">投稿</a></li>
         </ul>
       </nav>
@@ -96,12 +78,12 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
               <?php
               $firstFlag = true;
-              while ($record = pg_fetch_row($recommend_result)) :
+              foreach ($three_recommend_drinks as $drink) {
 
-                $id_d = $record[0];
-                $name = $record[2];
-                $base = $record[3];
-                $image = $record[6];
+                $id_d = $drink[0];
+                $name = $drink[2];
+                $base = $drink[3];
+                $image = $drink[6];
 
                 if ($firstFlag) {
                   echo "<div class='col-4 col-md-2 offset-md-3'>";
@@ -110,7 +92,7 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                   echo "<div class='col-4 col-md-2'>";
                 }
                 echo "<li class='cocktail__item ${base}'>";
-                echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
+                echo "<a href='./controller/detail.php?id_d=${id_d}' class='cocktail__link'>";
                 echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
                 echo "<div class='cocktail__description'>";
                 echo "<h5 class='cocktail__title text-truncate'>${name}</h5>";
@@ -119,7 +101,7 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                 echo "</a>";
                 echo "</li>";
                 echo "</div>";
-              endwhile;
+              }
               ?>
 
             </div>
@@ -135,12 +117,12 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
               <?php
               $firstFlag = true;
-              while ($record = pg_fetch_row($classic_result)) :
+              foreach ($three_usual_drinks as $drink) {
 
-                $id_d = $record[0];
-                $name = $record[2];
-                $base = $record[3];
-                $image = $record[6];
+                $id_d = $drink[0];
+                $name = $drink[2];
+                $base = $drink[3];
+                $image = $drink[6];
 
                 if ($firstFlag) {
                   echo "<div class='col-4 col-md-2 offset-md-3'>";
@@ -149,7 +131,7 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                   echo "<div class='col-4 col-md-2'>";
                 }
                 echo "<li class='cocktail__item ${base}'>";
-                echo "<a href='./detail.php?id_d=${id_d}' class='cocktail__link'>";
+                echo "<a href='./controller/detail.php?id_d=${id_d}' class='cocktail__link'>";
                 echo "<img src='./${image}' alt='drink image' class='cocktail__img' />";
                 echo "<div class='cocktail__description'>";
                 echo "<h5 class='cocktail__title text-truncate'>${name}</h5>";
@@ -158,23 +140,23 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                 echo "</a>";
                 echo "</li>";
                 echo "</div>";
-              endwhile;
+              }
               ?>
 
             </div>
           </ul>
           <div class="more-btn">
-            <a href="./usual-menu.php">+ MORE</a>
+            <a href="./controller/usual_menu.php">+ MORE</a>
           </div>
         </div>
       </div>
       <div class="search">
         <div class="search-inner">
           <h3 class="search__title main-title">レシピ検索</h3>
-          <form action="./search.php" method="GET" class="search__form">
+          <form action="./controller/search.php" method="GET" class="search__form">
             <div class="search__bar">
               <input type="text" placeholder="検索" name="str" class="search__input" />
-              <button type="submit" name="search" value="search" class="search__btn">
+              <button type="submit" name="search_btn" value="search" class="search__btn">
                 <i class="fas fa-search"></i>
               </button>
             </div>
@@ -234,7 +216,7 @@ $classic_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./usual-menu.php" class="mobile-menu__link">
+            <a href="./controller/usual_menu.php" class="mobile-menu__link">
               <span class="nav-main-title">Usual Recipe</span>
               <span class="nav-sub-title">定番カクテル</span>
             </a>

@@ -1,27 +1,18 @@
 <?php
-ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-require '../../../secret.php';
-require './utils/index.php';
-
+$id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
 $uicon = $_SESSION['user_icon'];
 
-$base = h($_REQUEST['base']);
 
 
-$dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-  or die('Could not connect: ' . pg_last_error());
-
-if ($base === 'liquor') {
-  $sql = "select * from liquomend.drinks where base in ('peach', 'cassis', 'kahlua', 'malibu', 'dita', 'other_liquor') and type = 'customize' ;";
-  $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-} else {
-  $sql = "select * from liquomend.drinks where base = '$base' and type = 'customize' ;";
-  $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+if (isset($_SESSION['base'])) {
+  $base = $_SESSION['base'];
 }
-
+if (isset($_SESSION['all_drinks'])) {
+  $all_drinks = $_SESSION['all_drinks'];
+}
 
 
 ?>
@@ -79,7 +70,8 @@ if ($base === 'liquor') {
           echo "<option class='extract__base' value='kahlua'>カルーア</option>";
           echo "<option class='extract__base' value='malibu'>マリブ</option>";
           echo "<option class='extract__base' value='dita'>ディタ</option>";
-          echo "<option class='extract__base' value='other'>その他</option>";
+          echo "<option class='extract__base' value='other_liquor'>その他</option>";
+          echo "<option class='extract__base' value='liquor'>定番</option>";
           echo "<option class='extract__base' value='all'>All</option>";
           echo "</select>";
           echo "</div>";
@@ -88,14 +80,7 @@ if ($base === 'liquor') {
         endif;
         ?>
 
-        <!-- <div class="sort-outer">
-          <form class="sort-form" action="#" method="POST">
-            <select name="sort" id="sort" class="pulldown sort" placeholder="Sort">
-              <option class="sort__item" value="new">最新順</option>
-              <option class="sort__item" value="good">いいね数</option>
-            </select>
-          </form>
-        </div> -->
+
       </div>
 
       <div class="drinks">
@@ -105,12 +90,12 @@ if ($base === 'liquor') {
 
 
               <?php
-              while ($record = pg_fetch_row($result)) :
+              foreach ($all_drinks as $drink) {
 
-                $id_d = $record[0];
-                $name = $record[2];
-                $base = $record[3];
-                $image = $record[6];
+                $id_d = $drink[0];
+                $name = $drink[2];
+                $base = $drink[3];
+                $image = $drink[6];
 
                 echo "<div class='col-4 col-md-2'>";
                 echo "<li class='cocktail__item ${base}'>";
@@ -123,7 +108,7 @@ if ($base === 'liquor') {
                 echo "</a>";
                 echo "</li>";
                 echo "</div>";
-              endwhile;
+              }
               ?>
 
             </div>
@@ -176,7 +161,7 @@ if ($base === 'liquor') {
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./usual-menu.php" class="mobile-menu__link">
+            <a href="./controller/usual_menu.php" class="mobile-menu__link">
               <span class="nav-main-title">Usual Recipe</span>
               <span class="nav-sub-title">定番カクテル</span>
             </a>
