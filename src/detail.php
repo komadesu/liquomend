@@ -149,7 +149,7 @@ if (isset($_SESSION['three_customize_drinks'])) {
           </ul>
 
           <div class="more-btn">
-            <a href="./customize-menu.php">+ MORE</a>
+            <a href="./category.php">+ MORE</a>
           </div>
         </div>
       </div>
