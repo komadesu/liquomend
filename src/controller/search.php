@@ -16,6 +16,7 @@ if ($search_btn) {
   if ($str === '') {
     $message = '検索ワードを入力してください';
     $_SESSION['search_drinks'] = null;
+    $_SESSION['search_word'] = null;
   } else {
     require '../model/search_drinks.php';
     $search_result = searchDrinks($str);
@@ -25,7 +26,8 @@ if ($search_btn) {
       $_SESSION['search_drinks'] = $drinks;
       $_SESSION['search_word'] = $search_word;
     } else {
-      $message = '検索ワードを入力してください';
+      $message = 'この文字列に該当するレシピはありませんでした';
+      $_SESSION['search_word'] = $search_word;
     }
   }
 } else {
