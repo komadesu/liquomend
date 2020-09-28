@@ -70,13 +70,10 @@ if (isset($_POST['recipe_post_btn'])) {
 } else {
   $id_u = $_SESSION['user_id'];
   if (!$id_u) {
-    echo 'user id is nothing, so go to login page';
-    // header('location: ../login.php');
-    // exit;
+    header('location: ../login.php');
+    exit;
   } else {
-
-    echo 'user id is here, move to post page';
-    // header('location: ../post.php');
+    header('location: ../post.php');
   }
 }
 

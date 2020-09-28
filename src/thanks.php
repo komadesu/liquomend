@@ -92,9 +92,9 @@ if (isset($_SESSION['user_name'])) {
         echo '</div>';
 
         if (!$uname) {
-          echo "<div class='mobile-menu__username'><a href='./mypage.php'>ユーザー</a></div>";
+          echo "<div class='mobile-menu__username'><a href='./controller/mypage.php'>ユーザー</a></div>";
         } else {
-          echo "<div class='mobile-menu__username'><a href='./mypage.php'>$uname</a></div>";
+          echo "<div class='mobile-menu__username'><a href='./controller/mypage.php'>$uname</a></div>";
         }
 
         ?>
@@ -105,13 +105,13 @@ if (isset($_SESSION['user_name'])) {
       <div class="mobile-menu__body">
         <ul class="mobile-menu__main">
           <li class="mobile-menu__item">
-            <a href="./home.php" class="mobile-menu__link">
+            <a href="./controller/home.php" class="mobile-menu__link">
               <span class="nav-main-title">Home</span>
               <span class="nav-sub-title">ホーム</span>
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./mypage.php" class="mobile-menu__link">
+            <a href="./controller/mypage.php" class="mobile-menu__link">
               <span class="nav-main-title">My Page</span>
               <span class="nav-sub-title">マイページ</span>
             </a>
@@ -123,7 +123,7 @@ if (isset($_SESSION['user_name'])) {
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./mypage.php?component=favorite" class="mobile-menu__link">
+            <a href="./controller/mypage.php?component=favorite" class="mobile-menu__link">
               <span class="nav-main-title">Favorite</span>
               <span class="nav-sub-title">お気に入り</span>
             </a>
@@ -147,13 +147,13 @@ if (isset($_SESSION['user_name'])) {
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./mypage.php?component=settings" class="mobile-menu__link">
+            <a href="./controller/mypage.php?component=settings" class="mobile-menu__link">
               <span class="nav-main-title">Settings</span>
               <span class="nav-sub-title">設定</span>
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./post.php" class="mobile-menu__link">
+            <a href="./controller/post.php" class="mobile-menu__link">
               <span class="nav-main-title">Post</span>
               <span class="nav-sub-title">レシピ投稿</span>
             </a>
