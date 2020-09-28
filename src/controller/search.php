@@ -27,6 +27,7 @@ if ($search_btn) {
       $_SESSION['search_word'] = $search_word;
     } else {
       $message = 'この文字列に該当するレシピはありませんでした';
+      $_SESSION['search_drinks'] = null;
       $_SESSION['search_word'] = $search_word;
     }
   }
