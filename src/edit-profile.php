@@ -1,77 +1,46 @@
 <?php
-ini_set('session.save_path', realpath('./../session'));
 session_start();
-
-require '../../../secret.php';
-require './utils/index.php';
 
 $id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
 $uicon = $_SESSION['user_icon'];
-
-
 
 if (!isset($id_u)) {
   header('location: ./login.php');
   exit;
 }
 
-$errors = $_SESSION['errors'];
 
-$errors['empty'] = false;
-$errors['confirm'] = false;
-$errors['access'] = false;
-$errors['match'] = false;
-
-$good = false;
-
-if ($_POST['update_profile']) {
-
-  $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-    or die('Could not connect: ' . pg_last_error());
-
-
-  $email = h($_POST['email']);
-  $pass = h($_POST['password']);
-  $n_pass = h($_POST['new_password']);
-  $c_pass = h($_POST['confirm_password']);
-
-  if ($email && $pass && $n_pass && $c_pass) {
-    $sql = "select email, hash_password from liquomend.users where id_u = $id_u ;";
-    $result = pg_query($sql) or die('Query failed: first ' . pg_last_error());
-
-    if (pg_num_rows($result)) {
-      $record = pg_fetch_row($result);
-      $registered_email = $record[0];
-      $hash_pass = $record[1];
-    }
-
-    if ($email === $registered_email && password_verify($pass, $hash_pass)) {
-      if ($n_pass === $c_pass) {
-        $new_hash_pass = password_hash($n_pass, PASSWORD_DEFAULT);
-
-        $sql = "update liquomend.users set hash_password = '$new_hash_pass' where id_u = $id_u ;";
-        $result = pg_query($sql) or die('Query failed: second ' . pg_last_error());
-
-        $good = true;
-      } else {
-        $errors['match'] = true;
-      }
-    } else {
-      $errors['confirm'] = true;
-    }
-  } else {
-    $errors['empty'] = true;
-  }
+if (isset($_SESSION['errors']['empty'])) {
+  $error_empty = $_SESSION['errors']['empty'];
 } else {
-  $first = true;
-  if ($first) {
-    $first = false;
-  } else {
-    $errors['access'] = true;
-  }
+  $error_empty = null;
 }
-
+if (isset($_SESSION['errors']['confirm'])) {
+  $error_confirm = $_SESSION['errors']['confirm'];
+} else {
+  $error_confirm = null;
+}
+if (isset($_SESSION['errors']['password'])) {
+  $error_password = $_SESSION['errors']['password'];
+} else {
+  $error_password = null;
+}
+if (isset($_SESSION['errors']['match'])) {
+  $error_match = $_SESSION['errors']['match'];
+} else {
+  $error_match = null;
+}
+if (isset($_SESSION['errors']['access'])) {
+  $error_access = $_SESSION['errors']['access'];
+} else {
+  $error_access = null;
+}
+if (isset($_SESSION['good'])) {
+  $good = $_SESSION['good'];
+} else {
+  $good = null;
+}
 
 
 
@@ -154,13 +123,14 @@ if ($_POST['update_profile']) {
               echo "<h3 class='form__title'>パスワード変更</h3>";
 
               echo "<p style='color: red; margin: 15px 0;'>";
-              if ($errors['access']) echo '不正なアクセスです';
-              if ($errors['empty']) echo '全て入力してください';
-              if ($errors['confirm']) echo 'メールアドレスもしくはパスワードが間違っています';
-              if ($errors['match']) echo '新しいパスワードと確認パスワードが一致しません';
+              if ($error_empty) echo '全て入力してください';
+              if ($error_confirm) echo 'このメールアドレスは登録されていません';
+              if ($error_password) echo '現在のパスワードが間違っています';
+              if ($error_match) echo '新しいパスワードと確認パスワードが一致しません';
+              if ($error_access) echo '不正なアクセスです';
               echo "</p>";
 
-              echo "<form action='./edit-profile.php' method='POST' class='form'>";
+              echo "<form action='./controller/edit_profile.php' method='POST' class='form'>";
               echo "<label for='email' class='form__label'>Email</label>";
               echo "<input id='email' type='email' name='email' value='$email' class='form__email mb-2' />";
               echo "<br />";
@@ -177,7 +147,7 @@ if ($_POST['update_profile']) {
               echo "<input id='new-password-confirm' type='password' name='confirm_password' value='$c_pass' class='form__password mb-4' />";
               echo "<br />";
 
-              echo "<input type='submit' value='更新' name='update_profile' class='form__btn' />";
+              echo "<input type='submit' value='更新' name='update_password_btn' class='form__btn' />";
               echo "</form>";
               echo "</div>";
             }

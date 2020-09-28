@@ -1,5 +1,4 @@
 <?php
-ini_set('session.save_path', realpath('../../session'));
 session_start();
 
 
@@ -14,7 +13,7 @@ $_SESSION['drink_detail'] = $drink_detail;
 
 
 require '../model/get_drinks.php';
-$three_customize_drinks = getDrinks('customize', 3, null);
+$three_customize_drinks = getDrinks('customize', 3, null, null);
 $_SESSION['three_customize_drinks'] = $three_customize_drinks;
 
 header('location: ../detail.php');

@@ -1,5 +1,4 @@
 <?php
-ini_set('session.save_path', realpath('./../session'));
 session_start();
 
 $id_u = $_SESSION['user_id'];

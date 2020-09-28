@@ -1,31 +1,19 @@
 <?php
-ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-require '../../../secret.php';
-require './utils/index.php';
+ini_set('display_errors', 1);
 
 $id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
 $uicon = $_SESSION['user_icon'];
 
 
-if (!$id_u) {
-  header('location: ./login.php');
-  exit;
+if (isset($_SESSION['your_drinks'])) {
+  $your_drinks = $_SESSION['your_drinks'];
 }
-
-
-
-
-$dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-  or die('Could not connect: ' . pg_last_error());
-
-$sql = "select * from liquomend.drinks where id_u = '$id_u' ;";
-$recipe_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-$sql = "select * from liquomend.drinks where id_u = '$id_u' ;"; // お気に入り機能実装時に要編集
-$favo_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+if (isset($_SESSION['your_favorite_drinks'])) {
+  $your_favorite_drinks = $_SESSION['your_favorite_drinks'];
+}
 
 
 
@@ -103,13 +91,13 @@ $favo_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
 
               <?php
-              if (pg_num_rows($recipe_result)) :
-                while ($record = pg_fetch_row($recipe_result)) :
+              if (!empty($your_drinks)) :
+                foreach ($your_drinks as $drink) {
 
-                  $id_d = $record[0];
-                  $name = $record[2];
-                  $base = $record[3];
-                  $image = $record[6];
+                  $id_d = $drink[0];
+                  $name = $drink[2];
+                  $base = $drink[3];
+                  $image = $drink[6];
 
                   echo "<div class='col-4 col-md-2'>";
                   echo "<li class='cocktail__item ${base}'>";
@@ -122,7 +110,7 @@ $favo_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                   echo "</a>";
                   echo "</li>";
                   echo "</div>";
-                endwhile;
+                }
               endif;
               ?>
 
@@ -146,13 +134,13 @@ $favo_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
 
               <?php
-              if (pg_num_rows($favo_result)) :
-                while ($record = pg_fetch_row($favo_result)) :
+              if (!empty($your_favorite_drinks)) :
+                foreach ($your_favorite_drinks as $drink) {
 
-                  $id_d = $record[0];
-                  $name = $record[2];
-                  $base = $record[3];
-                  $image = $record[6];
+                  $id_d = $drink[0];
+                  $name = $drink[2];
+                  $base = $drink[3];
+                  $image = $drink[6];
 
                   echo "<div class='col-4 col-md-2'>";
                   echo "<li class='cocktail__item ${base}'>";
@@ -165,7 +153,7 @@ $favo_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                   echo "</a>";
                   echo "</li>";
                   echo "</div>";
-                endwhile;
+                }
               endif;
               ?>
 
@@ -186,7 +174,7 @@ $favo_result = pg_query($sql) or die('Query failed: ' . pg_last_error());
           <div class="row">
             <div class="col-12">
               <ul class="settings__list">
-                <li class="item"><a href="./edit-profile.php" class="link">パスワード変更</a></li>
+                <li class="item"><a href="./controller/edit_profile.php" class="link">パスワード変更</a></li>
               </ul>
             </div>
           </div>

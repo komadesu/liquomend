@@ -1,150 +1,26 @@
 <?php
-ini_set('session.save_path', realpath('./../session'));
 session_start();
-
-require '../../../secret.php';
-require './utils/index.php';
 
 $id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
 $uicon = $_SESSION['user_icon'];
-
-$errors = $_SESSION['errors'];
-$errors['upload'] = false;
-$errors['name'] = false;
-$errors['default_base'] = false;
-$errors['ingredients_and_quantities'] = false;
-$errors['order'] = false;
-$errors['memo'] = false;
-
-
-
-
 if (!$id_u) {
   header('location: ./login.php');
   exit;
 }
 
-if (isset($_POST['recipe_post'])) {
+if (isset($_SESSION['errors'])) {
+  $errors = $_SESSION['errors'];
 
-
-  $id_u = $_SESSION['user_id'];
-
-  $name = h($_POST['recipe_name']);
-  $default_base = h($_POST['recipe_base']);
-  $accurate_base = h($_POST['accurate_recipe_base']);
-  $strength = h($_POST['recipe_strength']);
-  $ingredients = $_POST['recipe_ingredients'];
-  $quantities = $_POST['recipe_quantities'];
-  $memo = h($_POST['recipe_memo']);
-
-
-  if (!$_FILES['recipe_image']['tmp_name']) {
-    $errors['upload'] = true;
-  }
-  if (empty($name)) {
-    $errors['name'] = true;
-  }
-  if (empty($default_base)) {
-    $errors['default_base'] = true;
-  }
-  $count_i = 0;
-  foreach ($ingredients as $ingredient) {
-    if (isset($ingredient)) {
-      $count_i++;
-    } else {
-      break;
-    }
-  }
-  $count_q = 0;
-  foreach ($quantities as $quantity) {
-    if (isset($quantity)) {
-      $count_q++;
-    } else {
-      break;
-    }
-  }
-  if ((empty($count_i) || empty($count_q))) {
-    $errors['ingredients_and_quantities'] = true;
-  }
-  if ($count_i !== $countq) {
-    $errors['order'] = true;
-  }
-  if (empty($memo)) {
-    $errors['memo'] = true;
-  }
-  if ($name && $default_base && $ingredients && $quantities) {
-    $unique_id = uniqid(mt_rand(), true);
-
-    $save_path = './upload_files/drinks/';
-    $destination = $save_path . $unique_id . basename($_FILES['recipe_image']['name']);
-
-
-    if (!empty($_FILES['recipe_image']['tmp_name']) && is_uploaded_file($_FILES['recipe_image']['tmp_name'])) {
-      if (move_uploaded_file($_FILES['recipe_image']['tmp_name'], $destination)) {
-        $_FILES['recipe_image'] = false;
-
-        if (!$accurate_base) {
-          $base = $default_base;
-        } else {
-          $base = $accurate_base;
-        }
-
-
-
-        $dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-          or die('Could not connect: ' . pg_last_error());
-
-
-
-        $sql = "insert into liquomend.drinks
-                        (id_u, name, base, strength, memo, image, type)
-                    values
-                        ('$id_u', '$name', '$base', '$strength', '$memo', '$destination', 'customize');";
-
-        $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-
-
-        $sql = "select id_d from liquomend.drinks where liquomend.drinks.id_u = '$id_u' and liquomend.drinks.image = '$destination' ; ";
-        $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-
-        if (pg_num_rows($result)) {
-          $record = pg_fetch_row($result);
-
-          $id_d = $record[0];
-        }
-
-
-
-        foreach ($ingredients as $ingredient) {
-          $ingredient = h($ingredient);
-          if (!$ingredient) {
-            break;
-          }
-
-          $sql = "insert into liquomend.ingredients (id_d, ingredient) values ('$id_d', '$ingredient');";
-          $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-        }
-
-        foreach ($quantities as $quantity) {
-          $ingredient = h($ingredient);
-          if (!$quantity) {
-            break;
-          }
-
-          $sql = "insert into liquomend.quantities (id_d, quantity) values ('$id_d', '$quantity');";
-          $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-        }
-      }
-    } else {
-      $errors['upload'] = true;
-    };
-  }
+  $upload_error = $errors['upload'];
+  $name_error = $errors['name'];
+  $default_base_error = $errors['default_base'];
+  $ingredients_and_quantities_error = $errors['ingredients_and_quantities'];
+  $order_error = $errors['order'];
+  $memo_error = $errors['memo'];
+  $image_path_error = $errors['$image_path'];
+  $server_error = $errors['$server'];
 }
-
-
-
 
 ?>
 
@@ -173,13 +49,17 @@ if (isset($_POST['recipe_post'])) {
         </button>
       </header>
 
-      <form action="./post.php" method="POST" enctype="multipart/form-data">
+      <form action="./controller/post.php" method="POST" enctype="multipart/form-data">
         <div class="hero">
           <div class="hero__logo">
             <img src="./img/logo.png" alt="header logo image" />
           </div>
 
-          <?php if ($errors['upload']) echo "<p style='color: red; text-align: center;'>画像を選択してください</p>"; ?>
+          <?php
+          if ($server_error) echo "<p style='color: red; text-align: center;'>大変申し訳ありませんが、サーバー側の問題で登録できませんでした<br>しばらく待ってからもう一度お試しください</p>";
+          if ($destination_error) echo "<p style='color: red; text-align: center;'>何らかの理由で画像がアップロードできませんでした、もう一度お試しください</p>";
+          if ($upload_error) echo "<p style='color: red; text-align: center;'>画像を選択してください</p>";
+          ?>
           <label class="recipe-img">
             <div class="recipe-img__bg-img">
               <img src="./img/hero.jpg" alt="recipe bg image" />
@@ -193,7 +73,7 @@ if (isset($_POST['recipe_post'])) {
           </label>
         </div>
 
-        <?php if ($errors['name']) echo "<p style='color: red; text-align: center;'>レシピ名を入力してください</p>"; ?>
+        <?php if ($name_error) echo "<p style='color: red; text-align: center;'>レシピ名を入力してください</p>"; ?>
         <div class="recipe-name">
           <div class="container">
             <div class="row">
@@ -207,7 +87,7 @@ if (isset($_POST['recipe_post'])) {
         </div>
 
         <div class="recipe-info">
-          <?php if ($errors['default_base']) echo "<p style='color: red; text-align: center;'>お酒のベースを入力してください</p>"; ?>
+          <?php if ($default_base_error) echo "<p style='color: red; text-align: center;'>お酒のベースを入力してください</p>"; ?>
           <div class="container">
             <div class="row">
               <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
@@ -278,7 +158,7 @@ if (isset($_POST['recipe_post'])) {
           </div>
         </div>
 
-        <?php if ($errors['ingredients_and_quantities'] || $errors['order']) echo "<p style='color: red; text-align: center;'>材料と分量を対応させ、入力してください</p>"; ?>
+        <?php if ($ingredients_and_quantities_error || $order_error) echo "<p style='color: red; text-align: center;'>材料と分量を対応させ、入力してください</p>"; ?>
         <div class="recipe-method container">
           <h4 class="recipe-method__title main-title">材料・分量</h4>
           <div class="row">
@@ -330,7 +210,7 @@ if (isset($_POST['recipe_post'])) {
           </div>
         </div>
 
-        <?php if ($errors['memo']) echo "<p style='color: red; text-align: center;'>メモを書いて良さを伝えましょう！</p>"; ?>
+        <?php if ($memo_error) echo "<p style='color: red; text-align: center;'>メモを書いて良さを伝えましょう！</p>"; ?>
         <div class="recipe-memo">
           <div class="container">
             <div class="row">
@@ -341,7 +221,7 @@ if (isset($_POST['recipe_post'])) {
                     <textarea id="memo" placeholder="銘柄、飲みやすさなど" name="recipe_memo" class="textarea"><?php echo $memo; ?></textarea>
                   </div>
                   <div class="recipe-memo__post">
-                    <input type="submit" value="投稿" name="recipe_post" class="post-btn" />
+                    <input type="submit" name="recipe_post_btn" value="投稿" class="post-btn" />
                   </div>
                 </div>
               </div>

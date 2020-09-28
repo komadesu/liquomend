@@ -1,33 +1,27 @@
 <?php
-ini_set('session.save_path', realpath('./../session'));
 session_start();
 
-require '../../../secret.php';
-require './utils/index.php';
-
+$id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
 $uicon = $_SESSION['user_icon'];
 
-
-$dbconn = pg_connect("host=localhost dbname=$SQL_DB user=$SQL_USER password=$SQL_PASS")
-  or die('Could not connect: ' . pg_last_error());
-
-if ($_REQUEST['search']) {
-  if ($_REQUEST['str']) {
-    $search_word = h($_REQUEST['str']);
-
-    $sql = "select * from liquomend.drinks where name like '%${search_word}%'  ;";
-    $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-  } else {
-    $message = '検索ワードを入力してください';
-  }
+if (isset($_SESSION['search_drinks'])) {
+  $search_drinks = $_SESSION['search_drinks'];
 } else {
-  $message = '不正なアクセスです';
+  $search_drinks = null;
 }
 
+if (isset($_SESSION['search_word'])) {
+  $search_word = $_SESSION['search_word'];
+} else {
+  $search_word = null;
+}
 
-
-
+if (isset($_SESSION['error_message'])) {
+  $error_message = $_SESSION['error_message'];
+} else {
+  $error_message = null;
+}
 
 ?>
 
@@ -75,13 +69,13 @@ if ($_REQUEST['search']) {
 
 
               <?php
-              if ($result) {
-                while ($record = pg_fetch_row($result)) :
+              if (!empty($search_drinks)) {
+                foreach ($search_drinks as $drink) {
 
-                  $id_d = $record[0];
-                  $name = $record[2];
-                  $base = $record[3];
-                  $image = $record[6];
+                  $id_d = $drink[0];
+                  $name = $drink[2];
+                  $base = $drink[3];
+                  $image = $drink[6];
 
                   echo "<div class='col-4 col-md-2'>";
                   echo "<li class='cocktail__item ${base}'>";
@@ -94,10 +88,11 @@ if ($_REQUEST['search']) {
                   echo "</a>";
                   echo "</li>";
                   echo "</div>";
-                endwhile;
+                }
               } else {
-                echo "<p style='height: 200px; line-height: 200px; margin: 0 auto; color: red; font-size: 1.6em;'>${message}</p>";
+                echo "<p style='height: 200px; line-height: 200px; margin: 0 auto; color: red; font-size: 1.6em;'>${error_message}</p>";
               }
+
               ?>
 
             </div>
@@ -107,10 +102,10 @@ if ($_REQUEST['search']) {
       <div class="search">
         <div class="search-inner">
           <h3 class="search__title main-title">レシピ検索</h3>
-          <form action="./search.php" method="GET" class="search__form">
+          <form action="./controller/search.php" method="GET" class="search__form">
             <div class="search__bar">
               <input type="text" placeholder="検索" name="str" class="search__input" />
-              <button type="submit" name="search" value="search" class="search__btn">
+              <button type="submit" name="search_btn" value="search" class="search__btn">
                 <i class="fas fa-search"></i>
               </button>
             </div>

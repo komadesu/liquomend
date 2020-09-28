@@ -1,6 +1,7 @@
 <?php
-ini_set('session.save_path', realpath('./../session'));
 session_start();
+
+ini_set('display_errors', 1);
 
 if (isset($_SESSION['user_id'])) {
   $id_u = $_SESSION['user_id'];
@@ -13,6 +14,8 @@ if (isset($_SESSION['email'])) {
 }
 if (isset($_SESSION['user_icon'])) {
   $uicon = $_SESSION['user_icon'];
+} else {
+  $uicon = null;
 }
 
 if (isset($_SESSION['three_recommend_drinks']) && isset($_SESSION['three_usual_drinks'])) {
@@ -62,7 +65,7 @@ if (isset($_SESSION['three_recommend_drinks']) && isset($_SESSION['three_usual_d
       <nav class="nav">
         <ul class="nav__list">
           <li class="nav__item"><a href="./controller/usual_menu.php" class="nav__link">定番</a></li>
-          <li class="nav__item"><a href="./mypage.php" class="nav__link">マイページ</a></li>
+          <li class="nav__item"><a href="./controller/mypage.php" class="nav__link">マイページ</a></li>
           <li class="nav__item"><a href="./post.php" class="nav__link">投稿</a></li>
         </ul>
       </nav>
@@ -150,10 +153,10 @@ if (isset($_SESSION['three_recommend_drinks']) && isset($_SESSION['three_usual_d
       <div class="search">
         <div class="search-inner">
           <h3 class="search__title main-title">レシピ検索</h3>
-          <form action="./search.php" method="GET" class="search__form">
+          <form action="./controller/search.php" method="GET" class="search__form">
             <div class="search__bar">
               <input type="text" placeholder="検索" name="str" class="search__input" />
-              <button type="submit" name="search" value="search" class="search__btn">
+              <button type="submit" name="search_btn" value="search" class="search__btn">
                 <i class="fas fa-search"></i>
               </button>
             </div>
