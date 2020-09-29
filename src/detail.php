@@ -150,7 +150,7 @@ if (isset($_SESSION['three_customize_drinks'])) {
           </ul>
 
           <div class="more-btn">
-            <a href="./controller/customize_menu.php?base=<?php echo $base ; ?>">+ MORE</a>
+            <a href="./controller/customize_menu.php?base=<?php echo $base; ?>">+ MORE</a>
           </div>
         </div>
       </div>
@@ -276,7 +276,7 @@ if (isset($_SESSION['three_customize_drinks'])) {
           </li>
         </ul>
         <div class="mobile-menu__logo">
-          <img src="./img/logo2.png" alt="logo2 image" />
+          <img src="./img/logo2.png" alt="logo2 image" onclick="location.href='./about.php' ;" />
         </div>
         <div class="mobile-menu__sns">
           <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>

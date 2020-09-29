@@ -4,12 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Liquomend | Customize Menu</title>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
-      integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/menu.css" />
   </head>
   <body>
@@ -17,10 +12,7 @@
       <div id="contents-container">
         <div class="mobile-menu__cover"></div>
         <header class="header m-3">
-          <button
-            onclick="document.querySelector('#global-container').classList.toggle('menu-open')"
-            class="mobile-menu__btn"
-          >
+          <button onclick="document.querySelector('#global-container').classList.toggle('menu-open')" class="mobile-menu__btn">
             <span></span>
             <span></span>
             <span></span>
@@ -43,12 +35,7 @@
 
         <div class="select-base">
           <div class="extract-outer">
-            <select
-              name="extract"
-              id="extract"
-              class="pulldown extract"
-              placeholder="Base"
-            >
+            <select name="extract" id="extract" class="pulldown extract" placeholder="Base">
               <option class="extract__base" value="liquor">リキュール</option>
               <option class="extract__base" value="gin">ジン</option>
               <option class="extract__base" value="rum">ラム</option>
@@ -61,12 +48,7 @@
 
           <div class="sort-outer">
             <form class="sort-form" action="#" method="POST">
-              <select
-                name="sort"
-                id="sort"
-                class="pulldown sort"
-                placeholder="Sort"
-              >
+              <select name="sort" id="sort" class="pulldown sort" placeholder="Sort">
                 <option class="sort__item" value="new">最新順</option>
                 <option class="sort__item" value="good">いいね数</option>
               </select>
@@ -81,11 +63,7 @@
                 <div class="col-4 col-md-2">
                   <li class="cocktail__item">
                     <a href="./detail.html" class="cocktail__link">
-                      <img
-                        src="./img/sample-drink.jpg"
-                        alt="sample drink image"
-                        class="cocktail__img"
-                      />
+                      <img src="./img/sample-drink.jpg" alt="sample drink image" class="cocktail__img" />
                       <div class="cocktail__description">
                         <h5 class="cocktail__title text-truncate">カクテル名</h5>
                         <p class="cocktail__text text-truncate">ベースリキュール</p>
@@ -96,11 +74,7 @@
                 <div class="col-4 col-md-2">
                   <li class="cocktail__item">
                     <a href="./detail.html" class="cocktail__link">
-                      <img
-                        src="./img/sample-drink.jpg"
-                        alt="sample drink image"
-                        class="cocktail__img"
-                      />
+                      <img src="./img/sample-drink.jpg" alt="sample drink image" class="cocktail__img" />
                       <div class="cocktail__description">
                         <h5 class="cocktail__title text-truncate">カクテル名</h5>
                         <p class="cocktail__text text-truncate">ベースリキュール</p>
@@ -111,11 +85,7 @@
                 <div class="col-4 col-md-2">
                   <li class="cocktail__item">
                     <a href="./detail.html" class="cocktail__link">
-                      <img
-                        src="./img/sample-drink.jpg"
-                        alt="sample drink image"
-                        class="cocktail__img"
-                      />
+                      <img src="./img/sample-drink.jpg" alt="sample drink image" class="cocktail__img" />
                       <div class="cocktail__description">
                         <h5 class="cocktail__title text-truncate">カクテル名</h5>
                         <p class="cocktail__text text-truncate">ベースリキュール</p>
@@ -165,17 +135,13 @@
           </li>
         </ul>
         <div class="mobile-menu__logo">
-          <img src="./img/logo2.png" alt="logo2 image" />
+          <img src="./img/logo2.png" alt="logo2 image" onclick="location.href='./about.php' ;" />
         </div>
         <div class="mobile-menu__sns">各種logoが入ります</div>
       </nav>
     </div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="./scripts/pulldown.js"></script>
     <script src="./scripts/extract.js"></script>
   </body>

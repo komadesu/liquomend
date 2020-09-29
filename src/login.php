@@ -65,7 +65,7 @@ if (isset($_SESSION['email'])) {
 
               <form action="./controller/login_user.php" method="POST" class="form">
                 <label for="email" class="form__label">Email</label>
-                <input id="email" type="email" name="email" value="<?php echo $email ; ?>" class="form__email mb-2" />
+                <input id="email" type="email" name="email" value="<?php echo $email; ?>" class="form__email mb-2" />
                 <br />
 
                 <label for="password" class="form__label">パスワード</label>
@@ -191,7 +191,7 @@ if (isset($_SESSION['email'])) {
           </li>
         </ul>
         <div class="mobile-menu__logo">
-          <img src="./img/logo2.png" alt="logo2 image" />
+          <img src="./img/logo2.png" alt="logo2 image" onclick="location.href='./about.php' ;" />
         </div>
         <div class="mobile-menu__sns">
           <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>

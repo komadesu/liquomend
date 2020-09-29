@@ -11,10 +11,7 @@
       <div id="contents-container">
         <div class="mobile-menu__cover"></div>
         <header class="header m-3">
-          <button
-            onclick="document.querySelector('#global-container').classList.toggle('menu-open')"
-            class="mobile-menu__btn"
-          >
+          <button onclick="document.querySelector('#global-container').classList.toggle('menu-open')" class="mobile-menu__btn">
             <span></span>
             <span></span>
             <span></span>
@@ -42,25 +39,15 @@
 
             <form action="login.php" method="POST" class="form">
               <label for="email" class="form__label">Email</label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                class="form__email mb-2"
-              />
+              <input id="email" type="email" name="email" class="form__email mb-2" />
               <br />
 
               <label for="password" class="form__label">パスワード</label>
-              <input
-                id="password"
-                type="password"
-                name="password"
-                class="form__password"
-              />
+              <input id="password" type="password" name="password" class="form__password" />
               <br />
 
               <div class="login__unvalid mb-4">
-                <a href='reset-login.php'>パスワードを忘れた場合</a>
+                <a href="reset-login.php">パスワードを忘れた場合</a>
               </div>
               <br />
 
@@ -111,7 +98,7 @@
           </li>
         </ul>
         <div class="mobile-menu__logo">
-          <img src="./img/logo2.png" alt="logo2 image" />
+          <img src="./img/logo2.png" alt="logo2 image" onclick="location.href='./about.php' ;" />
         </div>
         <div class="mobile-menu__sns">各種logoが入ります</div>
       </nav>

@@ -187,7 +187,7 @@ if (isset($_SESSION['usual_drinks'])) {
           </li>
         </ul>
         <div class="mobile-menu__logo">
-          <img src="./img/logo2.png" alt="logo2 image" />
+          <img src="./img/logo2.png" alt="logo2 image" onclick="location.href='./about.php' ;" />
         </div>
         <div class="mobile-menu__sns">
           <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
