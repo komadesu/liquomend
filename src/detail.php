@@ -112,7 +112,7 @@ if (isset($_SESSION['three_customize_drinks'])) {
 
       <div class="detail__related-base-recipe">
         <h5 class="title main-title">みんなのレシピ</h5>
-        <h6 class="sub-title">同じお酒のみんなのレシピ</h6>
+        <h6 class="sub-title">同じベースを使ったみんなのレシピ</h6>
 
         <div class="cocktail container">
           <ul class="cocktail__list">

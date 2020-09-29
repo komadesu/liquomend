@@ -46,7 +46,7 @@ if (isset($_SESSION['usual_drinks'])) {
             <img src="./img/category-underbar.png" alt="category bar image" />
           </div>
         </div>
-        <div class="hero__bg-img" onclick="location.href='./homme.php'; ">
+        <div class="hero__bg-img">
           <img src="./img/hero.jpg" alt="hero image" />
         </div>
       </div>
