@@ -48,15 +48,15 @@
           <div class="creator__members">
             <div class="creator-left">
               <span class="creator__member">Koma Tsugata</span>
-              <span class="creator__member">Kurea Honda</span>
-              <span class="creator__member">Mamiko Matsuki</span>
-              <span class="creator__member">Syunto Nakamura</span>
-            </div>
-            <div class="creator-right">
               <span class="creator__member">Mitsuki Habaki</span>
               <span class="creator__member">Runa Hino</span>
-              <span class="creator__member">Tentaro Miyagi</span>
-              <span class="creator__member">Yukiho Nishinarita</span>
+              <span class="creator__member">Kurea Honda</span>
+            </div>
+            <div class="creator-right">
+              <span class="creator__member">システム担当</span>
+              <span class="creator__member">デザイン・動画担当</span>
+              <span class="creator__member">資料担当</span>
+              <span class="creator__member">データ担当</span>
             </div>
           </div>
         </div>
