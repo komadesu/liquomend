@@ -28,16 +28,3 @@ userIconBtn.addEventListener('click', (evt) => {
     });
   });
 });
-
-// input DOM element の files プロパティの中身はオブジェクトになっていて、0 というキーと、length というキーがある。
-// FileList {0: File, length: 1}
-// 0: File
-// lastModified: 1595046030724
-// lastModifiedDate: Sat Jul 18 2020 13:20:30 GMT+0900 (日本標準時) {}
-// name: "myIcon.jpg"
-// size: 10776
-// type: "image/jpeg"
-// webkitRelativePath: ""
-// __proto__: File
-// length: 1
-// __proto__: FileList
