@@ -1,0 +1,24 @@
+.btn {
+  &__back {
+    background-color: rgba(16, 21, 35, 0.6);
+    padding: 8px 12px;
+    color: white !important;
+    border-radius: 4px;
+  }
+}
+
+@media (min-width: 768px) {
+  .btn {
+    &__back {
+      padding: 8px 12px;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .btn {
+    &__back {
+      padding: 10px 14px;
+    }
+  }
+}

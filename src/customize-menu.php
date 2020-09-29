@@ -28,7 +28,7 @@ if (isset($_SESSION['all_drinks'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Liquomend | Customize Menu</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous" />
-  <link rel="stylesheet" href="./css/menu.css" />
+  <link rel="stylesheet" href="./css/customize-menu.css" />
 </head>
 
 <body>
@@ -83,8 +83,13 @@ if (isset($_SESSION['all_drinks'])) {
 
       </div>
 
+
+
       <div class="drinks">
         <div class="cocktail container">
+          <div class="btn-outer">
+            <a href="./category.php" class="btn__back">カテゴリー選択へ戻る</a>
+          </div>
           <ul class="cocktail__list">
             <div class="row">
 
