@@ -5,7 +5,13 @@ ini_set('display_errors', 1);
 
 $id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
+
 $uicon = $_SESSION['user_icon'];
+// $uicon = $uicon[0];
+// if (isset($_SESSION['user_icon'])) {
+//   $user_icon = $_SESSION['user_icon'];
+//   $uicon = $user_icon[0];
+// }
 
 
 if (isset($_SESSION['your_drinks'])) {
@@ -50,12 +56,12 @@ if (isset($_SESSION['your_favorite_drinks'])) {
         <div class="mypage__hero">
           <?php
 
-          echo "<div class='usericon'>";
+          echo "<div class='usericon js-usericon'>";
 
           if (!$uicon) {
-            echo "<img src='./img/default-icon.svg' alt='user icon image' />";
+            echo "<img src='./img/default-icon.svg' alt='user icon image' class='default circle js-usericon-btn' />";
           } else {
-            echo '<img src="./img/$uicon" alt="icon image">';
+            echo "<img src='./${uicon}' alt='user icon image' class='circle js-usericon-btn' >";
           }
 
           echo "</div>";
@@ -196,7 +202,7 @@ if (isset($_SESSION['your_favorite_drinks'])) {
         if (!$uicon) {
           echo '<img src="./img/default-icon.svg" alt="icon sample image">';
         } else {
-          echo '<img src="./img/$uicon" alt="icon image">';
+          echo  "<img src='./${uicon}' alt='icon image'>";
         }
 
         echo '</div>';
@@ -282,6 +288,8 @@ if (isset($_SESSION['your_favorite_drinks'])) {
   </div>
 
   <script src="./scripts/mypage-nav.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./scripts/post-user-icon.js"></script>
 </body>
 
 </html>
