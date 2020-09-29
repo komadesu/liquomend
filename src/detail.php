@@ -12,9 +12,10 @@ if (isset($_SESSION['id_d'])) {
 
 if (isset($_SESSION['drink_detail'])) {
   $name = $_SESSION['drink_detail'][0];
-  $memo = $_SESSION['drink_detail'][1];
-  $image = $_SESSION['drink_detail'][2];
-  $ingredients_and_quantities = $_SESSION['drink_detail'][3];
+  $base = $_SESSION['drink_detail'][1];
+  $memo = $_SESSION['drink_detail'][2];
+  $image = $_SESSION['drink_detail'][3];
+  $ingredients_and_quantities = $_SESSION['drink_detail'][4];
 }
 
 if (isset($_SESSION['three_customize_drinks'])) {
@@ -149,7 +150,7 @@ if (isset($_SESSION['three_customize_drinks'])) {
           </ul>
 
           <div class="more-btn">
-            <a href="./category.php">+ MORE</a>
+            <a href="./controller/customize_menu.php?base=<?php echo $base ; ?>">+ MORE</a>
           </div>
         </div>
       </div>
