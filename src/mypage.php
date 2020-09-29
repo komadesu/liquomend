@@ -125,7 +125,7 @@ if (isset($_SESSION['your_favorite_drinks'])) {
           </ul>
         </div>
         <div class="recipe-btn">
-          <a href="./post.html" class="link">
+          <a href="./controller/post.php" class="link">
             <img src="./img/pen.png" alt="pen image" />
             <span>レシピを<br />書く</span>
           </a>
@@ -168,7 +168,7 @@ if (isset($_SESSION['your_favorite_drinks'])) {
           </ul>
         </div>
         <div class="recipe-btn">
-          <a href="./post.html" class="link">
+          <a href="./controller/post.php" class="link">
             <img src="./img/pen.png" alt="pen image" />
             <span>レシピを<br />書く</span>
           </a>
