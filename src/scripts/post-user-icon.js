@@ -1,5 +1,6 @@
-const userIconBtn = document.querySelector('.js-usericon-btn');
+const userIconBtns = document.querySelectorAll('.js-usericon-btn');
 const userIcon = document.querySelector('.js-usericon');
+const mobileMenuIcon = document.querySelector('.js-mobile-menu__icon');
 
 const chooseFile = () =>
   new Promise((resolve) => {
@@ -16,15 +17,19 @@ const chooseFile = () =>
     input.click();
   });
 
-userIconBtn.addEventListener('click', (evt) => {
-  console.log('axios');
-  chooseFile().then((f) => {
-    const body = new FormData();
-    body.append('user_icon_image', f);
-    // body.append('foo', 'fuga');
-    axios.post('./controller/update_user_icon.php', body).then((resp) => {
-      console.log(resp);
-      userIcon.innerHTML = resp.data;
+userIconBtns.forEach((userIconBtn) => {
+  userIconBtn.addEventListener('click', (evt) => {
+    console.log('axios');
+    chooseFile().then((f) => {
+      const body = new FormData();
+      body.append('user_icon_image', f);
+
+      axios.post('./controller/update_user_icon.php', body).then((resp) => {
+        console.log(resp);
+        console.log(resp.data);
+        userIcon.innerHTML = resp.data;
+        mobileMenuIcon.innerHTML = resp.data;
+      });
     });
   });
 });
