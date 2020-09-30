@@ -163,7 +163,7 @@ if (isset($_SESSION['three_recommend_drinks']) && isset($_SESSION['three_usual_d
           </form>
           <p class="search__info">またはカテゴリーから探すこともできます。</p>
           <div class="search__categories">
-            <a href="./category.php" class="link">Categories</a>
+            <a href="./controller/category.php" class="link">Categories</a>
           </div>
         </div>
         <div class="search__img">
@@ -228,7 +228,7 @@ if (isset($_SESSION['three_recommend_drinks']) && isset($_SESSION['three_usual_d
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./category.php" class="mobile-menu__link">
+            <a href="./controller/category.php" class="mobile-menu__link">
               <span class="nav-main-title">Category</span>
               <span class="nav-sub-title">カテゴリーから探す</span>
             </a>
@@ -240,7 +240,7 @@ if (isset($_SESSION['three_recommend_drinks']) && isset($_SESSION['three_usual_d
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./about.php" class="mobile-menu__link">
+            <a href="./controller/about.php" class="mobile-menu__link">
               <span class="nav-main-title">About Us</span>
               <span class="nav-sub-title">私たちについて</span>
             </a>
@@ -259,7 +259,7 @@ if (isset($_SESSION['three_recommend_drinks']) && isset($_SESSION['three_usual_d
           </li>
         </ul>
         <div class="mobile-menu__logo">
-          <img src="./img/logo2.png" alt="logo2 image" onclick="location.href='./about.php' ;" />
+          <img src="./img/logo2.png" alt="logo2 image" onclick="location.href='./controller/about.php' ;" />
         </div>
         <div class="mobile-menu__sns">
           <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>

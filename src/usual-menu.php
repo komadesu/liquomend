@@ -156,7 +156,7 @@ if (isset($_SESSION['usual_drinks'])) {
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./category.php" class="mobile-menu__link">
+            <a href="./controller/category.php" class="mobile-menu__link">
               <span class="nav-main-title">Category</span>
               <span class="nav-sub-title">カテゴリーから探す</span>
             </a>
@@ -168,7 +168,7 @@ if (isset($_SESSION['usual_drinks'])) {
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./about.php" class="mobile-menu__link">
+            <a href="./controller/about.php" class="mobile-menu__link">
               <span class="nav-main-title">About Us</span>
               <span class="nav-sub-title">私たちについて</span>
             </a>
@@ -187,7 +187,7 @@ if (isset($_SESSION['usual_drinks'])) {
           </li>
         </ul>
         <div class="mobile-menu__logo">
-          <img src="./img/logo2.png" alt="logo2 image" onclick="location.href='./about.php' ;" />
+          <img src="./img/logo2.png" alt="logo2 image" onclick="location.href='./controller/about.php' ;" />
         </div>
         <div class="mobile-menu__sns">
           <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
