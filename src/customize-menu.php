@@ -130,12 +130,12 @@ if (isset($_SESSION['all_drinks'])) {
 
         <?php
 
-        echo '<div class="mobile-menu__icon">';
+        echo '<div class="mobile-menu__icon js-mobile-menu__icon">';
 
         if (!$uicon) {
-          echo '<img src="./img/default-icon.svg" alt="icon sample image">';
+          echo '<img src="./img/default-icon.svg" alt="icon sample image" class="js-usericon-btn">';
         } else {
-          echo '<img src="./img/$uicon" alt="icon image">';
+          echo  "<img src='./${uicon}' alt='icon image' class='js-usericon-btn'>";
         }
 
         echo '</div>';
@@ -223,6 +223,10 @@ if (isset($_SESSION['all_drinks'])) {
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="./scripts/pulldown.js"></script>
   <script src="./scripts/extract.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./scripts/main.js" type="module"></script>
 </body>
 
 </html>

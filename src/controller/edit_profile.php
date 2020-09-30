@@ -4,9 +4,22 @@ require '../utils/index.php';
 
 ini_set('display_errors', 1);
 
+
 $id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
-$uicon = $_SESSION['user_icon'];
+
+if (!isset($id_u) && !isset($uname)) {
+  header('location: ../login.php');
+  exit(0);
+}
+
+require '../model/get_user_icon.php';
+$uicon = getUserIcon($id_u, $uname);
+
+if ($uicon) {
+  $_SESSION['user_icon'] = $uicon;
+}
+
 
 if (!$id_u) {
   header('location: ../login.php');

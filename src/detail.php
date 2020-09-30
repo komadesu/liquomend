@@ -197,12 +197,12 @@ if (isset($_SESSION['three_customize_drinks'])) {
 
         <?php
 
-        echo '<div class="mobile-menu__icon">';
+        echo '<div class="mobile-menu__icon js-mobile-menu__icon">';
 
         if (!$uicon) {
-          echo '<img src="./img/default-icon.svg" alt="icon sample image">';
+          echo '<img src="./img/default-icon.svg" alt="icon sample image" class="js-usericon-btn">';
         } else {
-          echo '<img src="./img/$uicon" alt="icon image">';
+          echo  "<img src='./${uicon}' alt='icon image' class='js-usericon-btn'>";
         }
 
         echo '</div>';
@@ -286,6 +286,8 @@ if (isset($_SESSION['three_customize_drinks'])) {
       </div>
     </nav>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./scripts/main.js" type="module"></script>
 </body>
 
 </html>
