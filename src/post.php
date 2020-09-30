@@ -240,12 +240,12 @@ if (isset($_SESSION['errors'])) {
 
         <?php
 
-        echo '<div class="mobile-menu__icon">';
+        echo '<div class="mobile-menu__icon js-mobile-menu__icon">';
 
         if (!$uicon) {
-          echo '<img src="./img/default-icon.svg" alt="icon sample image">';
+          echo '<img src="./img/default-icon.svg" alt="icon sample image" class="js-usericon-btn">';
         } else {
-          echo '<img src="./img/$uicon" alt="icon image">';
+          echo  "<img src='./${uicon}' alt='icon image' class='js-usericon-btn'>";
         }
 
         echo '</div>';
@@ -288,7 +288,7 @@ if (isset($_SESSION['errors'])) {
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./category.php" class="mobile-menu__link">
+            <a href="./controller/category.php" class="mobile-menu__link">
               <span class="nav-main-title">Category</span>
               <span class="nav-sub-title">カテゴリーから探す</span>
             </a>
@@ -300,7 +300,7 @@ if (isset($_SESSION['errors'])) {
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./about.php" class="mobile-menu__link">
+            <a href="./controller/about.php" class="mobile-menu__link">
               <span class="nav-main-title">About Us</span>
               <span class="nav-sub-title">私たちについて</span>
             </a>
@@ -319,7 +319,7 @@ if (isset($_SESSION['errors'])) {
           </li>
         </ul>
         <div class="mobile-menu__logo">
-          <img src="./img/logo2.png" alt="logo2 image" />
+          <img src="./img/logo2.png" alt="logo2 image" onclick="location.href='./controller/about.php' ;" />
         </div>
         <div class="mobile-menu__sns">
           <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
@@ -329,7 +329,8 @@ if (isset($_SESSION['errors'])) {
       </div>
     </nav>
   </div>
-  <script src="./scripts/main.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./scripts/post.js" type="module"></script>
 </body>
 
 </html>

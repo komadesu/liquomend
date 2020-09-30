@@ -13,11 +13,4 @@ if (isset($id_u) && isset($uname)) {
     $_SESSION['user_icon'] = $uicon;
   }
 }
-
-
-require '../model/get_drinks.php';
-
-$usual_drinks = getDrinks('usual', null, null, null);
-$_SESSION['usual_drinks'] = $usual_drinks;
-
-header('location: ../usual-menu.php');
+header('location: ../about.php');

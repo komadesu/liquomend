@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+
+$id_u = $_SESSION['user_id'];
+$uname = $_SESSION['user_name'];
+$uicon = $_SESSION['user_icon'];
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -48,15 +61,15 @@
           <div class="creator__members">
             <div class="creator-left">
               <span class="creator__member">Koma Tsugata</span>
-              <span class="creator__member">Kurea Honda</span>
-              <span class="creator__member">Mamiko Matsuki</span>
-              <span class="creator__member">Syunto Nakamura</span>
-            </div>
-            <div class="creator-right">
               <span class="creator__member">Mitsuki Habaki</span>
               <span class="creator__member">Runa Hino</span>
-              <span class="creator__member">Tentaro Miyagi</span>
-              <span class="creator__member">Yukiho Nishinarita</span>
+              <span class="creator__member">Kurea Honda</span>
+            </div>
+            <div class="creator-right">
+              <span class="creator__member">システム担当</span>
+              <span class="creator__member">デザイン・動画担当</span>
+              <span class="creator__member">資料担当</span>
+              <span class="creator__member">データ担当</span>
             </div>
           </div>
         </div>
@@ -89,12 +102,12 @@
 
         <?php
 
-        echo '<div class="mobile-menu__icon">';
+        echo '<div class="mobile-menu__icon js-mobile-menu__icon">';
 
         if (!$uicon) {
-          echo '<img src="./img/default-icon.svg" alt="icon sample image">';
+          echo '<img src="./img/default-icon.svg" alt="icon sample image" class="js-usericon-btn">';
         } else {
-          echo '<img src="./img/$uicon" alt="icon image">';
+          echo  "<img src='./${uicon}' alt='icon image' class='js-usericon-btn'>";
         }
 
         echo '</div>';
@@ -137,7 +150,7 @@
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./category.php" class="mobile-menu__link">
+            <a href="./controller/category.php" class="mobile-menu__link">
               <span class="nav-main-title">Category</span>
               <span class="nav-sub-title">カテゴリーから探す</span>
             </a>
@@ -149,7 +162,7 @@
             </a>
           </li>
           <li class="mobile-menu__item">
-            <a href="./about.php" class="mobile-menu__link">
+            <a href="./controller/about.php" class="mobile-menu__link">
               <span class="nav-main-title">About Us</span>
               <span class="nav-sub-title">私たちについて</span>
             </a>
@@ -168,7 +181,7 @@
           </li>
         </ul>
         <div class="mobile-menu__logo">
-          <img src="./img/logo2.png" alt="logo2 image" />
+          <img src="./img/logo2.png" alt="logo2 image" onclick="location.href='./home.php' ;" />
         </div>
         <div class="mobile-menu__sns">
           <a href="https://www.facebook.com/Liquomend" class="fb_icon icon"><img src="./img/facebook.png" alt="Facebook" /></a>
@@ -178,6 +191,9 @@
       </div>
     </nav>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./scripts/main.js" type="module"></script>
 </body>
 
 </html>

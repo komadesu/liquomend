@@ -12,10 +12,11 @@ function getDrinkDetail($id_d)
     $drink = pg_fetch_row($result);
 
     $name = $drink[2];
+    $base = $drink[3];
     $memo = $drink[5];
     $image = $drink[6];
 
-    array_push($drink_detail, $name, $memo, $image);
+    array_push($drink_detail, $name, $base, $memo, $image);
   }
 
   $sql = "select liquomend.ingredients.ingredient, liquomend.quantities.quantity from liquomend.drinks inner join liquomend.ingredients on liquomend.drinks.id_d = liquomend.ingredients.id_d inner join liquomend.quantities on liquomend.drinks.id_d = liquomend.quantities.id_d and liquomend.ingredients.id_i = liquomend.quantities.id_q where liquomend.drinks.id_d = $id_d ;";
