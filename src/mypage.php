@@ -287,9 +287,8 @@ if (isset($_SESSION['your_favorite_drinks'])) {
     </nav>
   </div>
 
-  <script src="./scripts/mypage-nav.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="./scripts/post-user-icon.js"></script>
+  <script src="./scripts/mypage.js" type="module"></script>
 </body>
 
 </html>
