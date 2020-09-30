@@ -191,6 +191,9 @@ $uicon = $_SESSION['user_icon'];
       </div>
     </nav>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./scripts/main.js" type="module"></script>
 </body>
 
 </html>

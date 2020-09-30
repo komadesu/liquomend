@@ -7,11 +7,6 @@ $id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
 
 $uicon = $_SESSION['user_icon'];
-// $uicon = $uicon[0];
-// if (isset($_SESSION['user_icon'])) {
-//   $user_icon = $_SESSION['user_icon'];
-//   $uicon = $user_icon[0];
-// }
 
 
 if (isset($_SESSION['your_drinks'])) {

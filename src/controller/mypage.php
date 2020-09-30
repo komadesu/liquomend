@@ -6,7 +6,6 @@ ini_set('display_errors', 1);
 
 $id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
-// $uicon = $_SESSION['user_icon'];
 
 if (!$id_u) {
   header('location: ../login.php');

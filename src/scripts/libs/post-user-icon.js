@@ -35,7 +35,9 @@ class PostUserIcon {
         body.append('user_icon_image', f);
 
         axios.post('./controller/update_user_icon.php', body).then((resp) => {
-          this.userIcon.innerHTML = resp.data;
+          if (this.userIcon) {
+            this.userIcon.innerHTML = resp.data;
+          }
           this.mobileMenuIcon.innerHTML = resp.data;
         });
       });
