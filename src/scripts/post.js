@@ -1,6 +1,6 @@
-import PreviewImage from './preview-image.js';
-import AppearBaseSelect from './appear-base-select.js';
-import ControllRecipeMethod from './controll-recipe-method.js';
+import PreviewImage from './libs/preview-image.js';
+import AppearBaseSelect from './libs/appear-base-select.js';
+import ControllRecipeMethod from './libs/controll-recipe-method.js';
 import PostUserIcon from './libs/post-user-icon.js';
 
 document.addEventListener('DOMContentLoaded', () => {
