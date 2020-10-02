@@ -112,6 +112,8 @@ if (isset($_SESSION['your_favorite_drinks'])) {
                   echo "</li>";
                   echo "</div>";
                 }
+              else :
+                echo '<p>投稿がまだありません</p>';
               endif;
               ?>
 
@@ -155,6 +157,8 @@ if (isset($_SESSION['your_favorite_drinks'])) {
                   echo "</li>";
                   echo "</div>";
                 }
+              else :
+                echo '<p>お気に入りが登録されていません</p>';
               endif;
               ?>
 
