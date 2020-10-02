@@ -200,6 +200,16 @@
   position: static;
 }
 
+.favo-toggle-btn {
+  text-align: right;
+  padding-top: 8px;
+
+  & .star-btn {
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+}
+
 @media (min-width: 375px) {
 }
 
@@ -215,16 +225,30 @@
       }
     }
   }
+  .favo-toggle-btn {
+    padding-top: 15px;
+
+    & .star-btn {
+      font-size: 2em;
+    }
+  }
 }
 
 @media (min-width: 768px) and (orientation: landscape) {
 }
 @media (min-width: 992px) {
-    .detail {
+  .detail {
     &__related-base-recipe {
       & .more-btn {
         padding-right: 200px;
       }
+    }
+  }
+  .favo-toggle-btn {
+    padding-top: 20px;
+
+    & .star-btn {
+      font-size: 2.2em;
     }
   }
 }
