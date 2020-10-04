@@ -19,7 +19,7 @@ function updateFavoState($id_d, $id_u, $state)
   if ($state === 'inactive') {
     $sql = "delete from liquomend.favorites where id_d = $id_d and id_u = $id_u ; ";
     $result = pg_query($sql) or die('Query failed: first ' . pg_last_error());
-    if (pg_num_rows($result)) {
+    if ($result) {
       return 'unregistered';
     } else {
       return false;
