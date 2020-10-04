@@ -34,4 +34,5 @@ $uicon = getUserIcon($id_u, $uname);
 if ($uicon) {
   $_SESSION['user_icon'] = $uicon;
 }
+$_SESSION['prevIsController'] = true;
 header('location: ../mypage.php');
