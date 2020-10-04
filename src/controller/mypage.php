@@ -14,10 +14,19 @@ if (!$id_u) {
 
 require '../model/get_drinks.php';
 $drinks = getDrinks(null, null, null, $id_u);
-$_SESSION['your_drinks'] = $drinks;
+if (isset($drinks)) {
+  $_SESSION['your_drinks'] = $drinks;
+} else {
+  $_SESSION['your_drinks'] = null;
+}
 
-$drinks = getDrinks(null, null, null, $id_u); // とりあえず上のと同じやつ、あとでお気に入りドリンクのみ引っ張ってくる
-$_SESSION['your_favorite_drinks'] = $drinks;
+require '../model/get_favorite_drinks.php';
+$favo_drinks = getFavoriteDrinks($id_u);
+if (isset($favo_drinks)) {
+  $_SESSION['your_favorite_drinks'] = $favo_drinks;
+} else {
+  $_SESSION['your_favorite_drinks'] = null;
+}
 
 require '../model/get_user_icon.php';
 $uicon = getUserIcon($id_u, $uname);
@@ -25,4 +34,5 @@ $uicon = getUserIcon($id_u, $uname);
 if ($uicon) {
   $_SESSION['user_icon'] = $uicon;
 }
+$_SESSION['prevIsController'] = true;
 header('location: ../mypage.php');

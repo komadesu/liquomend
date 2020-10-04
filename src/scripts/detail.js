@@ -1,19 +1,7 @@
-import PreviewImage from './libs/preview-image.js';
-import AppearBaseSelect from './libs/appear-base-select.js';
-import ControllRecipeMethod from './libs/controll-recipe-method.js';
 import PostUserIcon from './libs/post-user-icon.js';
+import UpdateFavoState from './libs/update-favo-state.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const io = new AppearBaseSelect();
-
-
-  const fileInput = document.querySelector('.js-recipe-img-input');
-  const io2 = new PreviewImage(fileInput);
-
-
-  const io3 = new ControllRecipeMethod();
-
-
   const postUserIconInstance = new PostUserIcon();
   const observer = new MutationObserver((mutationList, observer) => {
     mutationList.forEach((mutationRecord) => {
@@ -28,4 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenuIcon = postUserIconInstance.mobileMenuIcon;
   // observer.observe(userIcon, config);
   observer.observe(mobileMenuIcon, config);
+
+
+
+  new UpdateFavoState();
 });

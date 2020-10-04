@@ -3,6 +3,13 @@ session_start();
 
 ini_set('display_errors', 1);
 
+if ($_SESSION['prevIsController'] === false) {
+  header('location: ./controller/mypage.php');
+  exit(0);
+} else {
+  $_SESSION['prevIsController'] = false;
+}
+
 $id_u = $_SESSION['user_id'];
 $uname = $_SESSION['user_name'];
 
@@ -112,6 +119,8 @@ if (isset($_SESSION['your_favorite_drinks'])) {
                   echo "</li>";
                   echo "</div>";
                 }
+              else :
+                echo '<p>投稿がまだありません</p>';
               endif;
               ?>
 
@@ -155,6 +164,8 @@ if (isset($_SESSION['your_favorite_drinks'])) {
                   echo "</li>";
                   echo "</div>";
                 }
+              else :
+                echo '<p>お気に入りが登録されていません</p>';
               endif;
               ?>
 
