@@ -200,11 +200,12 @@
   position: static;
 }
 
-.favo-toggle-btn {
+.favo {
   text-align: right;
   padding-top: 8px;
 
   & .star-btn {
+    color: #ff9800;
     font-size: 1.5em;
     cursor: pointer;
   }
@@ -225,7 +226,7 @@
       }
     }
   }
-  .favo-toggle-btn {
+  .favo {
     padding-top: 15px;
 
     & .star-btn {
@@ -244,7 +245,7 @@
       }
     }
   }
-  .favo-toggle-btn {
+  .favo {
     padding-top: 20px;
 
     & .star-btn {

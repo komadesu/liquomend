@@ -22,6 +22,20 @@ if (isset($_SESSION['three_customize_drinks'])) {
   $three_customize_drinks = $_SESSION['three_customize_drinks'];
 }
 
+if (isset($_SESSION['which_star'])) {
+  if ($_SESSION['which_star'] === 'active') {
+    $star = 'fas';
+    $_SESSION['which_star'] = null;
+  }
+  if ($_SESSION['which_star'] === 'inactive') {
+    $star = 'far';
+    $_SESSION['which_star'] = null;
+  }
+} else {
+  $star = 'far';
+}
+
+
 
 ?>
 
@@ -64,7 +78,7 @@ if (isset($_SESSION['three_customize_drinks'])) {
           <div class="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
             <div class="detail__image">
               <img src="./<?php echo $image; ?>" alt="detail drink image" />
-              <div class="favo-toggle-btn"><i class="far fa-star star-btn"></i></div>
+              <div class="favo js-favo"><i class="<?php echo $star; ?> fa-star star-btn js-star-btn"></i></div>
             </div>
           </div>
         </div>
@@ -288,7 +302,7 @@ if (isset($_SESSION['three_customize_drinks'])) {
     </nav>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="./scripts/main.js" type="module"></script>
+  <script src="./scripts/detail.js" type="module"></script>
 </body>
 
 </html>
