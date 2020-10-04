@@ -28,6 +28,17 @@ $_SESSION['drink_detail'] = $drink_detail;
 $base = $_SESSION['drink_detail'][1];
 
 
+require '../model/judge_favo_state.php';
+$judgeResult = judgeFavoState($id_d, $id_u);
+
+if ($judgeResult === 'registered') {
+  $_SESSION['which_star'] = 'active';
+}
+if ($judgeResult === 'unregistered') {
+  $_SESSION['which_star'] = 'inactive';
+}
+
+
 require '../model/get_drinks.php';
 $three_customize_drinks = getDrinks('customize', 3, $base, null);
 $_SESSION['three_customize_drinks'] = $three_customize_drinks;
